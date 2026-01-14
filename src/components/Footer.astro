@@ -1,0 +1,44 @@
+---
+// Lấy lang từ Layout truyền xuống
+const { lang } = Astro.props;
+
+import { useTranslations } from '../i18n/utils';
+const t = useTranslations(lang);
+
+// Logic đổi đường dẫn cho nút gạt
+const currentPath = Astro.url.pathname;
+const getPath = (target: string) => currentPath.replace(`/${lang}/`, `/${target}/`);
+---
+
+<footer class="bg-[#002a5c] text-white pt-16 pb-12">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row items-baseline gap-8 mb-12">
+      <h2 class="text-[34px] font-black tracking-tighter uppercase italic leading-none">INVEST KOREA</h2>
+      <p class="text-[14px] text-white/50">{t('footer.rights')}</p>
+    </div>
+
+    <div class="flex flex-col lg:flex-row justify-between items-center gap-8 border-t border-white/10 pt-10">
+      <nav class="flex flex-wrap gap-x-10 gap-y-4 text-[12px] font-black uppercase">
+        <a href="#" class="hover:text-blue-300 transition-colors">{t('footer.privacy')}</a>
+        <a href="#" class="hover:text-blue-300 transition-colors">{t('footer.cookie')}</a>
+        <a href="#" class="hover:text-blue-300 transition-colors">{t('footer.location')}</a>
+        <a href="#" class="hover:text-blue-300 transition-colors">{t('footer.sitemap')}</a>
+      </nav>
+
+      <div class="flex gap-4 items-center">
+        <div class="border border-white/20 px-6 py-2 text-[11px] font-black min-w-[180px] flex justify-between items-center">
+          {t('footer.family')} <span class="text-[10px] ml-4">▼</span>
+        </div>
+
+        <div class="flex items-center bg-white/10 rounded-full p-1 border border-white/20 h-9">
+          <a href={getPath('vi')} class={`px-5 py-1 text-[11px] font-black rounded-full transition-all ${lang === 'vi' ? 'bg-white text-[#002a5c]' : 'text-white/60 hover:text-white'}`}>
+            VN
+          </a>
+          <a href={getPath('ko')} class={`px-5 py-1 text-[11px] font-black rounded-full transition-all ${lang === 'ko' ? 'bg-white text-[#002a5c]' : 'text-white/60 hover:text-white'}`}>
+            KO
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

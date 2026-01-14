@@ -1,0 +1,45 @@
+---
+// src/components/NewsSection.astro
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+    lang: 'vi' | 'ko';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const newsItems = [
+    {
+        image: 'https://images.unsplash.com/photo-1579621379308-01127043232c?q=80&w=1500',
+        titleKey: 'news.item1.title',
+        dateKey: 'news.item1.date',
+        link: '#',
+    },
+    {
+        image: 'https://images.unsplash.com/photo-1589118949245-df86144458f3?q=80&w=1500',
+        titleKey: 'news.item2.title',
+        dateKey: 'news.item2.date',
+        link: '#',
+    },
+    {
+        image: 'https://images.unsplash.com/photo-1621343753738-9e5c9b46c0a0?q=80&w=1500',
+        titleKey: 'news.item3.title',
+        dateKey: 'news.item3.date',
+        link: '#',
+    },
+];
+---
+<section class="bg-gray-50 py-20">
+    <div class="container mx-auto px-6">
+        <div class="flex justify-between items-center mb-12">
+            <h2 class="text-4xl font-black text-gray-800">{t('news.title')}</h2>
+            <a href="#" class="text-blue-700 hover:text-blue-900 font-bold flex items-center gap-2">
+                {t('news.viewAll')}
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" /></svg>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {newsItems.map((item) => (
+                <a href={item.link} class="block bg-white rounded-lg shadow-lg

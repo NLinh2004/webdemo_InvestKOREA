@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const lang = 'ko';
+const t = useTranslations(lang);
+
+// Nhóm các mục theo 2 cột như trong Mega Menu
+const groups = [
+  {
+    items: ['message', 'ombudsman', 'publication', 'video']
+  },
+  {
+    items: ['about', 'honorary', 'magazine', 'media']
+  }
+];
+---
+<Layout title="Invest KOREA 소개" lang={lang}>
+  <main class="bg-white min-h-screen">
+    <div class="border-b border-gray-100 py-4">
+      <div class="max-w-7xl mx-auto px-6 text-[12px] font-bold text-gray-400 uppercase tracking-widest">
+        Trang chủ <span class="mx-2">/</span> {t('abt.about')}
+      </div>
+    </div>
+
+    <section class="max-w-7xl mx-auto px-6 py-24 flex flex-col lg:flex-row gap-20">
+      <div class="lg:w-1/4">
+        <h1 class="text-[64px] font-black italic uppercase leading-none tracking-tighter text-[#111]">
+          About Us
+        </h1>
+      </div>
+
+      <div class="lg:w-3/4 grid grid-cols-1 md:grid-cols-2 gap-x-20">
+        {groups.map((group) => (
+          <div class="flex flex-col border-t border-gray-100 md:border-t-0">
+            {group.items.map((key) => (
+              <a href="#" class="group py-5 border-b border-gray-50 flex justify-between items-center hover:bg-gray-50 transition-all px-2">
+                <span class="text-[17px] font-bold text-gray-800 group-hover:text-[#ee5931] transition-colors">
+                  {t(`abt.${key}`)}
+                </span>
+                <span class="text-[#ee5931] opacity-0 group-hover:opacity-100 transition-all translate-x-[-10px] group-hover:translate-x-0 font-black">
+                  →
+                </span>
+              </a>
+            ))}
+          </div>
+        ))}
+      </div>
+    </section>
+  </main>
+</Layout>

@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { useTranslations } from '../../i18n/utils';
+const lang = 'vi';
+const t = useTranslations(lang);
+
+// Danh sách tỉnh thành chia 2 cột để lặp
+const col1 = ['seoul', 'gyeonggi', 'daejeon', 'chungbuk', 'daegu', 'ulsan', 'gyeongnam', 'jeonbuk', 'jeju'];
+const col2 = ['incheon', 'gangwon', 'sejong', 'chungnam', 'busan', 'gyeongbuk', 'gwangju', 'jeonnam'];
+---
+
+<Layout title={t('reg.title')} lang={lang}>
+  <main class="bg-white min-h-screen">
+    <div class="border-b border-gray-100 py-4">
+      <div class="max-w-7xl mx-auto px-6 text-[12px] font-bold text-gray-400 uppercase">
+        Trang chủ <span class="mx-2">/</span> {t('reg.title')}
+      </div>
+    </div>
+
+    <section class="max-w-7xl mx-auto px-6 py-20 flex flex-col lg:flex-row gap-20">
+      <div class="lg:w-1/4">
+        <h1 class="text-[64px] font-black italic uppercase leading-none tracking-tighter text-[#111]">
+          Regions
+        </h1>
+      </div>
+
+      <div class="lg:w-3/4 grid grid-cols-2 gap-x-20">
+        <div class="flex flex-col">
+          {col1.map(reg => (
+            <a href="#" class="py-4 border-b border-gray-50 text-[18px] font-bold text-gray-800 hover:text-[#ee5931]">
+              {t(`reg.${reg}`)}
+            </a>
+          ))}
+        </div>
+        <div class="flex flex-col">
+          {col2.map(reg => (
+            <a href="#" class="py-4 border-b border-gray-50 text-[18px] font-bold text-gray-800 hover:text-[#ee5931]">
+              {t(`reg.${reg}`)}
+            </a>
+          ))}
+          <a href="#" class="py-6 text-[18px] font-bold text-[#003366] underline italic">{t('reg.report')}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
