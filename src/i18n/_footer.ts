@@ -14,7 +14,7 @@ export const footer = {
     "footer.copyright": "저작권정책",
     "footer.location": "찾아오시는 길",
     "footer.sitemap": "사이트맵",
-    "footer.rights": "Copyright © 2024 Invest KOREA. All rights reserved.",
+    "footer.rights": "Copyright © 2024 Invest KOREA. 모든 권리 보유.",
     "footer.family": "패밀리 사이트"
   }
 };

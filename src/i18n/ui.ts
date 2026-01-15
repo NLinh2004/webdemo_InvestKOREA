@@ -34,7 +34,7 @@ export const ui = {
     ...about.ko,
     ...why.ko,
     ...industries.ko,
-    ...incentives.vi,
+    ...incentives.ko,
     ...regions.ko,
     ...services.ko,
     ...footer.ko,
