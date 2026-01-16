@@ -290,7 +290,7 @@ export const regionData = {
         date: "2025.12.05",
         image: "/images/regions/report_01.png",
         link: "#",
-        tags: [], // Nếu có tag thì điền vào đây
+        tags: [],
       },
       {
         title:
@@ -300,7 +300,7 @@ export const regionData = {
         link: "#",
         tags: [],
       },
-      // Bạn có thể thêm các item mẫu khác nếu muốn test grid 3 cột
+
       {
         title:
           "Gyeongnam National Aerospace Industrial Complex, Korea’s Biggest Aerospace Hub",
