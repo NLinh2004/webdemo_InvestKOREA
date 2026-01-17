@@ -1,7 +1,9 @@
 // src/i18n/_regions.ts
+
 export const regions = {
   vi: {
     "reg.title": "Thông tin địa phương",
+
     "reg.report": "Báo cáo vị trí",
     "reg.seoul": "Seoul",
     "reg.incheon": "Incheon",
@@ -44,11 +46,9 @@ export const regions = {
   },
 };
 
+// Dữ liệu dùng chung cho Bản đồ
 export const regionData = {
-  title: "Regions",
-  subtitle:
-    "Korea's 17 Local Regions provide specialized investment environments and services.",
-  mapBaseImage: "/images/regions/map_base.png", // Ảnh bản đồ gốc
+  mapBaseImage: "/images/regions/map_base.png",
   categories: [
     {
       name: "Metropolitan Area",
@@ -209,105 +209,216 @@ export const regionData = {
       ],
     },
   ],
-  kfez: {
-    title: "KFEZ, where the success formula for businesses unfolds",
+};
+
+// Dữ liệu KFEZ (Đã dịch Việt - Hàn)
+export const kfezData = {
+  vi: {
+    title: "KFEZ, nơi công thức thành công cho doanh nghiệp mở ra",
     description:
-      "Korean Free Economic Zones (KFEZ) are designed to actively attract foreign investment by improving the business environment and living conditions of foreign-invested companies and by maximizing the autonomy and investment incentives of companies through deregulation.",
+      "Các Khu Kinh tế Tự do Hàn Quốc (KFEZ) được thiết kế để tích cực thu hút đầu tư nước ngoài bằng cách cải thiện môi trường kinh doanh và điều kiện sống, đồng thời tối đa hóa quyền tự chủ và các ưu đãi đầu tư thông qua việc nới lỏng quy định.",
     items: [
       {
         id: "incheon",
         name: "Incheon",
-        fullName: "Incheon Free Economic Zone (IFEZ)",
-        desc: "Incheon has been reborn as a global business hub. Incheon boasts an ideal international business environment, including Incheon International Airport, which has attained first place at the Airport Service Quality Awards (ASQ) for twelve consecutive years; the rapidly-growing Incheon Port; five world-class foreign universities located in Songdo Global Campus, and an international business complex. The Incheon Free Economic Zone (IFEZ) is a place where everything from bio, logistics, medical care, education, and high-tech industries can be enjoyed.",
+        fullName: "Khu Kinh tế Tự do Incheon (IFEZ)",
+        desc: "Incheon đã tái sinh thành một trung tâm kinh doanh toàn cầu. IFEZ tự hào có môi trường kinh doanh quốc tế lý tưởng, bao gồm Sân bay Quốc tế Incheon, Cảng Incheon đang phát triển nhanh chóng, và khuôn viên toàn cầu Songdo.",
         link: "#",
       },
       {
         id: "gyeonggi",
         name: "Gyeonggi",
-        fullName: "Gyeonggi Free Economic Zone (GGFEZ)",
-        desc: "Gyeonggi Free Economic Zone (GGFEZ) is located in the center of the West Coast Economic Belt. GGFEZ consists of three zones:: Pyeongtaek Poseung (BIX) Zone and Hyeondeok Zone for high-tech, logistics, and distribution industries; and Siheung Baegot Zone for R&D of land, sea, and unmanned aerial vehicles.",
+        fullName: "Khu Kinh tế Tự do Gyeonggi (GGFEZ)",
+        desc: "GGFEZ nằm ở trung tâm Vành đai Kinh tế Bờ biển phía Tây. Bao gồm ba khu vực: Poseung (BIX) và Hyeondeok tập trung vào công nghệ cao, logistics; và Siheung Baegot tập trung vào R&D các phương tiện không người lái.",
         link: "#",
       },
       {
         id: "gangwon",
-        name: "Gangwon State",
-        fullName: "Gangwon State Free Economic Zone (GSFEZ)",
-        desc: "Gangwon State Free Economic Zone (GSFEZ) is a special economic zone that improves the business environment and living conditions of foreign-invested companies located in Gangwon State. Various tax benefits, deregulation for free economic activities, a good living environment, and convenient administrative services guarantee a free and wide range of corporate activities.",
+        name: "Gangwon",
+        fullName: "Khu Kinh tế Tự do Gangwon (GSFEZ)",
+        desc: "GSFEZ là đặc khu kinh tế cải thiện môi trường kinh doanh và điều kiện sống cho các công ty đầu tư nước ngoài tại tỉnh Gangwon, tập trung vào du lịch nghỉ dưỡng, năng lượng hydro và vật liệu công nghệ cao.",
         link: "#",
       },
       {
         id: "chungbuk",
         name: "Chungbuk",
-        fullName: "Chungbuk Free Economic Zone (CBFEZ)",
-        desc: "Chungbuk is located in the central inland region and offers the shortest accessibility in all directions. Chungbuk Free Economic Zone (CEBFEZ) is a new hub for growing global cities and fostering the bio industry and the Urban Air Mobility industry, connected with the rotary wing maintenance.",
+        fullName: "Khu Kinh tế Tự do Chungbuk (CBFEZ)",
+        desc: "Nằm ở trung tâm nội địa, CBFEZ là trung tâm mới để phát triển các thành phố toàn cầu và thúc đẩy ngành công nghiệp sinh học (Bio) cũng như ngành Hàng không Đô thị (UAM).",
         link: "#",
       },
       {
         id: "gwangju",
         name: "Gwangju",
-        fullName: "Gwangju Free Economic Zone (GJFEZ)",
-        desc: "Gwangju Free Economic Zone (GJFEZ) is the only AI-focused free economic zone in Korea. GJFEZ is building a new hub for Korea’s innovative growth through convergence of cutting-edge technologies, such as next-generation eco-friendly vehicles, smart energy, and biomedical technologies.",
+        fullName: "Khu Kinh tế Tự do Gwangju (GJFEZ)",
+        desc: "GJFEZ là khu kinh tế tự do duy nhất tập trung vào AI tại Hàn Quốc. Nơi đây đang xây dựng trung tâm mới cho sự tăng trưởng đổi mới thông qua hội tụ các công nghệ tiên tiến như ô tô thân thiện môi trường và năng lượng thông minh.",
         link: "#",
       },
       {
         id: "gwangyang",
         name: "Gwangyang Bay",
-        fullName: "Gwangyang Bay Area Free Economic Zone (GFEZ)",
-        desc: "Gwangyang Bay Area Free Economic Zone (GFEZ) consists of six specialized zones and seventeen complexes that are perfectly prepared for your success. GFEZ is a new hub for logistics, tourism, and new industries in Northeast Asia, taking shape as a dynamic, international trade city.",
+        fullName: "Khu Kinh tế Tự do Vịnh Gwangyang (GFEZ)",
+        desc: "GFEZ bao gồm sáu khu vực chuyên biệt và mười bảy khu phức hợp được chuẩn bị hoàn hảo cho sự thành công của bạn. Đây là trung tâm logistics, du lịch và các ngành công nghiệp mới ở Đông Bắc Á.",
         link: "#",
       },
       {
         id: "daegu",
         name: "Daegu Gyeongbuk",
-        fullName: "Daegu Gyeongbuk Free Economic Zone (DGFEZ)",
-        desc: "Daegu and Gyeongbuk are equipped with knowledge-based industries and service infrastructure. Daegu Gyeongbuk Free Economic Zone (DGFEZ) offers business sites, R&D facilities, and stable commercial and residential conditions, with a focus on IT convergence, high-tech transportation machinery parts, and medical industries.",
+        fullName: "Khu Kinh tế Tự do Daegu Gyeongbuk (DGFEZ)",
+        desc: "DGFEZ cung cấp các địa điểm kinh doanh, cơ sở R&D tập trung vào hội tụ IT, phụ tùng máy móc vận tải công nghệ cao và các ngành công nghiệp y tế.",
         link: "#",
       },
       {
         id: "ulsan",
         name: "Ulsan",
-        fullName: "Ulsan Free Economic Zone (UFEZ)",
-        desc: "Ulsan is a no. 1 industrial city with the highest GDP per capita in Korea. The city is a home to world-class automobile, shipbuilding, and petrochemical companies. Ulsan aims to focus on fostering future mobility, bio, chemical, new materials, hydrogen, and low carbon energy industries.",
+        fullName: "Khu Kinh tế Tự do Ulsan (UFEZ)",
+        desc: "Ulsan là thành phố công nghiệp số 1 Hàn Quốc. UFEZ tập trung vào việc thúc đẩy các ngành công nghiệp di động tương lai, sinh học, hóa chất, vật liệu mới, hydro và năng lượng carbon thấp.",
         link: "#",
       },
       {
         id: "busan",
         name: "Busan Jinhae",
-        fullName: "Busan Jinhae Free Economic Zone (BJFEZ)",
-        desc: "Busan Port is the best logistics hub in Northeast Asia, dealing with 75% of domestic cargo volume. Busan Jinhae Free Economic Zone (BJFEZ) is a global industrial cluster of shipbuilding, automobile, and machinery industries as well as a key region for next-generation digital technologies.",
+        fullName: "Khu Kinh tế Tự do Busan Jinhae (BJFEZ)",
+        desc: "BJFEZ là cụm công nghiệp toàn cầu về đóng tàu, ô tô và máy móc, đồng thời là khu vực trọng điểm cho các công nghệ kỹ thuật số thế hệ tiếp theo và trung tâm logistics tốt nhất Đông Bắc Á.",
         link: "#",
       },
     ],
   },
-  locationReports: {
-    title: "Location Report",
-    moreText: "More",
-    moreLink: "/location-report", // Đường dẫn trang xem thêm
+  ko: {
+    title: "기업의 성공 공식이 펼쳐지는 KFEZ",
+    description:
+      "한국경제자유구역(KFEZ)은 규제 완화를 통해 기업의 자율성과 투자 인센티브를 극대화하고, 외국인 투자 기업의 경영 환경과 생활 여건을 개선하여 외국인 투자를 적극 유치하기 위해 조성되었습니다.",
     items: [
       {
-        title:
-          "Sejong Smart National Industrial Complex: Poised to Emerge as a Core Hub for the Industries of the Future",
-        date: "2025.12.05",
-        image: "/images/regions/report_01.png",
+        id: "incheon",
+        name: "인천",
+        fullName: "인천경제자유구역 (IFEZ)",
+        desc: "인천은 글로벌 비즈니스 허브로 재탄생했습니다. 12년 연속 공항서비스평가(ASQ) 1위를 달성한 인천국제공항, 급성장하는 인천항, 송도 글로벌 캠퍼스 등 최적의 국제 비즈니스 환경을 자랑합니다.",
         link: "#",
-        tags: [],
       },
       {
-        title:
-          "Ochang Science Industrial Complex: ever-advancing global hub for secondary battery and advanced industries",
-        date: "2025.11.11",
-        image: "/images/regions/report_02.png",
+        id: "gyeonggi",
+        name: "경기",
+        fullName: "경기경제자유구역 (GGFEZ)",
+        desc: "GGFEZ는 서해안 경제벨트의 중심에 위치합니다. 첨단·물류·유통 산업을 위한 평택 포승(BIX) 지구와 현덕 지구, 육·해·공 무인 이동체 R&D를 위한 시흥 배곧 지구로 구성됩니다.",
         link: "#",
-        tags: [],
       },
+      {
+        id: "gangwon",
+        name: "강원",
+        fullName: "강원경제자유구역 (GSFEZ)",
+        desc: "GSFEZ는 강원도 내 외국인 투자 기업의 경영 환경과 생활 여건을 개선하는 경제 특구입니다. 사계절 명품 휴양 관광, 수소 에너지, 첨단 소재 부품 산업의 중심지입니다.",
+        link: "#",
+      },
+      {
+        id: "chungbuk",
+        name: "충북",
+        fullName: "충북경제자유구역 (CBFEZ)",
+        desc: "충북은 내륙 중앙에 위치하여 사통팔달의 접근성을 제공합니다. CBFEZ는 바이오 산업과 회전익 정비와 연계된 도심 항공 모빌리티(UAM) 산업을 육성하는 새로운 허브입니다.",
+        link: "#",
+      },
+      {
+        id: "gwangju",
+        name: "광주",
+        fullName: "광주경제자유구역 (GJFEZ)",
+        desc: "GJFEZ는 한국 유일의 AI 중심 경제자유구역입니다. 차세대 친환경 자동차, 스마트 에너지, 생체의료 기술 등 첨단 기술의 융합을 통해 한국의 혁신 성장을 위한 새로운 허브를 구축하고 있습니다.",
+        link: "#",
+      },
+      {
+        id: "gwangyang",
+        name: "광양만권",
+        fullName: "광양만권경제자유구역 (GFEZ)",
+        desc: "GFEZ는 6개의 특화 지구와 17개의 단지로 구성되어 있습니다. 동북아시아의 물류, 관광, 신산업의 새로운 허브로서 역동적인 국제 무역 도시로 형성되고 있습니다.",
+        link: "#",
+      },
+      {
+        id: "daegu",
+        name: "대구경북",
+        fullName: "대구경북경제자유구역 (DGFEZ)",
+        desc: "DGFEZ는 IT 융합, 첨단 수송 기계 부품, 의료 산업을 중심으로 비즈니스 부지, R&D 시설, 안정적인 상업 및 주거 여건을 제공합니다.",
+        link: "#",
+      },
+      {
+        id: "ulsan",
+        name: "울산",
+        fullName: "울산경제자유구역 (UFEZ)",
+        desc: "울산은 한국 1위의 산업 도시입니다. UFEZ는 미래 모빌리티, 바이오, 화학, 신소재, 수소 및 저탄소 에너지 산업 육성에 중점을 두고 있습니다.",
+        link: "#",
+      },
+      {
+        id: "busan",
+        name: "부산진해",
+        fullName: "부산진해경제자유구역 (BJFEZ)",
+        desc: "BJFEZ는 조선, 자동차, 기계 산업의 글로벌 산업 클러스터이자 차세대 디지털 기술의 핵심 지역이며, 동북아 최고의 물류 허브인 부산항을 보유하고 있습니다.",
+        link: "#",
+      },
+    ],
+  },
+};
 
+// Dữ liệu Báo cáo
+export const locationReportsData = {
+  vi: {
+    title: "Báo cáo địa điểm",
+    moreText: "Xem thêm",
+    moreLink: "/vi/location-report",
+    items: [
       {
+        id: 1,
         title:
-          "Gyeongnam National Aerospace Industrial Complex, Korea’s Biggest Aerospace Hub",
-        date: "2024.02.05",
-        image: "/images/regions/report_03.png",
+          "Khu công nghiệp Quốc gia Thông minh Sejong: Định hình trung tâm công nghiệp tương lai",
+        date: "05.12.2025",
+        image: "/public/images/regions/report_01.png",
         link: "#",
-        tags: ["Gyeongnam"],
+        tags: ["Sejong", "Công nghiệp thông minh"],
+      },
+      {
+        id: 2,
+        title:
+          "Khu công nghiệp Khoa học Ochang: Cụm công nghiệp pin thứ cấp toàn cầu",
+        date: "11.11.2025",
+        image: "/public/images/regions/report_02.png",
+        link: "#",
+        tags: ["Chungbuk", "Pin thứ cấp"],
+      },
+      {
+        id: 3,
+        title:
+          "Khu công nghiệp Hàng không Vũ trụ Gyeongnam: Trung tâm hàng không lớn nhất Hàn Quốc",
+        date: "05.02.2025",
+        image: "/public/images/regions/report_03.png",
+        link: "#",
+        tags: ["Gyeongnam", "Hàng không vũ trụ"],
+      },
+    ],
+  },
+  ko: {
+    title: "입지 리포트",
+    moreText: "더보기",
+    moreLink: "/ko/location-report",
+    items: [
+      {
+        id: 1,
+        title: "세종 스마트 국가산업단지: 미래 산업의 핵심 거점으로 도약",
+        date: "2025.12.05",
+        image: "/public/images/regions/report_01.png",
+        link: "#",
+        tags: ["세종", "스마트 산업"],
+      },
+      {
+        id: 2,
+        title: "오창과학산업단지: 이차전지 및 첨단 산업의 글로벌 허브",
+        date: "2025.11.11",
+        image: "/public/images/regions/report_02.png",
+        link: "#",
+        tags: ["충북", "이차전지"],
+      },
+      {
+        id: 3,
+        title: "경남 항공 국가산업단지: 대한민국 최대 항공우주 산업 클러스터",
+        date: "2025.02.05",
+        image: "/public/images/regions/report_03.png",
+        link: "#",
+        tags: ["경남", "항공우주"],
       },
     ],
   },

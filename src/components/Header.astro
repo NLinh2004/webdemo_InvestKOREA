@@ -19,7 +19,7 @@ const t = useTranslations(lang);
       {/* Thêm 'regions' vào mảng để hiển thị trên thanh menu */}
       {['why', 'industries', 'incentives', 'regions', 'services', 'about'].map(key => (
         <div class="relative group h-full flex items-center">
-          <a href={['why', 'industries', 'incentives', 'regions'].includes(key) ? `/${lang}/${key}/` : "#"} 
+          <a href={['why', 'industries', 'incentives', 'regions', 'services', 'about'].includes(key) ? `/${lang}/${key}/` : "#"} 
              class="text-[14px] font-bold text-[#111] hover:text-[#003366] uppercase py-8">
             {t(`nav.${key}`)}
           </a>
@@ -128,14 +128,14 @@ const t = useTranslations(lang);
                 <div class="w-3/4 grid grid-cols-2 gap-x-12 pl-16 pt-4">
                   <div class="flex flex-col gap-4">
                     {['guide', 'consulting', 'living', 'cost', 'legislation'].map(item => (
-                      <a href="#" class="text-[16px] font-bold text-gray-800 hover:text-[#ee5931] transition-colors">
+                      <a href={`/${lang}/services`} class="text-[16px] font-bold text-gray-800 hover:text-[#ee5931] transition-colors">
                         {t(`ser.${item}`)}
                       </a>
                     ))}
                   </div>
                   <div class="flex flex-col gap-4">
                     {['faq', 'office', 'network', 'forms'].map(item => (
-                      <a href="#" class="text-[16px] font-bold text-gray-800 hover:text-[#ee5931] transition-colors">
+                      <a href={`/${lang}/services`} class="text-[16px] font-bold text-gray-800 hover:text-[#ee5931] transition-colors">
                         {t(`ser.${item}`)}
                       </a>
                     ))}
