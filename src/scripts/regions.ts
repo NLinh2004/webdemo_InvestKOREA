@@ -86,12 +86,35 @@ function initKFEZTabs() {
     // 2. Xử lý nội dung (Bên phải)
     contents.forEach((content) => {
       const contentIndex = parseInt(content.getAttribute("data-index") || "0");
+
       if (contentIndex === index) {
-        content.classList.remove("opacity-0", "translate-y-4", "-z-10");
-        content.classList.add("opacity-100", "translate-y-0", "z-10");
+        // HIỆN: Xóa class ẩn, thêm class hiện và cho phép bấm chuột
+        content.classList.remove(
+          "opacity-0",
+          "translate-y-4",
+          "-z-10",
+          "pointer-events-none"
+        );
+        content.classList.add(
+          "opacity-100",
+          "translate-y-0",
+          "z-10",
+          "pointer-events-auto"
+        );
       } else {
-        content.classList.add("opacity-0", "translate-y-4", "-z-10");
-        content.classList.remove("opacity-100", "translate-y-0", "z-10");
+        // ẨN: Thêm class ẩn, đẩy xuống dưới (-z-10) và VÔ HIỆU HÓA bấm chuột
+        content.classList.add(
+          "opacity-0",
+          "translate-y-4",
+          "-z-10",
+          "pointer-events-none"
+        );
+        content.classList.remove(
+          "opacity-100",
+          "translate-y-0",
+          "z-10",
+          "pointer-events-auto"
+        );
       }
     });
 
