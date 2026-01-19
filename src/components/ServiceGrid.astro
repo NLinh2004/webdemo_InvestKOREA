@@ -7,9 +7,14 @@ interface Props {
     icon: string;
     link: string;
   }[];
+  columns?: 3 | 4;
 }
 
-const { title, description, items } = Astro.props;
+const { title, description, items, columns = 3 } = Astro.props; 
+// Logic chọn class dựa trên số cột
+const gridClasses = columns === 4 
+  ? "grid-cols-2 md:grid-cols-4" // Nếu là 4: Mobile 2 cột, PC 4 cột
+  : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"; // Mặc định: Mobile 1, Tablet 2, PC 3
 ---
 
 <section class="bg-[#f8f9fa] py-24">
@@ -24,7 +29,7 @@ const { title, description, items } = Astro.props;
       </p>
     </div>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1400px] mx-auto">
+    <div class={`grid ${gridClasses} gap-6 max-w-[1400px] mx-auto`}>
       {items.map((item) => (
         <a 
           href={item.link} 

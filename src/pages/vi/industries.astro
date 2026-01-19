@@ -1,52 +1,131 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { useTranslations } from '../../i18n/utils';
+import ServiceGrid from '../../components/ServiceGrid.astro';
+import { industriesData } from '../../i18n/_industries';
+import { getLangFromUrl } from '../../i18n/utils';
 
-const lang = 'vi';
-const t = useTranslations(lang);
-
-// Chia danh sách ngành làm 2 cột
-const col1 = ['news', 'aerospace', 'battery', 'creative', 'finance', 'ict', 'machinery', 'energy', 'semiconductor', 'tourism'];
-const col2 = ['startup', 'automotive', 'consumer', 'display', 'chemical', 'logistics', 'bio', 'robot', 'shipbuilding'];
+// Lấy ngôn ngữ hiện tại
+const lang = Astro.props.lang || getLangFromUrl(Astro.url);
+const t = industriesData[lang as keyof typeof industriesData] || industriesData.vi;
 ---
 
-<Layout title="Thông tin ngành" lang={lang}>
-  <main class="bg-white min-h-screen">
-    <div class="border-b border-gray-100">
-      <div class="max-w-7xl mx-auto px-6 py-4 text-[12px] font-bold text-gray-400 uppercase">
-        Trang chủ <span class="mx-2">/</span> Thông tin ngành
+<Layout title={`${t.pageTitle} - Invest KOREA`}>
+  
+  <div class="w-full relative h-[300px] overflow-hidden">
+    <img src="/images/regions/banner.png" alt="Industries Banner" class="w-full h-full object-cover" onerror="this.src='/images/regions/banner.png'" />
+    <div class="absolute inset-0 bg-black/30 flex items-center">
+      <div class="max-w-[1400px] w-full mx-auto px-6 md:px-12 lg:px-20">
+        <h1 class="text-4xl text-white font-bold">{t.pageTitle}</h1>
       </div>
     </div>
+  </div>
 
-    <section class="max-w-7xl mx-auto px-6 py-20 flex flex-col lg:flex-row gap-20">
-      <div class="lg:w-1/4">
-        <h1 class="text-[64px] font-black italic uppercase leading-none tracking-tighter text-[#003366]">
-          Industries
-        </h1>
+  <section class="py-24 bg-white">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
+    
+
+      <ServiceGrid 
+    title={t.priority.title}
+    description={t.priority.desc}
+    items={t.priority.items}
+    columns={4}
+  />
+
+    </div>
+  </section>
+
+  <section class="bg-gray-50 py-24">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 space-y-24">
+      
+      {t.opportunities.map((item, index) => (
+        <div class={`flex flex-col md:flex-row items-center gap-10 lg:gap-20 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
+          
+          <div class="w-full md:w-1/2 space-y-6">
+            <h3 class="text-3xl lg:text-4xl font-black text-gray-900 leading-tight whitespace-pre-line">
+              {item.title}
+            </h3>
+            
+            <div class="space-y-4 border-l-4 border-orange-500 pl-6">
+              <strong class="block text-xl text-gray-800 font-semibold">{item.subtitle}</strong>
+              <p class="text-gray-600 leading-relaxed text-lg">
+                {item.desc}
+              </p>
+            </div>
+
+            {item.link && (
+              <div class="pt-4">
+                <a 
+                  href={item.link} 
+                  target="_blank"
+                  class="inline-flex items-center px-8 py-3 bg-[#002a5c] text-white font-bold rounded-lg hover:bg-orange-600 transition-colors shadow-md group"
+                >
+                  {item.btnText}
+                  <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </a>
+              </div>
+            )}
+          </div>
+
+          <div class="w-full md:w-1/2">
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl aspect-[16/10] group">
+              <img 
+                src={item.image} 
+                alt={item.title} 
+                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                onerror="this.src='/images/placeholder.jpg'"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+            </div>
+          </div>
+
+        </div>
+      ))}
+
+    </div>
+  </section>
+
+  <section class="py-24 bg-white border-t border-gray-100">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
+      
+      <div class="flex justify-between items-end mb-10 pb-4 border-b border-gray-200">
+        <h2 class="text-3xl font-bold text-gray-900">{t.news.title}</h2>
+        <a href={t.news.link} class="text-gray-500 hover:text-orange-600 font-medium flex items-center gap-1 transition-colors">
+          {t.news.moreBtn}
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
       </div>
 
-      <div class="lg:w-3/4 grid grid-cols-1 md:grid-cols-2 gap-x-16">
-        <div class="flex flex-col">
-          {col1.map((key) => (
-            <a href="#" class="group py-4 border-b border-gray-50 flex justify-between items-center hover:bg-gray-50 transition-all">
-              <span class="text-[17px] font-bold text-gray-800 group-hover:text-[#ee5931]">
-                {t(`ind.${key}`)}
-              </span>
-              <span class="text-[#ee5931] opacity-0 group-hover:opacity-100 transition-all">→</span>
-            </a>
-          ))}
-        </div>
-        <div class="flex flex-col">
-          {col2.map((key) => (
-            <a href="#" class="group py-4 border-b border-gray-50 flex justify-between items-center hover:bg-gray-50 transition-all">
-              <span class="text-[17px] font-bold text-gray-800 group-hover:text-[#ee5931]">
-                {t(`ind.${key}`)}
-              </span>
-              <span class="text-[#ee5931] opacity-0 group-hover:opacity-100 transition-all">→</span>
-            </a>
-          ))}
-        </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {t.news.items.map((news) => (
+          <a href={news.link} class="group block p-8 bg-white border border-gray-200 rounded-xl hover:border-orange-200 hover:shadow-lg transition-all duration-300">
+            
+            {news.tags && (
+              <div class="flex gap-2 mb-4">
+                {news.tags.map(tag => (
+                  <span class="px-3 py-1 bg-gray-100 text-gray-600 text-xs font-bold rounded-full group-hover:bg-orange-50 group-hover:text-orange-600 transition-colors">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-orange-600 transition-colors leading-snug">
+              {news.title}
+            </h3>
+
+            <div class="flex items-center text-sm text-gray-400 group-hover:text-gray-500">
+              <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              {news.date}
+            </div>
+          </a>
+        ))}
       </div>
-    </section>
-  </main>
+
+    </div>
+  </section>
+
 </Layout>
