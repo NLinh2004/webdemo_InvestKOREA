@@ -2,6 +2,9 @@
 import Layout from '../../layouts/Layout.astro';
 import { servicesData } from '../../i18n/_services';
 import { getLangFromUrl } from '../../i18n/utils';
+import ServiceGrid from '../../components/ServiceGrid.astro';
+import OfficeFinder from '../../components/OfficeFinder.astro';
+import AskBanner from '../../components/AskBanner.astro';
 
 // Lấy ngôn ngữ hiện tại
 const lang = Astro.props.lang || getLangFromUrl(Astro.url);
@@ -19,21 +22,13 @@ const t = servicesData[lang as keyof typeof servicesData] || servicesData.vi;
     </div>
   </div>
 
-  <section class="py-20 bg-gray-50">
-    <div class="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 text-center">
-      <h2 class="text-3xl font-bold text-gray-900 mb-6">{t.mainServices.title}</h2>
-      <p class="text-gray-600 mb-12 max-w-3xl mx-auto text-lg">{t.mainServices.desc}</p>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {t.mainServices.items.map((item) => (
-          <a href={item.link} class="bg-white p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col items-center group border border-gray-100 hover:border-orange-200">
-            <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">{item.icon}</div>
-            <h3 class="text-xl font-bold text-gray-800 group-hover:text-orange-600 transition-colors">{item.title}</h3>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
+
+
+  <ServiceGrid 
+    title={t.mainServices.title}
+    description={t.mainServices.desc}
+    items={t.mainServices.items}
+  />
 
   <section class="py-20 bg-white">
     <div class="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
@@ -97,49 +92,21 @@ const t = servicesData[lang as keyof typeof servicesData] || servicesData.vi;
     </div>
   </section>
 
-  <section class="py-20 bg-white">
-    <div class="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
-      <div class="flex flex-col md:flex-row bg-slate-900 rounded-2xl overflow-hidden shadow-2xl">
-        <div class="md:w-1/2 relative h-64 md:h-auto">
-          <img src="/public/images/services/office_map.png" alt="Office Map" class="w-full h-full object-cover opacity-80" onerror="this.src='/public/images/office_map.png'" />
-          <div class="absolute inset-0 bg-gradient-to-r from-slate-900 to-transparent md:bg-gradient-to-r"></div>
-        </div>
-        
-        <div class="md:w-1/2 p-10 md:p-16 flex flex-col justify-center text-white">
-          <h2 class="text-3xl font-bold mb-4">{t.offices.title}</h2>
-          <p class="text-slate-300 mb-8">{t.offices.desc}</p>
-          
-          <div class="space-y-4 max-w-sm">
-            <select id="office-country" class="w-full px-4 py-3 rounded bg-slate-800 border border-slate-600 text-white focus:outline-none focus:border-orange-500">
-              <option value="">{t.offices.selectCountry}</option>
-              <option value="usa">United States</option>
-              <option value="vietnam">Vietnam</option>
-              <option value="korea">Korea</option>
-            </select>
-            
-            <select id="office-region" class="w-full px-4 py-3 rounded bg-slate-800 border border-slate-600 text-white focus:outline-none focus:border-orange-500" disabled>
-              <option value="">{t.offices.selectRegion}</option>
-            </select>
-            
-            <button id="office-go-btn" class="w-full px-6 py-3 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded transition-colors flex justify-center items-center gap-2">
-              {t.offices.btnGo}
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <OfficeFinder
+    title={t.offices.title}
+    description={t.offices.desc}
+    labels={{
+      selectCountry: t.offices.selectCountry,
+      selectRegion: t.offices.selectRegion,
+      btnGo: t.offices.btnGo
+    }}
+  />  
 
-  <section class="py-16 bg-orange-50 border-t border-orange-100">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-3xl font-bold text-gray-900 mb-6">{t.ask.title}</h2>
-      <a href="#" class="inline-flex items-center px-8 py-4 bg-gray-900 text-white text-lg font-bold rounded-full hover:bg-gray-800 transition-transform hover:-translate-y-1 shadow-lg">
-        {t.ask.btn}
-        <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-      </a>
-    </div>
-  </section>
+  <AskBanner 
+    title={t.ask.title}
+    btnText={t.ask.btn}
+    link="/contact" 
+  />
 
   <div id="consulting-modal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity backdrop-blur-sm" id="modal-backdrop"></div>

@@ -1,0 +1,66 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  labels: {
+    selectCountry: string;
+    selectRegion: string;
+    btnGo: string;
+  }
+}
+
+const { title, description, labels } = Astro.props;
+---
+
+<section class="py-20 bg-white">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20">
+    <div class="flex flex-col md:flex-row bg-slate-900 rounded-2xl overflow-hidden shadow-2xl">
+      
+      <div class="md:w-1/2 relative h-64 md:h-auto">
+        <img 
+          src="/images/services/office_map.png" 
+          alt="Office Map" 
+          class="w-full h-full object-cover opacity-80" 
+          onerror="this.src='/images/placeholder.jpg'" 
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-900 to-transparent md:bg-gradient-to-r"></div>
+      </div>
+      
+      <div class="md:w-1/2 p-10 md:p-16 flex flex-col justify-center text-white">
+        <h2 class="text-3xl font-bold mb-4">{title}</h2>
+        <p class="text-slate-300 mb-8">{description}</p>
+        
+        <div class="space-y-4 max-w-sm">
+          <select id="office-country" class="w-full px-4 py-3 rounded bg-slate-800 border border-slate-600 text-white focus:outline-none focus:border-orange-500">
+            <option value="">{labels.selectCountry}</option>
+            <option value="usa">United States</option>
+            <option value="vietnam">Vietnam</option>
+            <option value="korea">Korea</option>
+          </select>
+          
+          <select id="office-region" class="w-full px-4 py-3 rounded bg-slate-800 border border-slate-600 text-white focus:outline-none focus:border-orange-500" disabled>
+            <option value="">{labels.selectRegion}</option>
+          </select>
+          
+          <button id="office-go-btn" class="w-full px-6 py-3 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded transition-colors flex justify-center items-center gap-2">
+            {labels.btnGo}
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  // Import logic xử lý dropdown (đảm bảo file script này đã tồn tại như hướng dẫn trước)
+  import { initOfficeFinder } from '../scripts/offices';
+  
+  // Chạy logic khi trang load (hỗ trợ View Transitions)
+  document.addEventListener('astro:page-load', () => {
+    initOfficeFinder();
+  });
+</script>
