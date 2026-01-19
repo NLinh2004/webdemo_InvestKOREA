@@ -1,8 +1,7 @@
 ---
 // Lấy lang từ Layout truyền xuống
-const { lang } = Astro.props;
-
-import { useTranslations } from '../i18n/utils';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+const lang = Astro.props.lang || getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 // Cấu hình đường dẫn thực tế cho các sự kiện

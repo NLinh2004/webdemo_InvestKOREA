@@ -39,4 +39,4 @@ export const ui = {
     ...services.ko,
     ...footer.ko,
   },
-} as const; 
+} as const;
