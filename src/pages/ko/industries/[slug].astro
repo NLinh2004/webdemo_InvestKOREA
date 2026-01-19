@@ -1,0 +1,81 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { useTranslations } from '../../../i18n/utils';
+
+export async function getStaticPaths() {
+  const industries = [
+    'aerospace', 'automobile', 'battery', 'consumer', 'cultural', 
+    'display', 'finance', 'chemical', 'ict', 'logistics', 
+    'machinery', 'bio', 'energy', 'robot', 'semiconductor', 
+    'shipbuilding', 'tourism'
+  ];
+  return industries.map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const lang = 'ko'; // File này nằm trong thư mục ko
+const t = useTranslations(lang);
+
+// Lấy tiêu đề và nội dung động từ i18n dựa trên slug
+const title = t(`ind.${slug}`);
+---
+
+<Layout title={`${title} | Invest KOREA`} lang={lang}>
+  <main class="bg-white">
+    <section class="pt-24 pb-12">
+      <div class="max-w-6xl mx-auto px-6">
+        <nav class="text-[13px] text-gray-400 mb-6 font-bold italic uppercase tracking-wider">
+          {lang === 'ko' ? '홈' : 'Trang chủ'} · 
+          <a href={`/${lang}/industries`} class="hover:text-gray-900 transition-colors">{t('ind.title')}</a> · 
+          <span class="text-gray-900">{title}</span>
+        </nav>
+        <h1 class="text-[64px] font-black text-[#111] tracking-tighter leading-none uppercase italic">
+          {title}
+        </h1>
+      </div>
+    </section>
+
+    <section class="w-full h-[500px] overflow-hidden bg-gray-100">
+      <img src={`/images/industries/${slug}.jpg`} class="w-full h-full object-cover" alt={title} />
+    </section>
+
+    <section class="py-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <h2 class="text-[32px] font-black text-[#003366] uppercase italic mb-8 tracking-tighter">
+          {title} {lang === 'ko' ? '개요' : 'Tổng quan'}
+        </h2>
+        <p class="text-gray-600 font-medium italic leading-relaxed text-lg">
+          {title} {t('ind.desc_suffix')}
+        </p>
+        <p class="mt-6 text-gray-500 font-bold italic leading-relaxed">
+          {t('ind.priority_desc')}
+        </p>
+      </div>
+    </section>
+
+    <section class="py-20 bg-[#f8f9fa] border-y border-gray-100">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+          <div>
+            <span class="block text-[48px] font-black text-[#ee5931] italic">#1</span>
+            <p class="text-sm font-bold text-gray-400 uppercase tracking-widest mt-2">{t('ind.stat_rank')}</p>
+          </div>
+          <div>
+            <span class="block text-[48px] font-black text-[#003366] italic">24%</span>
+            <p class="text-sm font-bold text-gray-400 uppercase tracking-widest mt-2">{t('ind.stat_share')}</p>
+          </div>
+          <div>
+            <span class="block text-[48px] font-black text-[#003366] italic">150+</span>
+            <p class="text-sm font-bold text-gray-400 uppercase tracking-widest mt-2">{t('ind.stat_partners')}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 flex justify-center">
+      <a href={`/${lang}/industries`} class="px-14 py-4 border-2 border-gray-900 text-gray-900 font-black uppercase text-[12px] tracking-[0.3em] hover:bg-gray-900 hover:text-white transition-all">
+        {t('ind.back_btn')}
+      </a>
+    </section>
+  </main>
+</Layout>

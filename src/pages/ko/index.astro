@@ -5,6 +5,12 @@ import { useTranslations } from '../../i18n/utils';
 const lang = 'ko'; 
 const t = useTranslations(lang);
 
+const paths = {
+  economy: `/${lang}/why-korea/economy`,
+  industries: `/${lang}/industries`,
+  regions: `/${lang}/regions`,
+  pdfGuide: `/documents/${lang}/invest-guide.pdf`
+};
 // 1. Dữ liệu Industries
 const industriesList = [
   { key: 'machinery', icon: '⚙️' }, { key: 'energy', icon: '⚡' },
@@ -39,7 +45,23 @@ const features = [
 
 <Layout title={t('home.title')} lang={lang}>
   <main class="bg-white">
-    
+    <section class="w-full">
+      <div class="pt-24 pb-12 px-6 max-w-7xl mx-auto">
+        <h1 class="text-5xl font-black text-[#111] tracking-tighter leading-tight mb-6">
+          {t('home.hero_title')} <span class="text-[#ee5931]">Korea</span>
+        </h1>
+        <p class="text-gray-500 text-sm max-w-md font-medium leading-relaxed">
+          {t('home.hero_subtitle')}
+        </p>
+      </div>
+      <div class="w-full h-[600px] overflow-hidden shadow-inner">
+        <img 
+          src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=2094&auto=format&fit=crop" 
+          class="w-full h-full object-cover block" 
+          alt="Korea Landscape" 
+        />
+      </div>
+    </section>
     <section class="py-24 bg-white">
       <div class="container mx-auto px-6">
         <h2 class="text-5xl font-black text-[#111] uppercase italic tracking-tighter mb-8">

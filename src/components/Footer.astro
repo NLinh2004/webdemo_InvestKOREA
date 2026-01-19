@@ -5,44 +5,60 @@ const { lang } = Astro.props;
 import { useTranslations } from '../i18n/utils';
 const t = useTranslations(lang);
 
-// Logic đổi đường dẫn cho nút gạt ngôn ngữ
+// Cấu hình đường dẫn thực tế cho các sự kiện
+const paths = {
+  investGuide: `/documents/${lang}/invest-guide.pdf`,
+  youtube: "https://www.youtube.com/@InvestKorea",
+  officeSite: "https://www.kotra.or.kr"
+};
+
+// Logic đổi ngôn ngữ
 const currentPath = Astro.url.pathname;
-const getPath = (target: string) => currentPath.replace(`/${lang}/`, `/${target}/`);
+const getPath = (target: string) => {
+  const segments = currentPath.split('/');
+  segments[1] = target;
+  return segments.join('/');
+};
 ---
 
 <section class="py-24 bg-white border-t border-gray-100">
-  <div class="max-w-7xl mx-auto px-6">
+  <div class="max-w-7xl mx-auto px-6 text-left">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-24">
       <div>
-        <h2 class="text-[34px] font-black text-[#003366] mb-4 uppercase italic tracking-tighter">{t('services.title')}</h2>
-        <p class="text-gray-500 mb-10 italic leading-relaxed">{t('services.description')}</p>
+        <h2 class="text-[40px] font-bold text-[#111] mb-4">Services</h2>
+        <p class="text-gray-500 mb-10 text-[16px]">Invest KOREA provides services support your investment journey.</p>
         <div class="flex gap-4">
-          <button class="px-8 py-4 border border-[#ee5931] text-[#ee5931] font-black uppercase text-[11px] flex items-center gap-4 hover:bg-[#ee5931] hover:text-white transition-all">
-            {t('services.download')} ↓
-          </button>
-          <button class="px-8 py-4 border border-[#ee5931] text-[#ee5931] font-black uppercase text-[11px] flex items-center gap-4 hover:bg-[#ee5931] hover:text-white transition-all">
-            YOUTUBE ↗
-          </button>
+          <a href={paths.investGuide} download class="px-6 py-3 border border-[#ee5931] text-[#ee5931] rounded-md font-medium flex items-center gap-3 hover:bg-[#ee5931]/5 transition-all">
+            Download file <span class="text-lg">⤓</span>
+          </a>
+          <a href={paths.youtube} target="_blank" class="px-6 py-3 border border-[#ee5931] text-[#ee5931] rounded-md font-medium flex items-center gap-3 hover:bg-[#ee5931]/5 transition-all">
+            Youtube <span class="text-lg">↗</span>
+          </a>
         </div>
       </div>
       
       <div>
-        <h2 class="text-[34px] font-black text-[#003366] mb-4 uppercase italic tracking-tighter">{t('services.find_office')}</h2>
-        <p class="text-gray-500 mb-10 italic leading-relaxed">{t('services.find_office_desc')}</p>
-        <div class="flex flex-col md:flex-row gap-4">
-          <select class="flex-1 p-5 bg-gray-50 border border-gray-200 outline-none uppercase font-black text-[11px] cursor-pointer text-gray-400">
-            <option>{t('footer.family')}</option>
+        <h2 class="text-[40px] font-bold text-[#111] mb-4">Find Nearby Invest KOREA Offices</h2>
+        <p class="text-gray-500 mb-10 text-[16px]">Discover nearby offices for Convenient access in your area</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <select class="w-full p-4 bg-white border border-gray-200 rounded-md outline-none text-gray-400">
+            <option>Select Country</option>
           </select>
-          <button class="bg-[#ee5931] text-white px-8 py-5 font-black uppercase italic tracking-tighter hover:bg-[#d44d28] transition-all">
-            {t('footer.location')}
-          </button>
+          <select class="w-full p-4 bg-white border border-gray-300 rounded-md outline-none text-gray-400">
+            <option>Select Region</option>
+          </select>
+        </div>
+        <div class="flex justify-end">
+           <a href={paths.officeSite} target="_blank" class="bg-[#ee5931] text-white px-10 py-4 rounded-md font-bold text-[16px] hover:bg-[#d44d28] transition-all">
+            Go to Overseas Office Site
+          </a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<footer class="bg-[#002a5c] text-white pt-16 pb-12">
+<footer class="bg-[#002a5c] text-white pt-16 pb-12 text-left">
   <div class="max-w-7xl mx-auto px-6">
     <div class="flex flex-col md:flex-row items-baseline gap-8 mb-12">
       <h2 class="text-[34px] font-black tracking-tighter uppercase italic leading-none">INVEST KOREA</h2>
@@ -74,3 +90,21 @@ const getPath = (target: string) => currentPath.replace(`/${lang}/`, `/${target}
     </div>
   </div>
 </footer>
+
+<style>
+  /* Hiệu ứng Slider Industries: Ẩn chữ khi không hover */
+  #ind-slider a span:last-child {
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  #ind-slider a:hover span:last-child {
+    opacity: 1;
+    color: white;
+  }
+  #ind-slider a:hover {
+    background-color: #003366; /* Màu xanh đậm khi hover */
+  }
+  #ind-slider a:hover span:first-child {
+    filter: grayscale(0); /* Hiện màu icon khi hover */
+  }
+</style>
