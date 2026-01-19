@@ -1,72 +1,63 @@
 ---
-import Layout from '../../../layouts/Layout.astro'; // Chỉnh lại đường dẫn layout do nằm trong thư mục con
+import Layout from '../../../layouts/Layout.astro';
 import { useTranslations } from '../../../i18n/utils';
 
 const lang = 'vi'; 
 const t = useTranslations(lang);
-
-// Dữ liệu 17 ngành công nghiệp
+// Dữ liệu 17 ngành công nghiệp - Đảm bảo key khớp hoàn toàn với file i18n
 const fullIndustries = [
-  { key: 'aerospace', icon: '🚀' }, 
-  { key: 'automobile', icon: '🚗' }, // Khớp với key 'ind.automobile' trong i18n
-  { key: 'battery', icon: '🔋' }, 
-  { key: 'consumer', icon: '🎁' },
-  { key: 'cultural', icon: '🎬' }, 
-  { key: 'display', icon: '🖥️' },
-  { key: 'finance', icon: '📈' }, 
-  { key: 'chemical', icon: '🧪' },
-  { key: 'ict', icon: '📡' }, 
-  { key: 'logistics', icon: '📦' },
-  { key: 'machinery', icon: '⚙️' }, 
-  { key: 'bio', icon: '🧬' },
-  { key: 'energy', icon: '⚡' }, 
-  { key: 'robot', icon: '🤖' },
-  { key: 'semiconductor', icon: '🔳' }, 
-  { key: 'shipbuilding', icon: '🚢' },
+  { key: 'aerospace', icon: '🚀' }, { key: 'automotive', icon: '🚗' },
+  { key: 'battery', icon: '🔋' }, { key: 'consumer', icon: '🎁' },
+  { key: 'cultural', icon: '🎬' }, { key: 'display', icon: '🖥️' },
+  { key: 'finance', icon: '📈' }, { key: 'chemical', icon: '🧪' },
+  { key: 'ict', icon: '📡' }, { key: 'logistics', icon: '📦' },
+  { key: 'machinery', icon: '⚙️' }, { key: 'bio', icon: '🧬' },
+  { key: 'energy', icon: '⚡' }, { key: 'robot', icon: '🤖' },
+  { key: 'semiconductor', icon: '🔳' }, { key: 'shipbuilding', icon: '🚢' },
   { key: 'tourism', icon: '🗺️' }
 ];
 
 const industryNews = [
-  { title: t('ind.news_item_1'), date: "2025.12.05" },
-  { title: t('ind.news_item_2'), date: "2025.11.11" }
+  { id: 'n1', title: t('ind.news_item_1'), date: "2025.12.05" },
+  { id: 'n2', title: t('ind.news_item_2'), date: "2025.11.11" }
 ];
 ---
 
 <Layout title={t('ind.title')} lang={lang}>
-  <main class="bg-white overflow-hidden">
+  <main class="bg-white overflow-hidden text-[#111]">
     
-    <section class="pt-24 pb-0">
-      <div class="max-w-6xl mx-auto px-6">
-        <nav class="text-[13px] text-gray-400 mb-6 font-bold italic uppercase tracking-wider">
-          홈 · <span class="text-gray-900">{t('ind.title')}</span>
+    <section class="pt-32 pb-0 border-b border-gray-100 text-left">
+      <div class="max-w-7xl mx-auto px-6">
+        <nav class="text-[12px] text-gray-400 mb-8 font-bold italic uppercase tracking-[0.2em]">
+          <a href={`/${lang}`} class="hover:text-[#111] transition-colors">TRANG CHỦ</a> · <span class="text-[#111]">{t('ind.title')}</span>
         </nav>
-        <h1 class="text-[56px] font-black text-[#111] tracking-tighter leading-none mb-10 uppercase italic">
+        <h1 class="text-[80px] font-black tracking-tighter leading-[0.9] mb-12 uppercase italic">
           {t('ind.title')}
         </h1>
       </div>
-      <div class="w-full h-[350px] overflow-hidden">
+      <div class="w-full h-[400px] overflow-hidden grayscale-[0.3] hover:grayscale-0 transition-all duration-1000">
         <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" class="w-full h-full object-cover" alt="Industries Banner" />
       </div>
     </section>
 
-    <section class="py-20">
-      <div class="max-w-6xl mx-auto px-6 text-left">
-        <h2 class="text-[36px] font-black text-[#003366] uppercase tracking-tighter italic mb-4">
+    <section class="py-24">
+      <div class="max-w-7xl mx-auto px-6 text-left">
+        <h2 class="text-[42px] font-black text-[#003366] uppercase tracking-tighter italic mb-6 leading-tight">
           {t('ind.priority_title')}
         </h2>
-        <p class="text-gray-500 font-bold italic mb-12 max-w-3xl text-[15px] leading-relaxed">
+        <p class="text-gray-500 font-medium italic mb-16 max-w-3xl text-[17px] leading-relaxed">
           {t('ind.priority_desc')}
         </p>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-gray-200 border border-gray-200 shadow-sm">
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-px bg-gray-200 border border-gray-200 shadow-sm">
           {fullIndustries.map(item => (
-            <a href={`/ko/industries/${item.key}`} class="bg-white p-10 flex flex-col justify-between h-48 hover:bg-[#003366] transition-all group">
-              <span class="text-3xl grayscale group-hover:grayscale-0 transition-all">{item.icon}</span>
+            <a href={`/${lang}/industries/${item.key}`} class="bg-white p-10 flex flex-col justify-between h-56 hover:bg-[#003366] transition-all group relative overflow-hidden block">
+              <span class="text-4xl grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:-translate-y-2">{item.icon}</span>
               <div class="flex justify-between items-end">
-                <span class="text-[14px] font-black text-gray-700 group-hover:text-white uppercase italic tracking-tight leading-tight w-2/3">
+                <span class="text-[14px] font-black text-gray-800 group-hover:text-white uppercase italic tracking-tight leading-[1.2] w-3/4 transition-colors">
                   {t(`ind.${item.key}`)}
                 </span>
-                <span class="text-gray-300 group-hover:text-white text-lg group-hover:translate-x-1 transition-transform">→</span>
+                <span class="text-gray-300 group-hover:text-white text-xl transform group-hover:translate-x-2 transition-all">→</span>
               </div>
             </a>
           ))}
@@ -74,64 +65,55 @@ const industryNews = [
       </div>
     </section>
 
-    <section class="py-24 bg-gray-50/50 border-y border-gray-100">
-      <div class="max-w-6xl mx-auto px-6 space-y-28">
+    <section class="py-32 bg-[#fcfcfc] border-y border-gray-100">
+      <div class="max-w-7xl mx-auto px-6 space-y-32">
         
-        <div class="flex flex-col md:flex-row gap-12 items-center">
-          <div class="flex-1 rounded-2xl overflow-hidden shadow-xl border border-gray-100 group">
-            <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff" class="w-full h-[320px] object-cover group-hover:scale-105 transition-transform duration-700" />
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center text-left">
+          <div class="rounded-[32px] overflow-hidden shadow-2xl group border border-gray-100">
+            <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff" class="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-1000" />
           </div>
-          <div class="flex-1 space-y-5 text-left">
-            <h3 class="text-[30px] font-black text-[#111] leading-tight uppercase italic tracking-tighter">{t('ind.cluster_1_title')}</h3>
-            <p class="text-[#ee5931] font-black italic uppercase text-[12px] tracking-widest">{t('ind.cluster_1_sub')}</p>
-            <p class="text-gray-500 font-bold italic leading-relaxed text-[15px]">{t('ind.priority_desc')}</p>
-          </div>
-        </div>
-
-        <div class="flex flex-col md:flex-row-reverse gap-12 items-center">
-          <div class="flex-1 rounded-2xl overflow-hidden shadow-xl border border-gray-100 group">
-            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475" class="w-full h-[320px] object-cover group-hover:scale-105 transition-transform duration-700" />
-          </div>
-          <div class="flex-1 space-y-5 text-left">
-            <h3 class="text-[30px] font-black text-[#111] leading-tight uppercase italic tracking-tighter">{t('ind.cluster_2_title')}</h3>
-            <p class="text-[#ee5931] font-black italic uppercase text-[12px] tracking-widest">{t('ind.cluster_2_sub')}</p>
-            <p class="text-gray-500 font-bold italic leading-relaxed text-[15px]">{t('ind.priority_desc')}</p>
+          <div class="space-y-6">
+            <p class="text-[#ee5931] font-black italic uppercase text-[13px] tracking-[0.3em]">{t('ind.cluster_1_sub')}</p>
+            <h3 class="text-[48px] font-black leading-[1] uppercase italic tracking-tighter">{t('ind.cluster_1_title')}</h3>
+            <p class="text-gray-500 font-bold italic leading-relaxed text-[16px]">{t('ind.priority_desc')}</p>
           </div>
         </div>
 
-        <div class="flex flex-col md:flex-row gap-12 items-center">
-          <div class="flex-1 rounded-2xl overflow-hidden shadow-xl border border-gray-100 group">
-            <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72" class="w-full h-[320px] object-cover group-hover:scale-105 transition-transform duration-700" />
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center text-left">
+          <div class="md:order-2 rounded-[32px] overflow-hidden shadow-2xl group border border-gray-100">
+            <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72" class="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-1000" />
           </div>
-          <div class="flex-1 space-y-5 text-left">
-            <h3 class="text-[30px] font-black text-[#111] leading-tight uppercase italic tracking-tighter">{t('ind.startup_title')}</h3>
-            <p class="text-[#ee5931] font-black italic uppercase text-[12px] tracking-widest">{t('ind.startup_sub')}</p>
-            <p class="text-gray-500 font-bold italic leading-relaxed text-[15px]">{t('ind.startup_desc')}</p>
-            <button class="bg-[#ee5931] text-white px-8 py-3 rounded-lg font-black uppercase italic tracking-widest text-[11px] hover:bg-[#d44d28] transition-all shadow-lg active:scale-95">
-              {t('ind.startup_btn')} →
-            </button>
+          <div class="md:order-1 space-y-8">
+            <div>
+              <p class="text-[#ee5931] font-black italic uppercase text-[13px] tracking-[0.3em]">{t('ind.startup_sub')}</p>
+              <h3 class="text-[48px] font-black leading-[1] uppercase italic tracking-tighter mb-6">{t('ind.startup_title')}</h3>
+              <p class="text-gray-500 font-bold italic leading-relaxed text-[16px]">{t('ind.startup_desc')}</p>
+            </div>
+            <a href={`/${lang}/industries/startup`} class="inline-flex bg-[#ee5931] text-white px-12 py-5 rounded-md font-black uppercase italic tracking-widest text-[12px] hover:bg-[#111] transition-all shadow-xl active:scale-95 items-center gap-4">
+              {t('ind.startup_btn')} <span>→</span>
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="py-20 bg-white">
-      <div class="max-w-6xl mx-auto px-6 text-left">
-        <h2 class="text-[36px] font-black text-[#003366] uppercase tracking-tighter italic mb-12">{t('ind.news')}</h2>
-        <div class="border-t border-gray-100">
+    <section class="py-32 bg-white">
+      <div class="max-w-7xl mx-auto px-6 text-left">
+        <h2 class="text-[42px] font-black text-[#003366] uppercase tracking-tighter italic mb-16 border-b-4 border-[#003366] inline-block pb-2">{t('ind.news')}</h2>
+        <div class="divide-y divide-gray-100 border-t border-gray-100">
           {industryNews.map(news => (
-            <div class="py-10 border-b border-gray-100 hover:bg-gray-50 transition-all px-4 group flex flex-col md:flex-row md:justify-between md:items-center gap-4">
-              <h3 class="text-[18px] font-bold text-gray-800 group-hover:text-[#ee5931] transition-colors italic leading-snug md:w-4/5">
+            <a href={`/${lang}/news/${news.id}`} class="py-12 group flex flex-col md:flex-row md:justify-between md:items-center gap-6 transition-all hover:bg-gray-50 px-4 block">
+              <h3 class="text-[22px] font-black text-[#111] group-hover:text-[#ee5931] transition-colors italic leading-[1.3] md:w-3/4 uppercase tracking-tight">
                 {news.title}
               </h3>
-              <p class="text-[12px] text-gray-400 font-bold uppercase">{news.date}</p>
-            </div>
+              <p class="text-[14px] text-gray-400 font-black uppercase tracking-widest">{news.date}</p>
+            </a>
           ))}
         </div>
-        <div class="flex justify-center mt-12">
-          <button class="px-14 py-3.5 border border-gray-200 text-gray-400 font-black uppercase text-[11px] tracking-[0.3em] hover:bg-gray-50 transition-all active:scale-95">
+        <div class="flex justify-center mt-20">
+          <a href={`/${lang}/news`} class="px-20 py-5 border-2 border-gray-100 text-gray-400 font-black uppercase text-[12px] tracking-[0.4em] hover:bg-[#111] hover:text-white transition-all active:scale-95">
             {t('ind.more_btn')}
-          </button>
+          </a>
         </div>
       </div>
     </section>
@@ -139,8 +121,19 @@ const industryNews = [
 </Layout>
 
 <style>
+  /* Fix lỗi phông chữ tiếng Việt/Hàn bị răng cưa và căn chỉnh dòng */
   main {
     word-break: keep-all;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
+  
+  h1, h2, h3 {
+    letter-spacing: -0.05em;
+  }
+
+  /* Slider arrows ẩn scrollbar */
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 </style>
