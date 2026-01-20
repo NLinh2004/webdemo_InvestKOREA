@@ -1,2 +1,5 @@
 // src/env.d.ts
-declare module "image-map-resizer";
+declare module 'image-map-resizer' {
+    function imageMapResize(): void;
+    export default imageMapResize;
+}

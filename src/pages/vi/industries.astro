@@ -1,0 +1,136 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ServiceGrid from '../../components/ServiceGrid.astro';
+import { industriesData } from '../../i18n/_industries';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+// Lấy ngôn ngữ hiện tại
+const lang = Astro.props.lang || getLangFromUrl(Astro.url);
+const t = industriesData[lang as keyof typeof industriesData] || industriesData.vi;
+const translate = useTranslations(lang);
+---
+
+<Layout title={`${t.pageTitle} - Invest KOREA`}>
+  
+  <section class="w-full">
+    <div class="pt-24 pb-12 px-6 max-w-7xl mx-auto">
+      <nav class="text-sm text-gray-400 mb-8 font-bold not-italic uppercase tracking-widest">
+        <a href={`/${lang}`} class="hover:text-gray-600">TRANG CHỦ</a> · <span class="text-gray-900">{t.pageTitle}</span>
+      </nav>
+      
+      <h1 class="text-[80px] font-black text-[#111] tracking-tighter leading-none mb-12 uppercase not-italic">
+        {t.pageTitle}
+      </h1>
+    </div>
+
+    <div class="w-full h-[550px] overflow-hidden shadow-inner">
+      <img 
+        src="/images/regions/banner.png" 
+        alt={t.pageTitle} 
+        class="w-full h-full object-cover block" 
+        onerror="this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070'" 
+      />
+    </div>
+  </section>
+
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <ServiceGrid 
+        title={t.priority.title}
+        description={t.priority.desc}
+        items={t.priority.items}
+        columns={4}
+      />
+    </div>
+  </section>
+
+  <section class="bg-gray-50 py-24">
+    <div class="max-w-7xl mx-auto px-6 space-y-24">
+      {t.opportunities.map((item, index) => (
+        <div class={`flex flex-col md:flex-row items-center gap-10 lg:gap-20 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
+          
+          <div class="w-full md:w-1/2 space-y-6 text-left">
+            <h3 class="text-3xl lg:text-4xl font-black text-gray-900 leading-tight whitespace-pre-line not-italic">
+              {item.title}
+            </h3>
+            
+            <div class="space-y-4 border-l-4 border-[#ee5931] pl-6">
+              <strong class="block text-xl text-gray-800 font-bold">{item.subtitle}</strong>
+              <p class="text-gray-600 leading-relaxed text-lg">
+                {item.desc}
+              </p>
+            </div>
+
+            {item.link && (
+              <div class="pt-4">
+                <a 
+                  href={item.link} 
+                  target="_blank"
+                  class="inline-flex items-center px-8 py-3 bg-[#ee5931] text-white font-bold rounded-md hover:bg-[#d44d28] transition-colors shadow-md group"
+                >
+                  {item.btnText || 'Xem thêm'}
+                  <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </a>
+              </div>
+            )}
+          </div>
+
+          <div class="w-full md:w-1/2">
+            <div class="relative rounded-lg overflow-hidden shadow-2xl aspect-[16/10]">
+              <img 
+                src={item.image} 
+                alt={item.title} 
+                class="w-full h-full object-cover"
+                onerror="this.src='/images/placeholder.jpg'"
+              />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="py-24 bg-white border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="flex justify-between items-end mb-10 pb-4 border-b border-gray-200">
+        <h2 class="text-3xl font-bold text-gray-900 not-italic">{t.news.title}</h2>
+        <a href={t.news.link} class="text-[#ee5931] hover:underline font-bold flex items-center gap-1 transition-colors">
+          {t.news.moreBtn}
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {t.news.items.map((news) => (
+          <a href={news.link} class="group block p-8 bg-white border border-gray-200 rounded-lg hover:shadow-lg transition-all duration-300">
+            
+            {news.tags && (
+              <div class="flex gap-2 mb-4">
+                {news.tags.map(tag => (
+                  <span class="px-3 py-1 bg-gray-100 text-gray-500 text-xs font-bold rounded-full group-hover:bg-orange-50 group-hover:text-[#ee5931]">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-[#ee5931] transition-colors leading-snug not-italic">
+              {news.title}
+            </h3>
+
+            <div class="flex items-center text-sm text-gray-400">
+              <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              {news.date}
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</Layout>

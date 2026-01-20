@@ -1,51 +1,130 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { useTranslations } from '../../i18n/utils';
+import AboutProfile from '../../components/AboutProfile.astro';
+import { servicesData } from '../../i18n/_services';
+import { about, aboutData } from '../../i18n/_about';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import ServiceGrid from '../../components/ServiceGrid.astro';
+import OfficeFinder from '../../components/OfficeFinder.astro';
+import AskBanner from '../../components/AskBanner.astro';
 
-const lang = 'ko';
-const t = useTranslations(lang);
-
-// Nhóm các mục theo 2 cột như trong Mega Menu
-const groups = [
-  {
-    items: ['message', 'ombudsman', 'publication', 'video']
-  },
-  {
-    items: ['about', 'honorary', 'magazine', 'media']
-  }
-];
+// Lấy ngôn ngữ hiện tại
+const lang = Astro.props.lang || getLangFromUrl(Astro.url);
+const translate = useTranslations(lang);
+const z = about[lang as keyof typeof about] || about.ko;
+const t = servicesData[lang as keyof typeof servicesData] || servicesData.vi;
+const h = aboutData[lang as keyof typeof aboutData] || aboutData.vi;
 ---
-<Layout title="Invest KOREA 소개" lang={lang}>
-  <main class="bg-white min-h-screen">
-    <div class="border-b border-gray-100 py-4">
-      <div class="max-w-7xl mx-auto px-6 text-[12px] font-bold text-gray-400 uppercase tracking-widest">
-        Trang chủ <span class="mx-2">/</span> {t('abt.about')}
-      </div>
+
+<Layout title={`${z['abt.title']} - Invest KOREA`} lang={lang}>
+  
+  <section class="w-full">
+    <div class="pt-24 pb-12 px-6 max-w-7xl mx-auto">
+      <nav class="text-sm text-gray-400 mb-8 font-bold not-italic uppercase tracking-widest">
+        <a href={`/${lang}`} class="hover:text-gray-600">{translate('inc.breadcrumb_home')}</a> · <span class="text-gray-900">{z['abt.title']}</span>
+      </nav>
+      
+      <h1 class="text-[80px] font-black text-[#111] tracking-tighter leading-none mb-12 uppercase not-italic">
+        {z['abt.title']}
+      </h1>
     </div>
 
-    <section class="max-w-7xl mx-auto px-6 py-24 flex flex-col lg:flex-row gap-20">
-      <div class="lg:w-1/4">
-        <h1 class="text-[64px] font-black italic uppercase leading-none tracking-tighter text-[#111]">
-          About Us
-        </h1>
-      </div>
+    <div class="w-full h-[550px] overflow-hidden shadow-inner">
+      <img 
+        src="/images/regions/banner.png" 
+        alt={z['abt.title']} 
+        class="w-full h-full object-cover block" 
+        onerror="this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070'"
+      />
+    </div>
+  </section>
 
-      <div class="lg:w-3/4 grid grid-cols-1 md:grid-cols-2 gap-x-20">
-        {groups.map((group) => (
-          <div class="flex flex-col border-t border-gray-100 md:border-t-0">
-            {group.items.map((key) => (
-              <a href="#" class="group py-5 border-b border-gray-50 flex justify-between items-center hover:bg-gray-50 transition-all px-2">
-                <span class="text-[17px] font-bold text-gray-800 group-hover:text-[#ee5931] transition-colors">
-                  {t(`abt.${key}`)}
-                </span>
-                <span class="text-[#ee5931] opacity-0 group-hover:opacity-100 transition-all translate-x-[-10px] group-hover:translate-x-0 font-black">
-                  →
-                </span>
-              </a>
-            ))}
+  <section class="py-24 bg-white">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 text-left">
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-[1.1] tracking-tight not-italic uppercase">
+        {h.intro.title} <br />
+        <span class="text-[#ee5931]">{h.intro.highlight}</span>
+      </h2>
+
+      <p class="mt-8 text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl whitespace-pre-line">
+        {h.intro.desc}
+      </p>
+    </div>
+  </section>
+
+  <ServiceGrid 
+    title={t.mainServices.title}
+    description={""}
+    items={t.mainServices.items}
+  />
+  
+  <AboutProfile data={h.commissioner} />
+
+  <OfficeFinder
+    title={t.offices.title}
+    description={t.offices.desc}
+    labels={{
+      selectCountry: t.offices.selectCountry,
+      selectRegion: t.offices.selectRegion,
+      btnGo: t.offices.btnGo
+    }}
+  />  
+
+  <AskBanner 
+    title={t.ask.title}
+    btnText={t.ask.btn}
+    link="/contact" 
+  />
+
+  <div id="consulting-modal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity backdrop-blur-sm" id="modal-backdrop"></div>
+    <div class="fixed inset-0 z-10 overflow-y-auto">
+      <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+          <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+            <h3 class="text-xl font-bold leading-6 text-gray-900 mb-4 not-italic" id="modal-title">{t.consulting.popup.title}</h3>
+            <div class="mt-2">
+              <ul class="space-y-4">
+                {t.consulting.popup.info.map((item) => (
+                  <li class="border-b border-gray-100 pb-2">
+                    <strong class="block text-sm font-semibold text-gray-700">{item.label}</strong>
+                    <span class="text-gray-600">{item.value}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-        ))}
+          <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+            <button type="button" id="btn-close-modal" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-bold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">
+              Close
+            </button>
+          </div>
+        </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </div>
+
 </Layout>
+
+<script>
+  import { initOfficeFinder } from '../../scripts/offices';
+
+  document.addEventListener('astro:page-load', () => {
+    initOfficeFinder();
+
+    const modal = document.getElementById('consulting-modal');
+    const btnOpen = document.getElementById('btn-open-modal');
+    const btnClose = document.getElementById('btn-close-modal');
+    const backdrop = document.getElementById('modal-backdrop');
+
+    if(modal && btnOpen && btnClose && backdrop) {
+      const toggleModal = (show: boolean) => {
+        if(show) modal.classList.remove('hidden');
+        else modal.classList.add('hidden');
+      }
+      btnOpen.addEventListener('click', () => toggleModal(true));
+      btnClose.addEventListener('click', () => toggleModal(false));
+      backdrop.addEventListener('click', () => toggleModal(false));
+    }
+  });
+</script>

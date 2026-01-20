@@ -44,10 +44,10 @@ const featureStories = [
   <main class="bg-white antialiased">
     <section class="pt-32 pb-0 border-b border-gray-100">
       <div class="max-w-7xl mx-auto px-6 text-left">
-        <nav class="text-sm text-gray-400 mb-8 font-bold italic uppercase tracking-widest">
+        <nav class="text-sm text-gray-400 mb-8 font-bold uppercase tracking-widest">
           <a href={paths.home} class="hover:text-gray-900 transition-colors">Trang chủ</a> · <span class="text-gray-900">{t('nav.why')}</span>
         </nav>
-        <h1 class="text-[80px] font-black text-[#111] tracking-tighter leading-none mb-12 uppercase italic">
+        <h1 class="text-[80px] font-black text-[#111] tracking-tighter leading-none mb-12 uppercase">
           Why KOREA
         </h1>
       </div>
@@ -64,12 +64,12 @@ const featureStories = [
             <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80"></div>
             <div class="absolute top-12 left-10 text-white z-10 pr-10 text-left">
               <span class="text-xl font-black block mb-2 opacity-80">{item.num}</span>
-              <h3 class="text-[34px] font-black leading-tight uppercase italic tracking-tighter w-[400px] whitespace-nowrap group-hover:whitespace-normal transition-all duration-500">
+              <h3 class="text-[34px] font-black leading-tight uppercase tracking-tighter w-[400px] whitespace-nowrap group-hover:whitespace-normal transition-all duration-500">
                 {t(item.key)}
               </h3>
             </div>
             <div class="absolute bottom-12 left-10 z-10 opacity-0 translate-y-8 transition-all duration-500 delay-200 group-hover:opacity-100 group-hover:translate-y-0">
-              <div class="bg-[#ee5931] text-white px-10 py-4 rounded-xl font-black text-sm uppercase italic tracking-widest shadow-xl group-hover:bg-white group-hover:text-[#ee5931] transition-all">
+              <div class="bg-[#ee5931] text-white px-10 py-4 rounded-xl font-black text-sm uppercase tracking-widest shadow-xl group-hover:bg-white group-hover:text-[#ee5931] transition-all">
                 {t('why.move_page')} →
               </div>
             </div>
@@ -82,17 +82,17 @@ const featureStories = [
       <div class="max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 lg:grid-cols-12 items-start gap-12 text-left">
           <div class="lg:col-span-8">
-            <h2 class="text-[56px] font-black text-[#003366] leading-[1.05] mb-12 uppercase italic tracking-tighter">
+            <h2 class="text-[56px] font-black text-[#111] leading-[1.05] mb-12 tracking-tighter">
               {t('why.incentive_title_1')} <br/> 
               {t('why.incentive_title_2')} <br/>
               {t('why.incentive_title_3')} <span class="text-[#ee5931]">{t('why.incentive_title_orange')}</span>
             </h2>
           </div>
           <div class="lg:col-span-4 lg:pt-4">
-            <p class="text-gray-500 text-[16px] leading-relaxed mb-10 font-bold italic text-left">
+            <p class="text-gray-500 text-[16px] leading-relaxed mb-10 font-bold text-left">
               {t('why.incentive_desc')}
             </p>
-            <a href={paths.pdfIncentive} download class="bg-[#ee5931] text-white px-10 py-5 rounded-md font-black uppercase italic tracking-tighter hover:bg-[#d44d28] transition-all inline-flex items-center gap-4 text-lg shadow-xl group w-fit">
+            <a href={paths.pdfIncentive} download class="bg-[#ee5931] text-white px-10 py-5 rounded-md font-black uppercase tracking-tighter hover:bg-[#d44d28] transition-all inline-flex items-center gap-4 text-lg shadow-xl group w-fit">
               {t('why.download_btn')} <span class="group-hover:translate-x-2 transition-transform">→</span>
             </a>
           </div>
@@ -101,7 +101,7 @@ const featureStories = [
     </section>
 
     <section class="bg-white py-24 px-6 max-w-7xl mx-auto">
-      <h2 class="text-[48px] font-black text-[#003366] uppercase tracking-tighter italic mb-16 text-left">{t('home.other_ind')}</h2>
+      <h2 class="text-[36px] font-black text-[#111] tracking-tighter mb-16 text-left">{t('home.other_ind')}</h2>
       <div class="relative group">
         <div id="ind-slider" class="flex flex-nowrap overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide gap-px bg-gray-200 border border-gray-200">
           {industriesList.map(item => (
@@ -110,7 +110,7 @@ const featureStories = [
                 {item.icon}
               </span>
               <div class="flex justify-between items-end text-left">
-                <span class="text-sm font-black text-gray-700 group-hover:text-white uppercase tracking-tight leading-tight w-2/3 italic block">
+                <span class="text-sm font-black text-gray-700 group-hover:text-white uppercase tracking-tight leading-tight w-2/3 block">
                   {t(`ind.${item.key}`)}
                 </span>
                 <span class="text-gray-300 group-hover:text-white transition-all text-xl">→</span>
@@ -127,14 +127,14 @@ const featureStories = [
 
     <section class="py-24 border-t border-gray-100 bg-white">
       <div class="max-w-7xl mx-auto px-6 text-left">
-        <h2 class="text-[48px] font-black text-[#003366] mb-20 uppercase italic tracking-tighter text-left">Feature Stories</h2>
+        <h2 class="text-[36px] font-black text-[#111] mb-20 tracking-tighter text-left">Feature Stories</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-16 mb-20">
           {featureStories.map(f => (
             <a href={`${paths.news}/${f.id}`} class="group cursor-pointer block text-left">
               <div class="aspect-[16/10] rounded-2xl overflow-hidden mb-8 shadow-md">
                 <img src={f.img} class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" alt={t(f.key)} />
               </div>
-              <p class="text-[17px] font-black text-gray-900 leading-snug mb-4 group-hover:text-[#ee5931] transition-colors line-clamp-3 italic text-left">
+              <p class="text-[17px] font-black text-gray-900 leading-snug mb-4 group-hover:text-[#ee5931] transition-colors line-clamp-3 text-left">
                 {t(f.key)}
               </p>
               <span class="text-xs text-gray-400 font-bold tracking-widest uppercase block text-left">{f.date}</span>

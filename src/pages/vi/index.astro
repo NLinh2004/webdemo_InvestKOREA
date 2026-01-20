@@ -57,7 +57,7 @@ const features = [
           <span class="text-[#ee5931]">Korea</span>'s Solid <br/> {t('home.eco_title')}
         </h2>
         <div class="flex justify-center md:justify-end mb-20 text-right">
-          <p class="max-w-xl text-gray-500 text-sm leading-relaxed italic">{t('home.eco_desc')}</p>
+          <p class="max-w-xl text-gray-500 text-sm leading-relaxed ">{t('home.eco_desc')}</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-16 items-center text-center md:text-left">
           <a href={paths.economy} class="flex items-center gap-6 justify-center md:justify-start group">
@@ -78,7 +78,7 @@ const features = [
 
     <section class="py-24 bg-[#f8f9fa]">
       <div class="container mx-auto px-6 text-center">
-        <h2 class="text-4xl font-black text-[#111] uppercase italic tracking-tighter mb-12 italic">{t('home.complex_title')}</h2>
+        <h2 class="text-4xl font-black text-[#111] uppercase tracking-tighter mb-12 ">{t('home.complex_title')}</h2>
         <div class="rounded-2xl overflow-hidden shadow-2xl max-w-5xl mx-auto">
           <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=2000" class="w-full h-auto object-cover" />
         </div>
@@ -86,7 +86,7 @@ const features = [
     </section>
 
     <section class="bg-white py-24 px-6 max-w-7xl mx-auto">
-      <h2 class="text-4xl font-black text-[#003366] uppercase tracking-tighter italic mb-16 text-left">{t('home.other_ind')}</h2>
+      <h2 class="text-4xl font-black text-[#003366] uppercase tracking-tighter  mb-16 text-left">{t('home.other_ind')}</h2>
       <div id="ind-slider" class="flex flex-nowrap overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide">
         <div class="min-w-full flex-shrink-0 snap-start grid grid-cols-2 md:grid-cols-4 gap-px bg-gray-200 border border-gray-200">
           {industriesList.slice(0, 8).map(item => (
@@ -110,7 +110,7 @@ const features = [
 
     <section class="py-24 bg-white border-t border-gray-100">
       <div class="container mx-auto px-6">
-        <h2 class="text-4xl font-black text-[#003366] uppercase italic tracking-tighter mb-16 text-left">{t('home.success_title')}</h2>
+        <h2 class="text-4xl font-black text-[#003366] uppercase tracking-tighter mb-16 text-left">{t('home.success_title')}</h2>
         <div id="success-slider" class="flex gap-12 overflow-x-auto scroll-smooth scrollbar-hide snap-x">
           {successStories.map(story => (
             <a href={`${paths.news}/${story.id}`} class="min-w-full md:min-w-[calc(50%-24px)] group cursor-pointer snap-start block text-left">
@@ -118,7 +118,7 @@ const features = [
                 <img src={story.img} class="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" alt={t(story.nameKey)} />
               </div>
               <h3 class="text-2xl font-black mb-2 tracking-tighter text-[#111] group-hover:text-[#ee5931] transition-colors">{t(story.nameKey)}</h3>
-              <p class="text-gray-400 text-sm italic line-clamp-2">{t(story.descKey)}</p>
+              <p class="text-gray-400 text-sm line-clamp-2">{t(story.descKey)}</p>
             </a>
           ))}
         </div>
@@ -132,8 +132,8 @@ const features = [
     <section class="py-24 bg-white border-t border-gray-50 px-6 max-w-7xl mx-auto text-left">
       <div class="flex flex-col lg:flex-row gap-16 mb-12 items-start">
         <div class="lg:w-1/4">
-          <h2 class="text-5xl font-black text-[#003366] uppercase italic tracking-tighter mb-6">{t('regions.title')}</h2>
-          <p class="text-gray-500 mb-10 leading-relaxed italic">{t('regions.description')}</p>
+          <h2 class="text-5xl font-black text-[#003366] uppercase tracking-tighter mb-6">{t('regions.title')}</h2>
+          <p class="text-gray-500 mb-10 leading-relaxed ">{t('regions.description')}</p>
           <a href={paths.regions} class="inline-flex items-center justify-between bg-[#ee5931] text-white px-8 py-4 rounded-md font-bold uppercase italic hover:bg-[#d44d28] transition-all w-fit shadow-lg">
             <span>{t('regions.btn_text')}</span> <span class="ml-4 text-xl">→</span>
           </a>
@@ -143,7 +143,7 @@ const features = [
             <a href={`${paths.regions}/${city.toLowerCase()}`} class="min-w-[320px] h-[450px] rounded-2xl relative overflow-hidden group cursor-pointer snap-start block">
               <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={city} />
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-              <span class="absolute bottom-10 left-10 text-white text-3xl font-black uppercase italic tracking-tighter">{city}</span>
+              <span class="absolute bottom-10 left-10 text-white text-3xl font-black uppercase tracking-tighter">{city}</span>
             </a>
           ))}
         </div>
@@ -156,11 +156,11 @@ const features = [
 
     <section class="py-20 bg-gray-50 border-y border-gray-100">
       <div class="container mx-auto px-6">
-        <h3 class="text-center text-3xl font-black text-[#003366] uppercase italic tracking-tighter mb-12">{t('footer.family')}</h3>
+        <h3 class="text-center text-3xl font-black text-[#003366] uppercase tracking-tighter mb-12">{t('footer.family')}</h3>
         <div class="flex flex-wrap justify-center items-center gap-x-16 gap-y-10 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
-          <span class="text-2xl font-black italic text-[#111]">kotra</span>
+          <span class="text-2xl font-black text-[#111]">kotra</span>
           <span class="text-xl font-bold uppercase tracking-widest text-[#111]">Ombudsman</span>
-          <span class="text-xl font-black italic text-[#111]">Invest KOREA</span>
+          <span class="text-xl font-black text-[#111]">Invest KOREA</span>
           <span class="text-2xl font-bold text-[#111]">GEP</span>
         </div>
       </div>
@@ -168,7 +168,7 @@ const features = [
 
     <section class="py-24 bg-white">
       <div class="container mx-auto px-6 text-left">
-        <h2 class="text-4xl font-black text-[#003366] mb-16 uppercase italic tracking-tighter">{t('home.feature_title')}</h2>
+        <h2 class="text-4xl font-black text-[#003366] mb-16 uppercase tracking-tighter">{t('home.feature_title')}</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
           {features.map(f => (
             <a href={`${paths.news}/${f.id}`} class="group cursor-pointer block">

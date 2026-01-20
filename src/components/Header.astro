@@ -3,6 +3,13 @@ import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 const lang = Astro.props.lang || getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const { pathname } = Astro.url;
+const getPath = (target: string) => {
+  const segments = pathname.split('/');
+  segments[1] = target;
+  return segments.join('/');
+};
 ---
 <div class="w-full bg-[#002a5c] py-2">
   <div class="max-w-7xl mx-auto px-4 flex justify-between items-center text-[11px] text-white font-bold uppercase tracking-widest">
@@ -11,25 +18,25 @@ const t = useTranslations(lang);
   </div>
 </div>
 
-<header class="w-full bg-white border-b border-gray-100 sticky top-0 z-50 h-[80px] flex items-center shadow-sm">
+<header class="w-full bg-white border-b border-gray-100 sticky top-0 z-50 h-[80px] flex items-center shadow-sm text-left">
   <div class="max-w-7xl mx-auto px-4 w-full flex justify-between items-center">
-    <a href={`/${lang}/`} class="text-2xl font-black text-[#003366] tracking-tighter italic">Invest KOREA</a>
+    <a href={`/${lang}/`} class="text-2xl font-black text-[#003366] tracking-tighter">Invest KOREA</a>
 
     <nav class="hidden lg:flex items-center gap-8 h-full">
       {['why', 'industries', 'incentives', 'regions', 'services', 'about'].map(key => (
         <div class="relative group h-full flex items-center">
-          <a href={['why', 'industries', 'incentives', 'regions'].includes(key) ? `/${lang}/${key}/` : "#"} 
-             class="text-[14px] font-bold text-[#111] hover:text-[#003366] uppercase py-8 transition-colors">
+          
+          <a href={`/${lang}/${key}/`} 
+             class="text-[14px] font-bold text-[#111] hover:text-[#003366] uppercase py-8 transition-colors block">
             {t(`nav.${key}`)}
           </a>
 
-          {/* MEGA MENU: WHY KOREA */}
           {key === 'why' && (
             <div class="fixed top-[112px] left-0 w-full bg-white border-t border-gray-100 shadow-2xl hidden group-hover:block z-50 animate-in fade-in slide-in-from-top-2 duration-300">
               <div class="max-w-7xl mx-auto flex py-20 px-6">
                 <div class="w-1/3 border-r border-gray-100 pr-10">
-                  <h2 class="text-[56px] font-black italic uppercase tracking-tighter text-[#111] leading-none">
-                    Why <br/> KOREA
+                  <h2 class="text-[56px] font-black uppercase tracking-tighter text-[#111] leading-[1.1] not-italic">
+                    {t('nav.why')}
                   </h2>
                 </div>
                 <div class="w-2/3 grid grid-cols-2 gap-x-20 gap-y-12 pl-24 pt-4">
@@ -46,26 +53,25 @@ const t = useTranslations(lang);
             </div>
           )}
 
-          {/* MEGA MENU: INDUSTRIES - Đã chỉnh in đậm & rõ nét */}
           {key === 'industries' && (
             <div class="fixed top-[112px] left-0 w-full bg-white border-t border-gray-100 shadow-2xl hidden group-hover:block z-50">
               <div class="max-w-7xl mx-auto flex py-16 px-6">
                 <div class="w-1/4 border-r border-gray-100 pr-10">
-                  <h2 class="text-[48px] font-black italic uppercase tracking-tighter text-[#111] leading-none">
-                    Industries
+                  <h2 class="text-[48px] font-black uppercase tracking-tighter text-[#111] leading-[1.1] not-italic">
+                    {t('ind.title')}
                   </h2>
                 </div>
                 <div class="w-3/4 grid grid-cols-2 gap-x-12 pl-16">
                   <div class="flex flex-col gap-3">
                     {['news', 'aerospace', 'battery', 'creative', 'finance', 'ict', 'machinery', 'energy', 'semiconductor', 'tourism'].map(ind => (
-                      <a href="#" class="text-[15px] font-bold text-gray-800 hover:text-[#ee5931] transition-all">
+                      <a href={`/${lang}/industries/${ind}`} class="text-[15px] font-bold text-gray-800 hover:text-[#ee5931] transition-all">
                         {t(`ind.${ind}`)}
                       </a>
                     ))}
                   </div>
                   <div class="flex flex-col gap-3">
                     {['startup', 'automotive', 'consumer', 'display', 'chemical', 'logistics', 'bio', 'robot', 'shipbuilding'].map(ind => (
-                      <a href="#" class="text-[15px] font-bold text-gray-800 hover:text-[#ee5931] transition-all">
+                      <a href={`/${lang}/industries/${ind}`} class="text-[15px] font-bold text-gray-800 hover:text-[#ee5931] transition-all">
                         {t(`ind.${ind}`)}
                       </a>
                     ))}
@@ -75,17 +81,16 @@ const t = useTranslations(lang);
             </div>
           )} 
 
-          {/* MEGA MENU: INCENTIVES */}
           {key === 'incentives' && (
             <div class="fixed top-[112px] left-0 w-full bg-white border-t border-gray-100 shadow-2xl hidden group-hover:block z-50">
               <div class="max-w-7xl mx-auto flex py-24 px-6">
                 <div class="w-1/3 border-r border-gray-100 pr-10">
-                  <h2 class="text-[56px] font-black italic uppercase tracking-tighter text-[#111] leading-none">
-                    Incentives
+                  <h2 class="text-[56px] font-black uppercase tracking-tighter text-[#111] leading-[1.1] not-italic">
+                    {t('nav.incentives')}
                   </h2>
                 </div>
                 <div class="w-2/3 pl-20 pt-4">
-                  <a href={`/${lang}/incentives/`} class="text-[20px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors">
+                  <a href={`/${lang}/incentives/`} class="text-[16px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors">
                     {t('inc.policy')}
                   </a>
                 </div>
@@ -93,24 +98,23 @@ const t = useTranslations(lang);
             </div>
           )} 
 
-          {/* MEGA MENU: REGIONS */}
           {key === 'regions' && (
             <div class="fixed top-[112px] left-0 w-full bg-white border-t border-gray-100 shadow-2xl hidden group-hover:block z-50">
               <div class="max-w-7xl mx-auto flex py-16 px-6">
                 <div class="w-1/4 border-r border-gray-100 pr-10">
-                  <h2 class="text-[56px] font-black italic uppercase tracking-tighter text-[#111] leading-none">
-                    Regions
+                  <h2 class="text-[56px] font-black uppercase tracking-tighter text-[#111] leading-[1.1] not-italic">
+                    {t('nav.regions')}
                   </h2>
                 </div>
                 <div class="w-3/4 grid grid-cols-2 gap-x-20 pl-20 pt-4">
                   <div class="flex flex-col gap-3">
                     {['seoul', 'gyeonggi', 'daejeon', 'chungbuk', 'daegu', 'ulsan', 'gyeongnam', 'jeonbuk', 'jeju'].map(reg => (
-                      <a href="#" class="text-[15px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors">{t(`reg.${reg}`)}</a>
+                      <a href={`/${lang}/regions/${reg}`} class="text-[15px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors">{t(`reg.${reg}`)}</a>
                     ))}
                   </div>
                   <div class="flex flex-col gap-3">
                     {['incheon', 'gangwon', 'sejong', 'chungnam', 'busan', 'gyeongbuk', 'gwangju', 'jeonnam', 'report'].map(reg => (
-                      <a href="#" class={`text-[15px] font-bold hover:text-[#ee5931] transition-colors ${reg === 'report' ? 'text-[#003366] mt-4 underline' : 'text-gray-900'}`}>
+                      <a href={reg === 'report' ? `/${lang}/regions/invest-report` : `/${lang}/regions/${reg}`} class={`text-[15px] font-bold hover:text-[#ee5931] transition-colors ${reg === 'report' ? 'text-[#003366] mt-4 underline' : 'text-gray-900'}`}>
                         {t(`reg.${reg}`)}
                       </a>
                     ))}
@@ -120,26 +124,25 @@ const t = useTranslations(lang);
             </div>
           )} 
 
-          {/* MEGA MENU: SERVICES */}
           {key === 'services' && (
             <div class="fixed top-[112px] left-0 w-full bg-white border-t border-gray-100 shadow-2xl hidden group-hover:block z-50">
               <div class="max-w-7xl mx-auto flex py-16 px-6">
                 <div class="w-1/4 border-r border-gray-100 pr-10">
-                  <h2 class="text-[56px] font-black italic uppercase tracking-tighter text-[#111] leading-none">
-                    Services
+                  <h2 class="text-[56px] font-black uppercase tracking-tighter text-[#111] leading-[1.1] not-italic">
+                    {t('nav.services')}
                   </h2>
                 </div>
                 <div class="w-3/4 grid grid-cols-2 gap-x-12 pl-16 pt-4">
                   <div class="flex flex-col gap-4">
                     {['guide', 'consulting', 'living', 'cost', 'legislation'].map(item => (
-                      <a href="#" class="text-[16px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors">
+                      <a href={`/${lang}/services/${item}`} class="text-[16px] font-bold text-gray-800 hover:text-[#ee5931] transition-colors">
                         {t(`ser.${item}`)}
                       </a>
                     ))}
                   </div>
                   <div class="flex flex-col gap-4">
                     {['faq', 'office', 'network', 'forms'].map(item => (
-                      <a href="#" class="text-[16px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors">
+                      <a href={`/${lang}/services/${item}`} class="text-[16px] font-bold text-gray-800 hover:text-[#ee5931] transition-colors">
                         {t(`ser.${item}`)}
                       </a>
                     ))}
@@ -149,35 +152,28 @@ const t = useTranslations(lang);
             </div>
           )} 
 
-          {/* MEGA MENU: ABOUT US */}
           {key === 'about' && (
             <div class="fixed top-[112px] left-0 w-full bg-white border-t border-gray-100 shadow-2xl hidden group-hover:block z-50">
               <div class="max-w-7xl mx-auto flex py-16 px-6">
                 <div class="w-1/4 border-r border-gray-100 pr-10">
-                  <h2 class="text-[56px] font-black italic uppercase tracking-tighter text-[#111] leading-none">
-                    About Us
+                  <h2 class="text-[56px] font-black uppercase tracking-tighter text-[#111] leading-[1.1] not-italic">
+                    {t('nav.about')}
                   </h2>
                 </div>
+
                 <div class="w-3/4 grid grid-cols-2 gap-x-12 pl-16 pt-4">
-                  <div class="flex flex-col gap-6">
-                    <div class="flex flex-col gap-3">
-                      <a href="#" class="text-[16px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors">{t('abt.message')}</a>
-                      <a href="#" class="text-[16px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors">{t('abt.ombudsman')}</a>
-                    </div>
-                    <div class="flex flex-col gap-3 mt-4">
-                      <a href="#" class="text-[16px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors">{t('abt.publication')}</a>
-                      <a href="#" class="text-[16px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors">{t('abt.video')}</a>
-                    </div>
+                  <div class="flex flex-col gap-y-4"> 
+                    <a href={`/${lang}/about/message`} class="text-[16px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors">{t('abt.message')}</a>
+                    <a href={`/${lang}/about/ombudsman`} class="text-[16px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors">{t('abt.ombudsman')}</a>
+                    <a href={`/${lang}/about/publication`} class="text-[16px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors">{t('abt.publication')}</a>
+                    <a href={`/${lang}/about/video`} class="text-[16px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors">{t('abt.video')}</a>
                   </div>
-                  <div class="flex flex-col gap-6">
-                    <div class="flex flex-col gap-3">
-                      <a href="#" class="text-[16px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors">{t('abt.about')}</a>
-                      <a href="#" class="text-[16px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors">{t('abt.honorary')}</a>
-                    </div>
-                    <div class="flex flex-col gap-3 mt-4">
-                      <a href="#" class="text-[16px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors">{t('abt.magazine')}</a>
-                      <a href="#" class="text-[16px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors">{t('abt.media')}</a>
-                    </div>
+                  
+                  <div class="flex flex-col gap-y-4">
+                    <a href={`/${lang}/about/info`} class="text-[16px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors">{t('abt.about')}</a>
+                    <a href={`/${lang}/about/honorary`} class="text-[16px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors">{t('abt.honorary')}</a>
+                    <a href={`/${lang}/about/magazine`} class="text-[16px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors">{t('abt.magazine')}</a>
+                    <a href={`/${lang}/about/media`} class="text-[16px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors">{t('abt.media')}</a>
                   </div>
                 </div>
               </div>
@@ -187,10 +183,9 @@ const t = useTranslations(lang);
       ))}
     </nav>
 
-    {/* Nút chuyển đổi ngôn ngữ */}
     <div class="flex items-center bg-gray-100 rounded-full p-1 border border-gray-200">
-      <a href="/vi/" class={`px-4 py-1 text-[11px] font-bold rounded-full transition-all ${lang === 'vi' ? 'bg-[#003366] text-white shadow-md' : 'text-gray-400 hover:text-gray-600'}`}>VN</a>
-      <a href="/ko/" class={`px-4 py-1 text-[11px] font-bold rounded-full transition-all ${lang === 'ko' ? 'bg-[#003366] text-white shadow-md' : 'text-gray-400 hover:text-gray-600'}`}>KO</a>
+      <a href={getPath('vi')} class={`px-4 py-1 text-[11px] font-bold rounded-full transition-all ${lang === 'vi' ? 'bg-[#003366] text-white shadow-md' : 'text-gray-400 hover:text-gray-600'}`}>VN</a>
+      <a href={getPath('ko')} class={`px-4 py-1 text-[11px] font-bold rounded-full transition-all ${lang === 'ko' ? 'bg-[#003366] text-white shadow-md' : 'text-gray-400 hover:text-gray-600'}`}>KO</a>
     </div>
   </div>
 </header>

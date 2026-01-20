@@ -84,3 +84,168 @@ export const industries = {
     "ind.news_item_2": "차세대 바이오 산업 클러스터 투자 기회",
   }
 };
+export const industriesData = {
+  vi: {
+    pageTitle: "Các ngành công nghiệp",
+    hero: {
+      image: "/images/regions/banner.png", // Ảnh banner đầu trang
+      title: "Các ngành công nghiệp",
+    },
+    // Section 1: Priority Industries (Lưới các icon ngành nghề)
+    priority: {
+      title: "Các ngành công nghiệp trọng điểm",
+      desc: "Bối cảnh công nghiệp đa dạng của Hàn Quốc tự hào với khả năng phục hồi và đổi mới vượt trội,\nđịnh vị nơi đây là điểm đến đầu tư hàng đầu.",
+      items: [
+        {
+          title: "Hàng không vũ trụ",
+          icon: "✈️",
+          link: "#",
+          code: "aerospace",
+        },
+        { title: "Phụ tùng ô tô", icon: "🚗", link: "#", code: "auto" },
+        { title: "Pin", icon: "🔋", link: "#", code: "battery" },
+        { title: "Hàng tiêu dùng", icon: "🛍️", link: "#", code: "consumer" },
+        { title: "Nội dung văn hóa", icon: "🎬", link: "#", code: "culture" },
+        { title: "Màn hình hiển thị", icon: "🖥️", link: "#", code: "display" },
+        { title: "Tài chính", icon: "💰", link: "#", code: "finance" },
+        {
+          title: "Hóa chất tinh khiết",
+          icon: "🧪",
+          link: "#",
+          code: "chemical",
+        },
+        { title: "CNTT & Truyền thông", icon: "💻", link: "#", code: "ict" },
+        { title: "Logistics", icon: "🚚", link: "#", code: "logistics" },
+        { title: "Máy móc", icon: "⚙️", link: "#", code: "machinery" },
+        { title: "Dược & Sinh học", icon: "💊", link: "#", code: "bio" },
+        { title: "Năng lượng tái tạo", icon: "♻️", link: "#", code: "energy" },
+        { title: "Robot", icon: "🤖", link: "#", code: "robot" },
+        { title: "Bán dẫn", icon: "💾", link: "#", code: "semicon" },
+        { title: "Đóng tàu", icon: "🚢", link: "#", code: "ship" },
+        { title: "Du lịch", icon: "🏖️", link: "#", code: "tourism" },
+      ],
+    },
+    // Section 2: Investment Opportunities (Danh sách ngang: Chữ trái - Ảnh phải)
+    opportunities: [
+      {
+        title:
+          "15 Khu công nghiệp Quốc gia\ncho các ngành công nghiệp tiên tiến",
+        subtitle: "Đổi mới cho bán dẫn, màn hình và di động tương lai",
+        desc: "Hàn Quốc có tư duy tiến bộ, với kế hoạch thành lập 15 khu công nghiệp quốc gia để trở thành nền tảng cho các ngành công nghiệp tiên tiến.",
+        image: "/images/regions/building.jpg",
+        link: null,
+      },
+      {
+        title: "Siêu tổ hợp Bán dẫn Yongin",
+        subtitle: "Tạo ra Cụm Bán dẫn Lớn nhất Thế giới",
+        desc: "Hàn Quốc đang xây dựng cụm bán dẫn lớn nhất thế giới tại Yongin, kết nối các công ty vật liệu, linh kiện và thiết bị.",
+        image: "/images/regions/building.jpg",
+        link: null,
+      },
+      {
+        title: "Tìm cơ hội đầu tư\ntrong các Startup Hàn Quốc",
+        subtitle: "Invest KOREA Market Place (IKMP)",
+        desc: "Invest KOREA khám phá các dự án Hàn Quốc đầy triển vọng đang tìm kiếm đầu tư nước ngoài từ các nhà đầu tư toàn cầu.",
+        image: "/images/regions/building.jpg",
+        link: "https://www.investkorea.org/ik-en/cntnts/i-5075/web.do",
+        btnText: "Tìm kiếm K-Startups",
+      },
+    ],
+    // Section 3: Industry News
+    news: {
+      title: "Tin tức ngành",
+      moreBtn: "Xem thêm",
+      link: "/vi/industry-news",
+      items: [
+        {
+          title:
+            "Ngành công nghiệp di động tương lai của Hàn Quốc: Tiến bộ thông qua phát triển hệ sinh thái và năng lực cạnh tranh toàn cầu",
+          date: "05.12.2025",
+          link: "#",
+          tags: ["Di động tương lai"],
+        },
+        {
+          title:
+            "Ngành công nghiệp pin của Hàn Quốc, Tăng cường khả năng cạnh tranh thông qua hỗ trợ chính sách",
+          date: "11.11.2025",
+          link: "#",
+          tags: ["Pin"],
+        },
+      ],
+    },
+  },
+  ko: {
+    pageTitle: "산업",
+    hero: {
+      image: "/images/regions/banner.png",
+      title: "산업 정보",
+    },
+    priority: {
+      title: "중점 유치 산업",
+      desc: "한국의 다양한 산업 환경은 놀라운 회복력과 혁신을 자랑하며,\n최적의 투자처로서의 입지를 다지고 있습니다.",
+      items: [
+        { title: "항공우주", icon: "✈️", link: "#", code: "aerospace" },
+        { title: "자동차부품", icon: "🚗", link: "#", code: "auto" },
+        { title: "배터리", icon: "🔋", link: "#", code: "battery" },
+        { title: "소비재", icon: "🛍️", link: "#", code: "consumer" },
+        { title: "문화콘텐츠", icon: "🎬", link: "#", code: "culture" },
+        { title: "디스플레이", icon: "🖥️", link: "#", code: "display" },
+        { title: "금융", icon: "💰", link: "#", code: "finance" },
+        { title: "정밀화학", icon: "🧪", link: "#", code: "chemical" },
+        { title: "ICT", icon: "💻", link: "#", code: "ict" },
+        { title: "물류", icon: "🚚", link: "#", code: "logistics" },
+        { title: "기계", icon: "⚙️", link: "#", code: "machinery" },
+        { title: "의약·바이오", icon: "💊", link: "#", code: "bio" },
+        { title: "신재생에너지", icon: "♻️", link: "#", code: "energy" },
+        { title: "로봇", icon: "🤖", link: "#", code: "robot" },
+        { title: "반도체", icon: "💾", link: "#", code: "semicon" },
+        { title: "조선·해양", icon: "🚢", link: "#", code: "ship" },
+        { title: "관광", icon: "🏖️", link: "#", code: "tourism" },
+      ],
+    },
+    opportunities: [
+      {
+        title: "첨단 산업을 위한\n15개 국가산업단지",
+        subtitle: "반도체, 디스플레이, 미래 모빌리티를 위한 혁신",
+        desc: "한국은 미래를 내다보고 첨단 산업의 기반이 될 15개 국가산업단지를 조성할 계획입니다.",
+        image: "/images/regions/building.jpg",
+        link: null,
+      },
+      {
+        title: "용인 반도체\n메가 클러스터",
+        subtitle: "세계 최대 반도체 클러스터 조성",
+        desc: "소재, 부품, 장비 기업을 연결하여 용인에 세계 최대 규모의 반도체 클러스터를 구축하고 있습니다.",
+        image: "/images/regions/building.jpg",
+        link: null,
+      },
+      {
+        title: "한국 스타트업에서\n투자 기회 찾기",
+        subtitle: "Invest KOREA Market Place (IKMP)",
+        desc: "Invest KOREA는 글로벌 투자자의 투자를 희망하는 유망한 한국 프로젝트를 발굴합니다.",
+        image: "/images/regions/building.jpg",
+        link: "https://www.investkorea.org/ik-en/cntnts/i-5075/web.do",
+        btnText: "K-Startups 찾기 바로가기",
+      },
+    ],
+    news: {
+      title: "산업 뉴스",
+      moreBtn: "더보기",
+      link: "/ko/industry-news",
+      items: [
+        {
+          title:
+            "한국의 미래 모빌리티 산업: 생태계 조성과 글로벌 경쟁력을 통한 도약",
+          date: "2025.12.05",
+          link: "#",
+          tags: ["미래 모빌리티"],
+        },
+        {
+          title: "한국 배터리 산업, 정책 지원을 통한 경쟁력 강화",
+          date: "2025.11.11",
+          link: "#",
+          tags: ["배터리"],
+        },
+      ],
+    },
+  },
+};

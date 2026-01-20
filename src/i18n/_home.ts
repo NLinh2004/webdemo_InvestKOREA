@@ -15,7 +15,7 @@ export const home = {
     
     // --- 3. CÁC CỤM CÔNG NGHIỆP & NGÀNH ---
     "home.complex_title": "15 Cụm công nghiệp quốc gia cho các ngành công nghiệp tiên tiến",
-    "home.other_ind": "CÁC NGÀNH CÔNG NGHIỆP KHÁC",
+    "home.other_ind": "Các ngành công nghiệp khác",
     
     // --- 4. TẢI TÀI LIỆU (Banner màu cam) ---
     "home.download_title": "CHÚNG TÔI CUNG CẤP CÁC CHÍNH SÁCH ƯU ĐÃI HẤP DẪN HỖ TRỢ HÀNH TRÌNH ĐẦU TƯ CỦA BẠN.",

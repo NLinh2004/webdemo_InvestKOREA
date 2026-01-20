@@ -6,11 +6,22 @@ import { useTranslations } from '../../i18n/utils';
 const lang = 'ko'; 
 const t = useTranslations(lang);
 
+// Cấu hình đường dẫn thực tế để các sự kiện click hoạt động
+const paths = {
+  home: `/${lang}`,
+  economy: `/${lang}/why-korea/economy`,
+  sustainable: `/${lang}/why-korea/sustainable`,
+  stories: `/${lang}/why-korea/stories`,
+  news: `/${lang}/news`,
+  industries: `/${lang}/industries`,
+  pdfIncentive: `/documents/${lang}/incentives-guide-2025.pdf` // File này cần nằm trong public/documents/vi/
+};
+
 const mainPillars = [
-  { id: 'biz', key: 'why.biz', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab', num: '#1' },
-  { id: 'fundamental', key: 'why.fundamental', img: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e', num: '#2' },
-  { id: 'sustainable', key: 'why.sustainable', img: 'https://images.unsplash.com/photo-1518173946687-a4c8a9b746f5', num: '#3' },
-  { id: 'stories', key: 'why.stories', img: 'https://images.unsplash.com/photo-1556761175-b413da4baf72', num: '#4' }
+  { id: 'biz', key: 'why.biz', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab', num: '#1', href: paths.economy },
+  { id: 'fundamental', key: 'why.fundamental', img: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e', num: '#2', href: paths.economy },
+  { id: 'sustainable', key: 'why.sustainable', img: 'https://images.unsplash.com/photo-1518173946687-a4c8a9b746f5', num: '#3', href: paths.sustainable },
+  { id: 'stories', key: 'why.stories', img: 'https://images.unsplash.com/photo-1556761175-b413da4baf72', num: '#4', href: paths.stories }
 ];
 
 const industriesList = [
@@ -23,20 +34,20 @@ const industriesList = [
 ];
 
 const featureStories = [
-  { key: 'home.feat_1', date: '2025.12.04', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab' },
-  { key: 'home.feat_2', date: '2025.11.07', img: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d' },
-  { key: 'home.feat_3', date: '2025.10.01', img: 'https://images.unsplash.com/photo-1497366216548-37526070297c' }
+  { id: 'fdi-2025-analysis', key: 'home.feat_1', date: '2025.12.04', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab' },
+  { id: 'summit-highlights', key: 'home.feat_2', date: '2025.11.07', img: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d' },
+  { id: 'ggfez-investment', key: 'home.feat_3', date: '2025.10.01', img: 'https://images.unsplash.com/photo-1497366216548-37526070297c' }
 ];
 ---
 
 <Layout title={t('nav.why')} lang={lang}>
-  <main class="bg-white">
+  <main class="bg-white antialiased">
     <section class="pt-32 pb-0 border-b border-gray-100">
-      <div class="max-w-7xl mx-auto px-6">
-        <nav class="text-sm text-gray-400 mb-8 font-bold italic uppercase tracking-widest">
-          Home · <span class="text-gray-900">{t('nav.why')}</span>
+      <div class="max-w-7xl mx-auto px-6 text-left">
+        <nav class="text-sm text-gray-400 mb-8 font-bold uppercase tracking-widest">
+          <a href={paths.home} class="hover:text-gray-900 transition-colors">Trang chủ</a> · <span class="text-gray-900">{t('nav.why')}</span>
         </nav>
-        <h1 class="text-[80px] font-black text-[#111] tracking-tighter leading-none mb-12 uppercase italic">
+        <h1 class="text-[80px] font-black text-[#111] tracking-tighter leading-none mb-12 uppercase">
           Why KOREA
         </h1>
       </div>
@@ -45,27 +56,25 @@ const featureStories = [
       </div>
     </section>
 
-    <section class="py-24">
-      <div class="max-w-7xl mx-auto px-6">
-        <div class="flex flex-col md:flex-row gap-4 h-[650px] w-full items-stretch">
-          {mainPillars.map((item) => (
-            <div class="pillar-card group relative flex-[0.7] h-full rounded-[32px] overflow-hidden cursor-pointer transition-all duration-[800ms] ease-[cubic-bezier(0.2,1,0.3,1)] hover:flex-[3] hover:shadow-2xl">
-              <img src={item.img} class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
-              <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80"></div>
-              <div class="absolute top-12 left-10 text-white z-10 pr-10">
-                <span class="text-xl font-black block mb-2 opacity-80">{item.num}</span>
-                <h3 class="text-[34px] font-black leading-tight uppercase italic tracking-tighter w-[400px] whitespace-nowrap group-hover:whitespace-normal transition-all duration-500">
-                  {t(item.key)}
-                </h3>
-              </div>
-              <div class="absolute bottom-12 left-10 z-10 opacity-0 translate-y-8 transition-all duration-500 delay-200 group-hover:opacity-100 group-hover:translate-y-0">
-                <button class="bg-[#ee5931] text-white px-10 py-4 rounded-xl font-black text-sm uppercase italic tracking-widest shadow-xl hover:bg-white hover:text-[#ee5931] transition-all">
-                  {t('why.move_page')} →
-                </button>
+    <section class="py-24 px-6 max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row gap-4 h-[650px] w-full items-stretch">
+        {mainPillars.map((item) => (
+          <a href={item.href} class="pillar-card group relative flex-[0.7] h-full rounded-[32px] overflow-hidden cursor-pointer transition-all duration-[800ms] ease-[cubic-bezier(0.2,1,0.3,1)] hover:flex-[3] hover:shadow-2xl">
+            <img src={item.img} class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80"></div>
+            <div class="absolute top-12 left-10 text-white z-10 pr-10 text-left">
+              <span class="text-xl font-black block mb-2 opacity-80">{item.num}</span>
+              <h3 class="text-[34px] font-black leading-tight uppercase tracking-tighter w-[400px] whitespace-nowrap group-hover:whitespace-normal transition-all duration-500">
+                {t(item.key)}
+              </h3>
+            </div>
+            <div class="absolute bottom-12 left-10 z-10 opacity-0 translate-y-8 transition-all duration-500 delay-200 group-hover:opacity-100 group-hover:translate-y-0">
+              <div class="bg-[#ee5931] text-white px-10 py-4 rounded-xl font-black text-sm uppercase tracking-widest shadow-xl group-hover:bg-white group-hover:text-[#ee5931] transition-all">
+                {t('why.move_page')} →
               </div>
             </div>
-          ))}
-        </div>
+          </a>
+        ))}
       </div>
     </section>
 
@@ -73,69 +82,74 @@ const featureStories = [
       <div class="max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 lg:grid-cols-12 items-start gap-12 text-left">
           <div class="lg:col-span-8">
-            <h2 class="text-[56px] font-black text-[#003366] leading-[1.05] mb-12 uppercase italic tracking-tighter">
+            <h2 class="text-[56px] font-black text-[#003366] leading-[1.05] mb-12 uppercase tracking-tighter">
               {t('why.incentive_title_1')} <br/> 
               {t('why.incentive_title_2')} <br/>
               {t('why.incentive_title_3')} <span class="text-[#ee5931]">{t('why.incentive_title_orange')}</span>
             </h2>
           </div>
           <div class="lg:col-span-4 lg:pt-4">
-            <p class="text-gray-500 text-[16px] leading-relaxed mb-10 font-bold italic">
+            <p class="text-gray-500 text-[16px] leading-relaxed mb-10 font-bold text-left">
               {t('why.incentive_desc')}
             </p>
-            <button class="bg-[#ee5931] text-white px-10 py-5 rounded-md font-black uppercase italic tracking-tighter hover:bg-[#d44d28] transition-all flex items-center gap-4 text-lg shadow-xl group">
+            <a href={paths.pdfIncentive} download class="bg-[#ee5931] text-white px-10 py-5 rounded-md font-black uppercase tracking-tighter hover:bg-[#d44d28] transition-all inline-flex items-center gap-4 text-lg shadow-xl group w-fit">
               {t('why.download_btn')} <span class="group-hover:translate-x-2 transition-transform">→</span>
-            </button>
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="bg-white py-24">
-      <div class="container mx-auto px-6">
-        <h2 class="text-[48px] font-black text-[#003366] uppercase tracking-tighter italic mb-16">{t('home.other_ind')}</h2>
-        <div id="ind-slider" class="flex flex-nowrap overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide">
-          <div class="min-w-full flex-shrink-0 snap-start grid grid-cols-2 md:grid-cols-4 gap-px bg-gray-200 border border-gray-200">
-            {industriesList.slice(0, 8).map(item => (
-              <a href="#" class="bg-white p-10 flex flex-col justify-between h-52 hover:bg-[#003366] transition-all group">
-                <span class="text-4xl grayscale group-hover:grayscale-0 transition-all">{item.icon}</span>
-                <div class="flex justify-between items-end">
-                  <span class="text-sm font-black text-gray-700 group-hover:text-white uppercase tracking-tight leading-tight w-2/3 italic">
-                    {t(`ind.${item.key}`)}
-                  </span>
-                  <span class="text-gray-300 group-hover:text-white transition-all text-xl">→</span>
-                </div>
-              </a>
-            ))}
+   <section class="bg-white py-24 px-6 max-w-7xl mx-auto">
+  <h2 class="text-[48px] font-black text-[#003366] leading-tight mb-16 text-left not-italic">
+    {t('home.other_ind')}
+  </h2>
+
+  <div class="relative group">
+    <div id="ind-slider" class="flex flex-nowrap overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide gap-px bg-gray-200 border border-gray-200">
+      {industriesList.map(item => (
+        <a href={`${paths.industries}/${item.key}`} class="bg-white p-12 flex flex-col justify-between h-64 hover:bg-[#003366] transition-all group snap-start min-w-[50%] md:min-w-[25%] block">
+          <span class="text-5xl grayscale group-hover:grayscale-0 transition-all text-left block mb-6">
+            {item.icon}
+          </span>
+          
+          <div class="flex justify-between items-end text-left">
+            <span class="text-[16px] font-black text-gray-800 group-hover:text-white leading-tight w-3/4 block not-italic">
+              {t(`ind.${item.key}`)}
+            </span>
+            <span class="text-gray-300 group-hover:text-white transition-all text-2xl">→</span>
           </div>
-        </div>
-        <div class="flex justify-center gap-4 mt-12">
-          <button id="ind-prev" class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 active:scale-90 transition-all">←</button>
-          <button id="ind-next" class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 active:scale-90 transition-all">→</button>
-        </div>
-      </div>
-    </section>
+        </a>
+      ))}
+    </div>
+    
+    <div class="flex justify-center gap-4 mt-12">
+      <button id="ind-prev" class="slider-arrow">←</button>
+      <button id="ind-next" class="slider-arrow">→</button>
+    </div>
+  </div>
+</section>
 
     <section class="py-24 border-t border-gray-100 bg-white">
       <div class="max-w-7xl mx-auto px-6 text-left">
-        <h2 class="text-[48px] font-black text-[#003366] mb-20 uppercase italic tracking-tighter">Feature Stories</h2>
+        <h2 class="text-[48px] font-black text-[#003366] mb-20 uppercase tracking-tighter text-left">Feature Stories</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-16 mb-20">
           {featureStories.map(f => (
-            <div class="group cursor-pointer">
+            <a href={`${paths.news}/${f.id}`} class="group cursor-pointer block text-left">
               <div class="aspect-[16/10] rounded-2xl overflow-hidden mb-8 shadow-md">
                 <img src={f.img} class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" alt={t(f.key)} />
               </div>
-              <p class="text-[17px] font-black text-gray-900 leading-snug mb-4 group-hover:text-[#ee5931] transition-colors line-clamp-3 italic">
+              <p class="text-[17px] font-black text-gray-900 leading-snug mb-4 group-hover:text-[#ee5931] transition-colors line-clamp-3 text-left">
                 {t(f.key)}
               </p>
-              <span class="text-xs text-gray-400 font-bold tracking-widest uppercase">{f.date}</span>
-            </div>
+              <span class="text-xs text-gray-400 font-bold tracking-widest uppercase block text-left">{f.date}</span>
+            </a>
           ))}
         </div>
         <div class="flex justify-center">
-          <button class="px-16 py-4 border-2 border-gray-100 text-gray-400 font-black uppercase text-[12px] tracking-[0.3em] hover:bg-gray-50 hover:text-gray-600 transition-all active:scale-95">
-            {t('home.more_btn')}
-          </button>
+          <a href={paths.news} class="px-16 py-4 border-2 border-gray-100 text-gray-400 font-black uppercase text-[12px] tracking-[0.3em] hover:bg-[#111] hover:text-white transition-all active:scale-95">
+            {t('home.more_btn') || 'XEM THÊM +'}
+          </a>
         </div>
       </div>
     </section>
@@ -147,9 +161,25 @@ const featureStories = [
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
   #ind-slider { cursor: grab; }
   
-  .pillar-card { will-change: flex; }
-  /* Làm mờ và nhỏ tiêu đề khi card thu gọn */
+  .pillar-card { will-change: flex; text-decoration: none; }
   .pillar-card:not(:hover) h3 { font-size: 26px; opacity: 0.7; }
+
+  /* CSS thuần để tránh lỗi Tailwind v4 @apply và giữ màu chữ rõ ràng */
+  .slider-arrow {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    border: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    background: white;
+    cursor: pointer;
+    font-size: 1.25rem;
+  }
+  .slider-arrow:hover { background: #111; color: white; border-color: #111; }
+  .slider-arrow:active { transform: scale(0.9); }
 
   @media (max-width: 768px) {
     .flex { height: auto !important; gap: 20px !important; }
@@ -164,8 +194,16 @@ const featureStories = [
     const next = document.getElementById(nextId);
 
     if (slider && prev && next) {
-      next.addEventListener('click', () => { slider.scrollLeft += slider.offsetWidth; });
-      prev.addEventListener('click', () => { slider.scrollLeft -= slider.offsetWidth; });
+      // Khoảng cách cuộn cố định (khoảng 1 card + gap) để trượt mượt mà hơn
+      const scrollStep = 350;
+
+      next.onclick = () => {
+        slider.scrollBy({ left: scrollStep, behavior: 'smooth' });
+      };
+      
+      prev.onclick = () => {
+        slider.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+      };
     }
   }
 

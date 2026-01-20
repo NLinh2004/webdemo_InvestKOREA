@@ -1,17 +1,14 @@
 ---
-// Lấy lang từ Layout truyền xuống
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 const lang = Astro.props.lang || getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-// Cấu hình đường dẫn thực tế cho các sự kiện
 const paths = {
   investGuide: `/documents/${lang}/invest-guide.pdf`,
   youtube: "https://www.youtube.com/@InvestKorea",
   officeSite: "https://www.kotra.or.kr"
 };
 
-// Logic đổi ngôn ngữ
 const currentPath = Astro.url.pathname;
 const getPath = (target: string) => {
   const segments = currentPath.split('/');
@@ -24,32 +21,40 @@ const getPath = (target: string) => {
   <div class="max-w-7xl mx-auto px-6 text-left">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-24">
       <div>
-        <h2 class="text-[40px] font-bold text-[#111] mb-4">Services</h2>
-        <p class="text-gray-500 mb-10 text-[16px]">Invest KOREA provides services support your investment journey.</p>
+        <h2 class="text-[40px] font-black text-[#111] mb-4 not-italic uppercase tracking-tight">
+          {t('ser.main_title')}
+        </h2>
+        <p class="text-gray-500 mb-10 text-[16px] font-medium">
+          {t('ser.main_desc')}
+        </p>
         <div class="flex gap-4">
-          <a href={paths.investGuide} download class="px-6 py-3 border border-[#ee5931] text-[#ee5931] rounded-md font-medium flex items-center gap-3 hover:bg-[#ee5931]/5 transition-all">
-            Download file <span class="text-lg">⤓</span>
+          <a href={paths.investGuide} download class="px-6 py-3 border border-[#ee5931] text-[#ee5931] rounded-md font-bold text-[14px] flex items-center gap-3 hover:bg-[#ee5931]/5 transition-all uppercase">
+            {t('ser.btn_download')} <span class="text-lg">⤓</span>
           </a>
-          <a href={paths.youtube} target="_blank" class="px-6 py-3 border border-[#ee5931] text-[#ee5931] rounded-md font-medium flex items-center gap-3 hover:bg-[#ee5931]/5 transition-all">
+          <a href={paths.youtube} target="_blank" class="px-6 py-3 border border-[#ee5931] text-[#ee5931] rounded-md font-bold text-[14px] flex items-center gap-3 hover:bg-[#ee5931]/5 transition-all uppercase">
             Youtube <span class="text-lg">↗</span>
           </a>
         </div>
       </div>
       
       <div>
-        <h2 class="text-[40px] font-bold text-[#111] mb-4">Find Nearby Invest KOREA Offices</h2>
-        <p class="text-gray-500 mb-10 text-[16px]">Discover nearby offices for Convenient access in your area</p>
+        <h2 class="text-[40px] font-black text-[#111] mb-4 not-italic uppercase tracking-tight">
+          {t('offices.title')}
+        </h2>
+        <p class="text-gray-500 mb-10 text-[16px] font-medium">
+          {t('offices.desc')}
+        </p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <select class="w-full p-4 bg-white border border-gray-200 rounded-md outline-none text-gray-400">
-            <option>Select Country</option>
+          <select class="w-full p-4 bg-white border border-gray-200 rounded-md outline-none text-gray-500 font-bold text-[13px] uppercase tracking-wider">
+            <option>{t('offices.selectCountry')}</option>
           </select>
-          <select class="w-full p-4 bg-white border border-gray-300 rounded-md outline-none text-gray-400">
-            <option>Select Region</option>
+          <select class="w-full p-4 bg-white border border-gray-300 rounded-md outline-none text-gray-500 font-bold text-[13px] uppercase tracking-wider">
+            <option>{t('offices.selectRegion')}</option>
           </select>
         </div>
         <div class="flex justify-end">
-           <a href={paths.officeSite} target="_blank" class="bg-[#ee5931] text-white px-10 py-4 rounded-md font-bold text-[16px] hover:bg-[#d44d28] transition-all">
-            Go to Overseas Office Site
+          <a href={paths.officeSite} target="_blank" class="bg-[#ee5931] text-white px-10 py-4 rounded-md font-bold text-[15px] hover:bg-[#d44d28] transition-all uppercase shadow-lg">
+            {t('offices.btnGo')}
           </a>
         </div>
       </div>
@@ -60,28 +65,32 @@ const getPath = (target: string) => {
 <footer class="bg-[#002a5c] text-white pt-16 pb-12 text-left">
   <div class="max-w-7xl mx-auto px-6">
     <div class="flex flex-col md:flex-row items-baseline gap-8 mb-12">
-      <h2 class="text-[34px] font-black tracking-tighter uppercase italic leading-none">INVEST KOREA</h2>
-      <p class="text-[14px] text-white/50">{t('footer.rights')}</p>
+      <h2 class="text-[34px] font-black tracking-tighter uppercase not-italic leading-none">
+        INVEST KOREA
+      </h2>
+      <p class="text-[14px] text-white/50 font-medium">
+        {t('footer.rights')}
+      </p>
     </div>
 
     <div class="flex flex-col lg:flex-row justify-between items-center gap-8 border-t border-white/10 pt-10">
-      <nav class="flex flex-wrap gap-x-10 gap-y-4 text-[12px] font-black uppercase">
-        <a href="#" class="hover:text-blue-300 transition-colors">{t('footer.privacy')}</a>
-        <a href="#" class="hover:text-blue-300 transition-colors">{t('footer.cookie')}</a>
-        <a href="#" class="hover:text-blue-300 transition-colors">{t('footer.location')}</a>
-        <a href="#" class="hover:text-blue-300 transition-colors">{t('footer.sitemap')}</a>
+      <nav class="flex flex-wrap gap-x-10 gap-y-4 text-[12px] font-bold uppercase tracking-widest">
+        <a href="#" class="hover:text-orange-400 transition-colors">{t('footer.privacy')}</a>
+        <a href="#" class="hover:text-orange-400 transition-colors">{t('footer.cookie')}</a>
+        <a href="#" class="hover:text-orange-400 transition-colors">{t('footer.location')}</a>
+        <a href="#" class="hover:text-orange-400 transition-colors">{t('footer.sitemap')}</a>
       </nav>
 
       <div class="flex gap-4 items-center">
-        <div class="border border-white/20 px-6 py-2 text-[11px] font-black min-w-[180px] flex justify-between items-center cursor-pointer hover:bg-white/5 transition-all uppercase">
-          {t('footer.family')} <span class="text-[10px] ml-4">▼</span>
+        <div class="border border-white/20 px-6 py-2 text-[11px] font-bold min-w-[180px] flex justify-between items-center cursor-pointer hover:bg-white/5 transition-all uppercase tracking-widest">
+          {t('footer.family')} <span class="text-[10px] ml-4 text-white/40">▼</span>
         </div>
 
-        <div class="flex items-center bg-white/10 rounded-full p-1 border border-white/20 h-9">
-          <a href={getPath('vi')} class={`px-5 py-1 text-[11px] font-black rounded-full transition-all ${lang === 'vi' ? 'bg-white text-[#002a5c] shadow-lg' : 'text-white/60 hover:text-white'}`}>
+        <div class="flex items-center bg-white/10 rounded-full p-1 border border-white/20 h-9 shadow-inner">
+          <a href={getPath('vi')} class={`px-5 py-1 text-[11px] font-black rounded-full transition-all ${lang === 'vi' ? 'bg-white text-[#002a5c] shadow-lg' : 'text-white/40 hover:text-white'}`}>
             VN
           </a>
-          <a href={getPath('ko')} class={`px-5 py-1 text-[11px] font-black rounded-full transition-all ${lang === 'ko' ? 'bg-white text-[#002a5c] shadow-lg' : 'text-white/60 hover:text-white'}`}>
+          <a href={getPath('ko')} class={`px-5 py-1 text-[11px] font-black rounded-full transition-all ${lang === 'ko' ? 'bg-white text-[#002a5c] shadow-lg' : 'text-white/40 hover:text-white'}`}>
             KO
           </a>
         </div>
@@ -89,21 +98,3 @@ const getPath = (target: string) => {
     </div>
   </div>
 </footer>
-
-<style>
-  /* Hiệu ứng Slider Industries: Ẩn chữ khi không hover */
-  #ind-slider a span:last-child {
-    opacity: 0;
-    transition: all 0.3s;
-  }
-  #ind-slider a:hover span:last-child {
-    opacity: 1;
-    color: white;
-  }
-  #ind-slider a:hover {
-    background-color: #003366; /* Màu xanh đậm khi hover */
-  }
-  #ind-slider a:hover span:first-child {
-    filter: grayscale(0); /* Hiện màu icon khi hover */
-  }
-</style>
