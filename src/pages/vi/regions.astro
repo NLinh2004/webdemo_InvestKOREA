@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { regions,regionData, locationReportsData, kfezData } from '../../i18n/_regions';
+import { regions ,regionData, locationReportsData, kfezData } from '../../i18n/_regions';
 import { getLangFromUrl } from '../../i18n/utils';
 
 // Lấy danh sách Map
@@ -14,16 +14,16 @@ const currentReports = locationReportsData[lang as keyof typeof locationReportsD
 
 // Lấy dữ liệu KFEZ theo ngôn ngữ (MỚI)
 const currentKfez = kfezData[lang as keyof typeof kfezData] || kfezData.vi;
-
+const t = regions[lang as keyof typeof regions] || regions.vi;
 ---
 
 <Layout title="Regions - Invest KOREA">
   
   <div class="w-full relative h-[300px] overflow-hidden">
-    <img src="/images/regions/banner.jpg" alt="Regions Banner" class="w-full h-full object-cover" />
+    <img src="/images/regions/banner.png" alt="Regions Banner" class="w-full h-full object-cover" />
     <div class="absolute inset-0 bg-black/30 flex items-center">
       <div class="max-w-[1400px] w-full mx-auto px-6 md:px-12 lg:px-20">
-        <h1 class="text-4xl text-white font-bold">Regions</h1>
+        <h1 class="text-4xl text-white font-bold">{t["reg.title"]}</h1>
       </div>
     </div>
   </div>

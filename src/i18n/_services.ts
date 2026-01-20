@@ -28,7 +28,7 @@ export const servicesData = {
   vi: {
     pageTitle: "Dịch vụ",
     hero: {
-      image: "/images/services/hero_service.jpg", // Bạn nhớ lưu ảnh vào thư mục này
+      image: "/images/regions/banner.png",
       title: "Chúng tôi hỗ trợ bạn như thế nào",
     },
     // Section 1: Các dịch vụ chính
@@ -118,7 +118,7 @@ export const servicesData = {
   ko: {
     pageTitle: "서비스",
     hero: {
-      image: "/images/services/hero_service.jpg",
+      image: "/images/regions/banner.png",
       title: "투자 지원 서비스",
     },
     mainServices: {

@@ -2,7 +2,7 @@
 
 export const regions = {
   vi: {
-    "reg.title": "Thông tin địa phương",
+    "reg.title": "Khu vực",
 
     "reg.report": "Báo cáo vị trí",
     "reg.seoul": "Seoul",
@@ -24,7 +24,7 @@ export const regions = {
     "reg.jeju": "Jeju",
   },
   ko: {
-    "reg.title": "지역별 정보",
+    "reg.title": "영역",
     "reg.report": "입지 리포트",
     "reg.seoul": "서울",
     "reg.incheon": "인천",

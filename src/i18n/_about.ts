@@ -33,7 +33,7 @@ export const aboutData = {
       bio: "Vào ngày 19 tháng 1, Cơ quan Xúc tiến Thương mại và Đầu tư Hàn Quốc (KOTRA) đã bổ nhiệm Tiến sĩ Kim Tae-hyung làm Ủy viên trưởng mới của Invest KOREA (IK), để dẫn dắt cơ quan xúc tiến đầu tư quốc gia trong hai năm tới. Tiến sĩ Kim nhận bằng Cử nhân Kinh tế tại Đại học Korea và bằng Thạc sĩ, Tiến sĩ Kinh tế tại Đại học Washington. Ông cũng tốt nghiệp các Chương trình Quản lý Nâng cao tại Đại học Quốc gia Seoul và Trường Kinh doanh Harvard. Với bề dày kinh nghiệm và sự hiểu biết sâu sắc về đầu tư quốc tế, chuỗi giá trị toàn cầu và thuế quốc tế, Tiến sĩ Kim được trang bị đầy đủ để dẫn dắt Invest KOREA bước vào kỷ nguyên tăng trưởng và thành công mới.",
       btnText: "Xem thông điệp của Ủy viên trưởng",
       btnLink: "#",
-      image: "/images/services/office_map.png", // Nhớ lưu ảnh vào đây
+      image: "/images/regions/building.jpg",
     },
     intro: {
       title: "Tìm kiếm Cơ hội Kinh doanh tại",
@@ -50,7 +50,7 @@ export const aboutData = {
       bio: "KOTRA는 1월 19일, 국가 투자 유치 기관을 이끌어갈 신임 Invest KOREA 대표로 김태형 박사를 임명했습니다. 김 대표는 고려대학교에서 경제학 학사를, 워싱턴 대학교에서 경제학 석·박사 학위를 취득했습니다. 또한 서울대학교와 하버드 비즈니스 스쿨의 최고경영자 과정을 수료했습니다. 국제 투자, 글로벌 가치 사슬, 국제 조세에 대한 풍부한 경험과 깊은 이해를 바탕으로, 김 대표는 Invest KOREA를 새로운 성장과 성공의 시대로 이끌 적임자입니다.",
       btnText: "대표 인사말 보기",
       btnLink: "#",
-      image: "/images/services/office_map.png",
+      image: "/images/regions/building.jpg",
     },
     intro: {
       title: "비즈니스 기회의 땅",
