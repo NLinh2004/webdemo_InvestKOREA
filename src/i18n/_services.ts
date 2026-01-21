@@ -11,10 +11,12 @@ export const services = {
     "ser.network": "Mạng lưới của chúng tôi",
     "ser.forms": "Biểu mẫu",
     "services.title": "DỊCH VỤ",
-    "services.description": "Chúng tôi hỗ trợ toàn diện cho quá trình đầu tư của bạn tại Hàn Quốc.",
+    "services.description":
+      "Chúng tôi hỗ trợ toàn diện cho quá trình đầu tư của bạn tại Hàn Quốc.",
     "services.download": "TẢI XUỐNG HƯỚNG DẪN",
     "services.find_office": "TÌM VĂN PHÒNG",
-    "services.find_office_desc": "Liên hệ với mạng lưới toàn cầu của chúng tôi."
+    "services.find_office_desc":
+      "Liên hệ với mạng lưới toàn cầu của chúng tôi.",
   },
   ko: {
     "ser.guide": "투자 가이드",
@@ -27,13 +29,23 @@ export const services = {
     "ser.network": "글로벌 네트워크",
     "ser.forms": "서식",
     "services.title": "서비스",
-    "services.description": "성공적인 한국 투자를 위한 맞춤형 서비스를 제공합니다.",
+    "services.description":
+      "성공적인 한국 투자를 위한 맞춤형 서비스를 제공합니다.",
     "services.download": "가이드북 다운로드",
     "services.find_office": "국내외 사무소 안내",
-    "services.find_office_desc": "인베스트코리아의 글로벌 네트워크를 확인하세요."
-  }
+    "services.find_office_desc":
+      "인베스트코리아의 글로벌 네트워크를 확인하세요.",
+  },
 };
-
+// Định nghĩa một hằng số chứa các icon SVG để dùng chung cho cả 2 ngôn ngữ
+const serviceIcons = {
+  guide: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>`,
+  incubating: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"></rect><path d="M9 22v-4h6v4"></path><path d="M8 6h.01"></path><path d="M16 6h.01"></path><path d="M8 10h.01"></path><path d="M16 10h.01"></path><path d="M8 14h.01"></path><path d="M16 14h.01"></path></svg>`,
+  faq: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>`,
+  consulting: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>`,
+  network: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>`,
+  cost: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>`,
+};
 export const servicesData = {
   vi: {
     pageTitle: "Dịch vụ",
@@ -46,12 +58,28 @@ export const servicesData = {
       title: "Dịch vụ của chúng tôi",
       desc: "Invest KOREA quảng bá môi trường đầu tư của Hàn Quốc ra nước ngoài và cung cấp các dịch vụ toàn diện cho các công ty nước ngoài.",
       items: [
-        { title: "Hướng dẫn Đầu tư", icon: "📖", link: "#" },
-        { title: "Ươm tạo Doanh nghiệp", icon: "🏢", link: "#" },
-        { title: "Câu hỏi thường gặp (FAQ)", icon: "❓", link: "#" },
-        { title: "Tư vấn Trực tuyến", icon: "💬", link: "#" },
-        { title: "Mạng lưới của chúng tôi", icon: "🌐", link: "#" },
-        { title: "Chi phí Đầu tư Ban đầu", icon: "💰", link: "#" },
+        { title: "Hướng dẫn Đầu tư", icon: serviceIcons.guide, link: "#" },
+        {
+          title: "Ươm tạo Doanh nghiệp",
+          icon: serviceIcons.incubating,
+          link: "#",
+        },
+        {
+          title: "Câu hỏi thường gặp (FAQ)",
+          icon: serviceIcons.faq,
+          link: "#",
+        },
+        {
+          title: "Tư vấn Trực tuyến",
+          icon: serviceIcons.consulting,
+          link: "#",
+        },
+        {
+          title: "Mạng lưới của chúng tôi",
+          icon: serviceIcons.network,
+          link: "#",
+        },
+        { title: "Chi phí Đầu tư Ban đầu", icon: serviceIcons.cost, link: "#" },
       ],
     },
     // Section 2: Trung tâm tư vấn
@@ -135,12 +163,12 @@ export const servicesData = {
       title: "주요 서비스",
       desc: "Invest KOREA는 한국의 투자 환경을 해외에 알리고 외국 기업에게 포괄적인 서비스를 제공합니다.",
       items: [
-        { title: "투자 가이드", icon: "📖", link: "#" },
-        { title: "인큐베이팅", icon: "🏢", link: "#" },
-        { title: "자주 묻는 질문 (FAQ)", icon: "❓", link: "#" },
-        { title: "온라인 상담", icon: "💬", link: "#" },
-        { title: "네트워크", icon: "🌐", link: "#" },
-        { title: "초기 투자 비용", icon: "💰", link: "#" },
+        { title: "투자 가이드", icon: serviceIcons.guide, link: "#" },
+        { title: "인큐베이팅", icon: serviceIcons.incubating, link: "#" },
+        { title: "자주 묻는 질문 (FAQ)", icon: serviceIcons.faq, link: "#" },
+        { title: "온라인 상담", icon: serviceIcons.consulting, link: "#" },
+        { title: "네트워크", icon: serviceIcons.network, link: "#" },
+        { title: "초기 투자 비용", icon: serviceIcons.cost, link: "#" },
       ],
     },
     consulting: {
