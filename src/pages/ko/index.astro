@@ -13,13 +13,42 @@ const paths = {
   pdfGuide: `/documents/${lang}/invest-guide.pdf`
 };
 
+/** * 1. THAY ĐỔI: Chuyển đổi industriesList từ Emoji sang SVG 
+ * Sử dụng stroke="currentColor" để Icon tự đổi màu theo chữ khi hover.
+ */
 const industriesList = [
-  { key: 'machinery', icon: '⚙️' }, { key: 'energy', icon: '⚡' },
-  { key: 'semiconductor', icon: '🔳' }, { key: 'tourism', icon: '🏖️' },
-  { key: 'bio', icon: '🧪' }, { key: 'robot', icon: '🤖' },
-  { key: 'shipbuilding', icon: '🚢' }, { key: 'ict', icon: '📡' },
-  { key: 'aerospace', icon: '✈️' }, { key: 'battery', icon: '🔋' },
-  { key: 'creative', icon: '🎬' }, { key: 'finance', icon: '📈' }
+  { 
+    key: 'machinery', 
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>` 
+  },
+  { 
+    key: 'energy', 
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>` 
+  },
+  { 
+    key: 'semiconductor', 
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3"/></svg>` 
+  },
+  { 
+    key: 'tourism', 
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M8 11h8M12 8v6"/></svg>` 
+  },
+  { 
+    key: 'bio', 
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c0 4.14 3.36 7.5 7.5 7.5s7.5-3.36 7.5-7.5c0-4.03-3.23-7.5-7.5-7.5-1.14 0-2.22.25-3.18.72"/><path d="M12 9V1M12 21v-4M9 12l-3-3M18 12l-3 3"/></svg>` 
+  },
+  { 
+    key: 'robot', 
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4M8 16h.01M16 16h.01"/><path d="M9 11V9a3 3 0 0 1 6 0v2"/></svg>` 
+  },
+  { 
+    key: 'shipbuilding', 
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17l20 0l-2 4l-16 0z"/><path d="M5 17l0-10l14 0l0 10"/><path d="M12 7l0-4"/></svg>` 
+  },
+  { 
+    key: 'ict', 
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>` 
+  }
 ];
 
 const successStories = [
@@ -35,65 +64,33 @@ const features = [
 ---
 
 <Layout title={t('home.title')} lang={lang}>
-  <main class="bg-white">
+  <main class="bg-white antialiased">
     
     <section class="w-full">
-      <div class="pt-24 pb-12 px-6 max-w-7xl mx-auto">
-        <h1 class="text-5xl font-black text-[#111] tracking-tighter leading-tight mb-6">
+      <div class="pt-24 pb-12 px-6 max-w-7xl mx-auto text-left">
+        <h1 class="text-5xl font-black text-[#111] tracking-tighter leading-tight mb-6 not-italic">
           {t('home.hero_title')} <span class="text-[#ee5931]">Korea</span>
         </h1>
-        <p class="text-gray-500 text-sm max-w-md font-medium leading-relaxed">
+        <p class="text-gray-500 text-sm max-w-md font-medium leading-relaxed not-italic">
           {t('home.hero_subtitle')}
         </p>
       </div>
       <div class="w-full h-[600px] overflow-hidden shadow-inner">
-        <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=2094&auto=format&fit=crop" class="w-full h-full object-cover block" alt="Korea" />
-      </div>
-    </section>
-
-    <section class="py-24 bg-white">
-      <div class="container mx-auto px-6">
-        <h2 class="text-5xl font-black text-[#111] uppercase italic tracking-tighter mb-8">
-          <span class="text-[#ee5931]">Korea</span>'s Solid <br/> {t('home.eco_title')}
-        </h2>
-        <div class="flex justify-center md:justify-end mb-20 text-right">
-          <p class="max-w-xl text-gray-500 text-sm leading-relaxed ">{t('home.eco_desc')}</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-16 items-center text-center md:text-left">
-          <a href={paths.economy} class="flex items-center gap-6 justify-center md:justify-start group">
-            <span class="text-[11px] font-black text-[#ee5931] uppercase leading-tight w-20">{t('home.eco_rating_label')}</span>
-            <span class="text-7xl font-black tracking-tighter text-[#111] group-hover:text-[#ee5931] transition-colors">Aa2</span>
-          </a>
-          <a href={paths.economy} class="flex items-center gap-6 justify-center md:justify-start group">
-            <span class="text-[11px] font-black text-[#ee5931] uppercase leading-tight">GDP</span>
-            <span class="text-7xl font-black tracking-tighter text-[#111] group-hover:text-[#ee5931] transition-colors">12th</span>
-          </a>
-          <a href={paths.economy} class="flex items-center gap-6 justify-center md:justify-start group">
-            <span class="text-[11px] font-black text-[#ee5931] uppercase leading-tight">{t('home.eco_trade_label')}</span>
-            <span class="text-7xl font-black tracking-tighter text-[#111] group-hover:text-[#ee5931] transition-colors">9th</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-24 bg-[#f8f9fa]">
-      <div class="container mx-auto px-6 text-center">
-        <h2 class="text-4xl font-black text-[#111] uppercase tracking-tighter mb-12 ">{t('home.complex_title')}</h2>
-        <div class="rounded-2xl overflow-hidden shadow-2xl max-w-5xl mx-auto">
-          <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=2000" class="w-full h-auto object-cover" />
-        </div>
+        <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=2094" class="w-full h-full object-cover block" alt="Korea" />
       </div>
     </section>
 
     <section class="bg-white py-24 px-6 max-w-7xl mx-auto">
-      <h2 class="text-4xl font-black text-[#003366] uppercase tracking-tighter  mb-16 text-left">{t('home.other_ind')}</h2>
+      <h2 class="text-4xl font-black text-[#003366] tracking-tighter mb-16 text-left not-italic">{t('home.other_ind')}</h2>
       <div id="ind-slider" class="flex flex-nowrap overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide">
         <div class="min-w-full flex-shrink-0 snap-start grid grid-cols-2 md:grid-cols-4 gap-px bg-gray-200 border border-gray-200">
-          {industriesList.slice(0, 8).map(item => (
+          {industriesList.map(item => (
             <a href={`${paths.industries}/${item.key}`} class="bg-white p-10 flex flex-col justify-between h-52 hover:bg-[#003366] transition-all group">
-              <span class="text-4xl grayscale group-hover:grayscale-0 transition-all text-left block">{item.icon}</span>
+              
+              <div class="w-10 h-10 text-gray-400 group-hover:text-white transition-all duration-300" set:html={item.svg} />
+              
               <div class="flex justify-between items-end text-left">
-                <span class="text-sm font-black text-gray-700 group-hover:text-white uppercase tracking-tight leading-tight w-2/3 italic block">
+                <span class="text-sm font-black text-gray-700 group-hover:text-white uppercase tracking-tight leading-tight w-2/3 block not-italic">
                   {t(`ind.${item.key}`)}
                 </span>
                 <span class="text-gray-300 group-hover:text-white transition-all text-xl">→</span>
@@ -110,15 +107,15 @@ const features = [
 
     <section class="py-24 bg-white border-t border-gray-100">
       <div class="container mx-auto px-6">
-        <h2 class="text-4xl font-black text-[#003366] uppercase tracking-tighter mb-16 text-left">{t('home.success_title')}</h2>
+        <h2 class="text-4xl font-black text-[#003366] tracking-tighter mb-16 text-left not-italic">{t('home.success_title')}</h2>
         <div id="success-slider" class="flex gap-12 overflow-x-auto scroll-smooth scrollbar-hide snap-x">
           {successStories.map(story => (
             <a href={`${paths.news}/${story.id}`} class="min-w-full md:min-w-[calc(50%-24px)] group cursor-pointer snap-start block text-left">
               <div class="aspect-[16/10] bg-gray-100 rounded-2xl overflow-hidden mb-8 shadow-md">
                 <img src={story.img} class="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" alt={t(story.nameKey)} />
               </div>
-              <h3 class="text-2xl font-black mb-2 tracking-tighter text-[#111] group-hover:text-[#ee5931] transition-colors">{t(story.nameKey)}</h3>
-              <p class="text-gray-400 text-sm line-clamp-2">{t(story.descKey)}</p>
+              <h3 class="text-2xl font-black mb-2 tracking-tighter text-[#111] group-hover:text-[#ee5931] transition-colors not-italic">{t(story.nameKey)}</h3>
+              <p class="text-gray-400 text-sm line-clamp-2 not-italic">{t(story.descKey)}</p>
             </a>
           ))}
         </div>
@@ -131,57 +128,41 @@ const features = [
 
     <section class="py-24 bg-white border-t border-gray-50 px-6 max-w-7xl mx-auto text-left">
       <div class="flex flex-col lg:flex-row gap-16 mb-12 items-start">
-        <div class="lg:w-1/4">
-          <h2 class="text-5xl font-black text-[#003366] uppercase tracking-tighter mb-6">{t('regions.title')}</h2>
-          <p class="text-gray-500 mb-10 leading-relaxed ">{t('regions.description')}</p>
-          <a href={paths.regions} class="inline-flex items-center justify-between bg-[#ee5931] text-white px-8 py-4 rounded-md font-bold uppercase italic hover:bg-[#d44d28] transition-all w-fit shadow-lg">
+        <div class="lg:w-1/4 text-left">
+          <h2 class="text-5xl font-black text-[#003366] tracking-tighter mb-6 not-italic">{t('regions.title')}</h2>
+          <p class="text-gray-500 mb-10 leading-relaxed not-italic">{t('regions.description')}</p>
+          <a href={paths.regions} class="inline-flex items-center justify-between bg-[#ee5931] text-white px-8 py-4 rounded-md font-bold uppercase hover:bg-[#d44d28] transition-all w-fit shadow-lg not-italic">
             <span>{t('regions.btn_text')}</span> <span class="ml-4 text-xl">→</span>
           </a>
         </div>
         <div id="reg-slider" class="lg:w-3/4 flex gap-4 overflow-x-auto scroll-smooth scrollbar-hide snap-x relative">
           {['Seoul', 'Incheon', 'Gyeonggi', 'Busan'].map(city => (
-            <a href={`${paths.regions}/${city.toLowerCase()}`} class="min-w-[320px] h-[450px] rounded-2xl relative overflow-hidden group cursor-pointer snap-start block">
+            <a href={`${paths.regions}/${city.toLowerCase()}`} class="min-w-[320px] h-[450px] rounded-2xl relative overflow-hidden group cursor-pointer snap-start block text-left">
               <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={city} />
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-              <span class="absolute bottom-10 left-10 text-white text-3xl font-black uppercase tracking-tighter">{city}</span>
+              <span class="absolute bottom-10 left-10 text-white text-3xl font-black tracking-tighter not-italic uppercase">{city}</span>
             </a>
           ))}
         </div>
       </div>
-      <div class="flex justify-center gap-4">
-        <button id="reg-prev" class="slider-arrow">←</button>
-        <button id="reg-next" class="slider-arrow">→</button>
-      </div>
     </section>
 
-    <section class="py-20 bg-gray-50 border-y border-gray-100">
-      <div class="container mx-auto px-6">
-        <h3 class="text-center text-3xl font-black text-[#003366] uppercase tracking-tighter mb-12">{t('footer.family')}</h3>
-        <div class="flex flex-wrap justify-center items-center gap-x-16 gap-y-10 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
-          <span class="text-2xl font-black text-[#111]">kotra</span>
-          <span class="text-xl font-bold uppercase tracking-widest text-[#111]">Ombudsman</span>
-          <span class="text-xl font-black text-[#111]">Invest KOREA</span>
-          <span class="text-2xl font-bold text-[#111]">GEP</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-24 bg-white">
+    <section class="py-24 bg-white border-t border-gray-100">
       <div class="container mx-auto px-6 text-left">
-        <h2 class="text-4xl font-black text-[#003366] mb-16 uppercase tracking-tighter">{t('home.feature_title')}</h2>
+        <h2 class="text-4xl font-black text-[#003366] mb-16 tracking-tighter not-italic uppercase">{t('home.feature_title')}</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
           {features.map(f => (
-            <a href={`${paths.news}/${f.id}`} class="group cursor-pointer block">
+            <a href={`${paths.news}/${f.id}`} class="group cursor-pointer block text-left">
               <div class="aspect-video rounded-xl overflow-hidden mb-6 bg-gray-200 shadow-md">
-                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab" class="w-full h-full object-cover group-hover:grayscale-0 transition-all duration-500" />
               </div>
-              <p class="text-[16px] font-bold text-gray-800 leading-snug mb-3 group-hover:text-[#ee5931] transition-colors line-clamp-2">{t(f.key)}</p>
-              <span class="text-xs text-gray-400 font-bold uppercase tracking-widest">{f.date}</span>
+              <p class="text-[16px] font-bold text-gray-800 leading-snug mb-3 group-hover:text-[#ee5931] transition-colors line-clamp-2 not-italic">{t(f.key)}</p>
+              <span class="text-xs text-gray-400 font-bold uppercase tracking-widest not-italic">{f.date}</span>
             </a>
           ))}
         </div>
         <div class="flex justify-center">
-          <a href={paths.news} class="px-12 py-3 border-2 border-gray-200 text-gray-400 font-black uppercase text-[11px] tracking-[0.2em] hover:bg-[#111] hover:text-white transition-all">{t('home.btn_more')}</a>
+          <a href={paths.news} class="px-12 py-3 border-2 border-gray-200 text-gray-400 font-black uppercase text-[11px] tracking-[0.2em] hover:bg-[#111] hover:text-white transition-all active:scale-95 not-italic">{t('home.btn_more')}</a>
         </div>
       </div>
     </section>
@@ -193,7 +174,6 @@ const features = [
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
   #ind-slider, #success-slider, #reg-slider { cursor: grab; }
 
-  /* CSS cho nút mũi tên: Đã sửa để tránh lỗi Tailwind v4 @apply */
   .slider-arrow {
     width: 3rem;
     height: 3rem;
@@ -205,13 +185,16 @@ const features = [
     transition: all 0.2s;
     background: white;
     cursor: pointer;
+    font-size: 1.25rem;
   }
   .slider-arrow:hover { background: #111; color: white; border-color: #111; }
   .slider-arrow:active { transform: scale(0.9); }
 </style>
 
 <script>
-  function initSlider(sliderId, prevId, nextId, scrollOffset = 0) {
+import { number } from "astro:schema";
+
+  function initSlider(sliderId: string, prevId: string, nextId : string, scrollOffset: number = 0) {
     const slider = document.getElementById(sliderId);
     const prev = document.getElementById(prevId);
     const next = document.getElementById(nextId);
