@@ -1,8 +1,8 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import ServiceGrid from '../../components/ServiceGrid.astro';
-import { industriesData } from '../../i18n/_industries';
-import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import Layout from '../../../layouts/Layout.astro';
+import ServiceGrid from '../../../components/ServiceGrid.astro';
+import { industriesData } from '../../../i18n/_industries';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
 
 // Lấy ngôn ngữ hiện tại
 const lang = Astro.props.lang || getLangFromUrl(Astro.url);
@@ -28,7 +28,7 @@ const translate = useTranslations(lang);
         src="/images/regions/banner.png" 
         alt={t.pageTitle} 
         class="w-full h-full object-cover block" 
-        onerror="this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070'" 
+        onerror="this.src='https:images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070'" 
       />
     </div>
   </section>

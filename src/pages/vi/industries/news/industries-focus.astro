@@ -1,0 +1,104 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+
+// 1. DỮ LIỆU GIẢ LẬP (Mở rộng thêm để test phân trang)
+// Trong thực tế, bạn có thể lấy dữ liệu này từ CMS hoặc API
+const newsList = Array.from({ length: 50 }).map((_, i) => ({
+  id: i,
+  title: i < 5 
+    ? [
+        "Ngành công nghiệp di động tương lai của Hàn Quốc: Tiến bộ thông qua phát triển hệ sinh thái",
+        "Ngành công nghiệp pin của Hàn Quốc tăng cường khả năng cạnh tranh",
+        "Hiện trạng đầu tư và ngành công nghiệp bán dẫn của Hàn Quốc",
+        "Năng lượng tái tạo mở đường cho hành động vì khí hậu",
+        "Ngành công nghiệp màn hình Hàn Quốc: Bước nhảy vọt vào IT OLED"
+      ][i]
+    : `Tin tức mẫu số ${i + 1}: Xu hướng công nghệ mới tại Hàn Quốc năm 2026`,
+  category: i % 3 === 0 ? "Phụ tùng ô tô" : i % 3 === 1 ? "Bán dẫn" : "Pin",
+  date: `0${(i % 9) + 1}.12.2025`,
+  link: "#"
+}));
+
+const categories = [
+  "Tất cả", "Phụ tùng ô tô", "Pin", "Bán dẫn", "Màn hình hiển thị", 
+  "CNTT & Truyền thông", "Logistics", "Dược & Sinh học", "Năng lượng tái tạo"
+];
+---
+
+<Layout title="Tin tức ngành - Invest KOREA">
+  
+  <div class="bg-gray-50 min-h-screen pb-24">
+    
+    <div class="bg-white border-b border-gray-200">
+      <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-8">
+        <nav class="text-sm text-gray-500 mb-4 flex gap-2 items-center">
+          <a href="#" class="hover:text-orange-600">Trang chủ</a> / <span>Tin tức ngành</span>
+        </nav>
+        <h1 class="text-4xl font-black text-gray-900 tracking-tight mb-8">Tin tức ngành</h1>
+      </div>
+    </div>
+
+    <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-12">
+      
+      <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 mb-10">
+        
+        <div class="flex flex-col md:flex-row gap-4 mb-8">
+          <div class="w-full md:w-1/4">
+            <select id="filter-category-select" class="w-full h-12 px-4 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 focus:outline-none focus:border-[#002a5c]">
+              <option value="Tất cả">Tất cả danh mục</option>
+              {categories.slice(1).map(cat => <option value={cat}>{cat}</option>)}
+            </select>
+          </div>
+          <div class="w-full md:w-3/4 flex gap-2">
+            <input 
+              id="search-input"
+              type="text" 
+              placeholder="Nhập từ khóa tìm kiếm..." 
+              class="flex-1 h-12 px-4 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 focus:outline-none focus:border-[#002a5c]"
+            />
+            <button id="btn-search" class="h-12 px-8 bg-[#002a5c] text-white font-bold rounded-lg hover:bg-orange-600 transition-colors shadow-md flex items-center gap-2">
+              Tìm kiếm
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <span class="block text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">Lọc nhanh:</span>
+          <div class="flex flex-wrap gap-2" id="filter-tags">
+            {categories.map((cat, index) => (
+              <button 
+                data-cat={cat}
+                class={`filter-btn px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 
+                  ${index === 0 ? 'bg-[#002a5c] text-white border-[#002a5c]' : 'bg-white text-gray-600 border-gray-200 hover:border-orange-300 hover:bg-orange-50'}`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center mb-6">
+        <p class="text-gray-600 font-medium">
+          Tổng cộng: <span id="total-count" class="text-orange-600 font-bold">0</span> bài viết
+        </p>
+        <select id="items-per-page" class="text-sm border border-gray-200 rounded-md px-2 py-1 bg-white text-gray-600 focus:outline-none">
+          <option value="5">5 mục/trang</option>
+          <option value="10" selected>10 mục/trang</option>
+          <option value="20">20 mục/trang</option>
+        </select>
+      </div>
+
+      <div id="news-container" class="space-y-4 min-h-[400px]">
+        </div>
+
+      <div id="pagination-container" class="flex justify-center mt-12 gap-2">
+        </div>
+
+    </div>
+  </div>
+</Layout>
+
+<script type="application/json" id="news-data" set:html={JSON.stringify(newsList)}></script>
+
+<script src="../../../../scripts/industries-focus.ts"></script>

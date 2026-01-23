@@ -245,7 +245,7 @@ export const industriesData = {
     news: {
       title: "Tin tức ngành",
       moreBtn: "Xem thêm",
-      link: "/vi/industry-news",
+      link: "/vi/industries/news/industries-focus",
       items: [
         {
           title:
