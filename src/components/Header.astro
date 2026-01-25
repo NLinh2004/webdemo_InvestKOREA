@@ -10,28 +10,22 @@ const { pathname } = Astro.url;
 const currentPath = pathname.split('/')[2] || '';
 
 const getPath = (target: string) => {
-  const segments = pathname.split('/');
-  if (segments[1] === 'vi' || segments[1] === 'ko') {
-    segments[1] = target;
-  } else {
-    return `/${target}${pathname}`;
-  }
-  return segments.join('/');
+  return `/${target}/`;
 };
 
 const menuKeys = ['why', 'industries', 'incentives', 'regions', 'services', 'about'];
 
 const subMenus = {
   why: [
-    { key: 'why.biz', href: `/${lang}/why#biz` },
-    { key: 'why.sustainable', href: `/${lang}/why#sustainable` },
-    { key: 'why.fundamental', href: `/${lang}/why#fundamental` },
-    { key: 'why.stories', href: `/${lang}/why#stories` },
+    { key: 'why.biz', href: `/${lang}/why-korea/economy` },
+    { key: 'why.fundamental', href: `/${lang}/why-korea/fundamental` },
+    { key: 'why.sustainable', href: `/${lang}/why-korea/sustainable` },
+    { key: 'why.stories', href: `/${lang}/why-korea/stories` },
   ],
   industries: [
     ...['news', 'aerospace', 'battery', 'creative', 'finance', 'ict', 'machinery', 'energy', 'semiconductor', 'tourism', 'startup', 'automotive', 'consumer', 'display', 'chemical', 'logistics', 'bio', 'robot', 'shipbuilding'].map(k => ({ key: `ind.${k}`, href: `/${lang}/industries/${k}` }))
   ],
-  incentives: [ { key: 'inc.policy', href: `/${lang}/incentives/` } ],
+  incentives: [ { key: 'inc.policy', href: `/${lang}/news/policy-trends` }, ],
   regions: [
     ...['seoul', 'gyeonggi', 'daejeon', 'chungbuk', 'daegu', 'ulsan', 'gyeongnam', 'jeonbuk', 'jeju', 'incheon', 'gangwon', 'sejong', 'chungnam', 'busan', 'gyeongbuk', 'gwangju', 'jeonnam'].map(k => ({ key: `reg.${k}`, href: `/${lang}/regions/${k}` })),
     { key: 'reg.report', href: `/${lang}/regions/invest-report` }

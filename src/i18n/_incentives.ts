@@ -59,6 +59,26 @@ export const incentives = {
     "inc.contact_sub": "Liên hệ với chúng tôi",
     "inc.contact_title": "Trung tâm tư vấn đầu tư",
     "inc.back_btn": "DANH SÁCH",
+    // PHẦN BỔ SUNG: XU HƯỚNG CHÍNH SÁCH (Policy Trends)
+    "policy.subtitle": "Cập nhật các thay đổi mới nhất về pháp lý và chính sách đầu tư tại Hàn Quốc.",
+    
+    // Bài viết 1
+    "policy.p1.date": "20.12.2025",
+    "policy.p1.cat": "CHÍNH SÁCH THUẾ",
+    "policy.p1.title": "Cải cách thuế thu nhập doanh nghiệp năm 2025 cho nhà đầu tư",
+    "policy.p1.desc": "Hàn Quốc công bố lộ trình giảm thuế mới nhằm thu hút các doanh nghiệp công nghệ cao trong giai đoạn 2025-2030...",
+
+    // Bài viết 2
+    "policy.p2.date": "15.11.2025",
+    "policy.p2.cat": "CÔNG NGHỆ CAO",
+    "policy.p2.title": "Mở rộng ưu đãi cho các trung tâm R&D quốc tế",
+    "policy.p2.desc": "Các viện nghiên cứu đáp ứng tiêu chuẩn mới sẽ được hưởng mức trợ cấp tiền mặt lên đến 75% chi phí lắp đặt thiết bị.",
+    
+    // Bài viết 3
+    "policy.p3.date": "05.10.2025",
+    "policy.p3.cat": "VISA & LAO ĐỘNG",
+    "policy.p3.title": "Nới lỏng quy định cấp Visa E-7 cho nhân lực chất lượng cao",
+    "policy.p3.desc": "Chương trình mới giúp doanh nghiệp FDI dễ dàng tuyển dụng chuyên gia nước ngoài trong lĩnh vực bán dẫn và AI.",
   },
   ko: {
     "inc.title": "인센티브",
@@ -110,5 +130,25 @@ export const incentives = {
     "inc.contact_sub": "문의하기",
     "inc.contact_title": "투자종합상담센터",
     "inc.back_btn": "목록으로",
+    // PHẦN BỔ SUNG: 정책 동향 (Policy Trends)
+    "policy.subtitle": "한국의 최신 법규 변화 및 투자 정책 업데이트를 확인하십시오.",
+    
+    // bài 1
+    "policy.p1.date": "2025.12.20",
+    "policy.p1.cat": "조세 정책",
+    "policy.p1.title": "2025년 외국인 투자자를 위한 법인세 개편안",
+    "policy.p1.desc": "한국 정부는 2025년부터 2030년까지 첨단 기술 기업 유치를 위한 새로운 조세 감면 로드맵을 발표했습니다.",
+
+    // bài 2
+    "policy.p2.date": "2025.11.15",
+    "policy.p2.cat": "첨단 기술",
+    "policy.p2.title": "글로벌 R&D 센터를 위한 인센티브 확대",
+    "policy.p2.desc": "새로운 기준을 충족하는 연구소는 설비 설치 비용의 최대 75%까지 현금 지원을 받을 수 있습니다.",
+
+    // bài 3
+    "policy.p3.date": "2025.10.05",
+    "policy.p3.cat": "비자 및 노동",
+    "policy.p3.title": "전문 인력을 위한 E-7 비자 규제 완화",
+    "policy.p3.desc": "새로운 프로그램은 FDI 기업이 반도체 및 AI 분야의 외국인 전문가를 더 dễ dàng하게 채용할 수 있도록 돕습니다.",
   }
 };

@@ -24,7 +24,6 @@ const mainPillars = [
   { id: 'stories', key: 'why.stories', img: 'https://images.unsplash.com/photo-1556761175-b413da4baf72', num: '#4', href: paths.stories }
 ];
 
-// CHỈ THAY ĐỔI TẠI ĐÂY: Chuyển icon Emoji sang mã SVG chuyên nghiệp
 const industriesList = [
   { key: 'machinery', svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>` },
   { key: 'energy', svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>` },
@@ -41,9 +40,9 @@ const industriesList = [
 ];
 
 const featureStories = [
-  { id: 'fdi-2025-analysis', key: 'home.feat_1', date: '2025.12.04', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab' },
-  { id: 'summit-highlights', key: 'home.feat_2', date: '2025.11.07', img: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d' },
-  { id: 'ggfez-investment', key: 'home.feat_3', date: '2025.10.01', img: 'https://images.unsplash.com/photo-1497366216548-37526070297c' }
+  { id: 'f1', key: 'home.feat_1', date: '2025.12.04', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab' },
+  { id: 'f2', key: 'home.feat_2', date: '2025.11.07', img: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d' },
+  { id: 'f3', key: 'home.feat_3', date: '2025.10.01', img: 'https://images.unsplash.com/photo-1497366216548-37526070297c' }
 ];
 ---
 
@@ -54,7 +53,7 @@ const featureStories = [
         <nav class="text-sm text-gray-400 mb-8 font-bold uppercase tracking-widest">
           <a href={paths.home} class="hover:text-gray-900 transition-colors">Trang chủ</a> · <span class="text-gray-900">{t('why.title')}</span>
         </nav>
-        <h1 class="text-[80px] font-black text-[#111] tracking-tighter leading-none mb-12 uppercase">
+        <h1 class="text-[80px] font-black text-[#111] tracking-tighter leading-none mb-12 uppercase not-italic">
           {t('why.title')}
         </h1>
       </div>
@@ -66,18 +65,19 @@ const featureStories = [
     <section class="py-24 px-6 max-w-7xl mx-auto">
       <div class="flex flex-col md:flex-row gap-4 h-[650px] w-full items-stretch">
         {mainPillars.map((item) => (
-          <a href={item.href} class="pillar-card group relative flex-[0.7] h-full rounded-[32px] overflow-hidden cursor-pointer transition-all duration-[800ms] ease-[cubic-bezier(0.2,1,0.3,1)] hover:flex-[3] hover:shadow-2xl">
+          <a href={item.href} class="pillar-card group relative flex-[0.7] h-full rounded-[32px] overflow-hidden cursor-pointer transition-all duration-[800ms] ease-[cubic-bezier(0.2,1,0.3,1)] hover:flex-[3] hover:shadow-2xl shadow-md border border-gray-100">
             <img src={item.img} class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
             <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80"></div>
             <div class="absolute top-12 left-10 text-white z-10 pr-10 text-left">
               <span class="text-xl font-black block mb-2 opacity-80">{item.num}</span>
-              <h3 class="text-[34px] font-black leading-tight uppercase tracking-tighter w-[400px] whitespace-nowrap group-hover:whitespace-normal transition-all duration-500">
+              <h3 class="text-[34px] font-black leading-tight uppercase tracking-tighter w-[400px] whitespace-nowrap group-hover:whitespace-normal transition-all duration-500 not-italic">
                 {t(item.key)}
               </h3>
             </div>
+            
             <div class="absolute bottom-12 left-10 z-10 opacity-0 translate-y-8 transition-all duration-500 delay-200 group-hover:opacity-100 group-hover:translate-y-0">
               <div class="bg-[#ee5931] text-white px-10 py-4 rounded-xl font-black text-sm uppercase tracking-widest shadow-xl group-hover:bg-white group-hover:text-[#ee5931] transition-all">
-                {t('why.move_page')} →
+                {t('why.move_page') || 'XEM CHI TIẾT'} →
               </div>
             </div>
           </a>
@@ -85,18 +85,18 @@ const featureStories = [
       </div>
     </section>
 
-    <section class="py-32 bg-[#f8f9fa]">
+    <section class="py-32 bg-[#f8f9fa] border-y border-gray-100">
       <div class="max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 lg:grid-cols-12 items-start gap-12 text-left">
           <div class="lg:col-span-8">
-            <h2 class="text-[56px] font-black text-[#111] leading-[1.05] mb-12 uppercase tracking-tighter">
+            <h2 class="text-[56px] font-black text-[#111] leading-[1.05] mb-12 uppercase tracking-tighter not-italic">
               {t('why.incentive_title_1')} <br/> 
               {t('why.incentive_title_2')} <br/>
               {t('why.incentive_title_3')} <span class="text-[#ee5931]">{t('why.incentive_title_orange')}</span>
             </h2>
           </div>
           <div class="lg:col-span-4 lg:pt-4">
-            <p class="text-gray-500 text-[16px] leading-relaxed mb-10 font-bold text-left">
+            <p class="text-gray-500 text-[16px] leading-relaxed mb-10 font-bold text-left not-italic">
               {t('why.incentive_desc')}
             </p>
             <a href={paths.pdfIncentive} download class="bg-[#ee5931] text-white px-10 py-5 rounded-md font-black uppercase tracking-tighter hover:bg-[#d44d28] transition-all inline-flex items-center gap-4 text-lg shadow-xl group w-fit">
@@ -108,19 +108,19 @@ const featureStories = [
     </section>
 
     <section class="bg-white py-24 px-6 max-w-7xl mx-auto">
-      <h2 class="text-[36px] font-black text-[#111] tracking-tighter mb-16 text-left">{t('home.other_ind')}</h2>
-      <div class="relative group">
-        <div id="ind-slider" class="flex flex-nowrap overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide gap-px bg-gray-200 border border-gray-200">
+      <h2 class="text-[36px] font-black text-[#111] tracking-tighter mb-16 text-left uppercase not-italic">
+        {t('home.other_ind')}
+      </h2>
+      <div class="relative">
+        <div id="ind-slider" class="flex flex-nowrap overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide gap-px bg-gray-200 border border-gray-200 shadow-sm">
           {industriesList.map(item => (
             <a href={`${paths.industries}/${item.key}`} class="bg-white p-10 flex flex-col justify-between h-52 hover:bg-[#003366] transition-all group snap-start min-w-[50%] md:min-w-[25%] block">
-              
-              <div class="w-12 h-12 text-gray-400 grayscale group-hover:grayscale-0 group-hover:text-black transition-all" set:html={item.svg} />
-              
+              <div class="w-12 h-12 text-gray-400 group-hover:text-white transition-all duration-300" set:html={item.svg} />
               <div class="flex justify-between items-end text-left">
-                <span class="text-sm font-black text-gray-700 group-hover:text-black uppercase tracking-tight leading-tight w-2/3 block">
+                <span class="text-sm font-black text-gray-700 group-hover:text-white uppercase tracking-tight leading-tight w-2/3 block not-italic">
                   {t(`ind.${item.key}`)}
                 </span>
-                <span class="text-gray-300 group-hover:text-black transition-all text-xl">→</span>
+                <span class="text-gray-300 group-hover:text-white transition-all text-xl">→</span>
               </div>
             </a>
           ))}
@@ -134,23 +134,24 @@ const featureStories = [
 
     <section class="py-24 border-t border-gray-100 bg-white">
       <div class="max-w-7xl mx-auto px-6 text-left">
-        <h2 class="text-[36px] font-black text-[#111] mb-20 tracking-tighter text-left">Feature Stories</h2>
+        <h2 class="text-[36px] font-black text-[#111] mb-20 tracking-tighter text-left uppercase not-italic">Feature Stories</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-16 mb-20">
           {featureStories.map(f => (
+            /* Đường dẫn chính xác trỏ đến thư mục news/[id].astro */
             <a href={`${paths.news}/${f.id}`} class="group cursor-pointer block text-left">
-              <div class="aspect-[16/10] rounded-2xl overflow-hidden mb-8 shadow-md">
-                <img src={f.img} class="w-full h-full object-cover group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" alt={t(f.key)} />
+              <div class="aspect-[16/10] rounded-2xl overflow-hidden mb-8 shadow-md ring-1 ring-black/5">
+                <img src={f.img} class="w-full h-full object-cover transition-all duration-700 group-hover:scale-105" alt={t(f.key)} />
               </div>
-              <p class="text-[17px] font-black text-gray-900 leading-snug mb-4 group-hover:text-[#ee5931] transition-colors line-clamp-3 text-left">
+              <p class="text-[17px] font-black text-gray-900 leading-snug mb-4 group-hover:text-[#ee5931] transition-colors line-clamp-3 text-left not-italic">
                 {t(f.key)}
               </p>
-              <span class="text-xs text-gray-400 font-bold tracking-widest uppercase block text-left">{f.date}</span>
+              <span class="text-xs text-gray-400 font-bold tracking-widest uppercase block text-left not-italic italic">{f.date}</span>
             </a>
           ))}
         </div>
         <div class="flex justify-center">
-          <a href={paths.news} class="px-16 py-4 border-2 border-gray-100 text-gray-400 font-black uppercase text-[12px] tracking-[0.3em] hover:bg-[#111] hover:text-white transition-all active:scale-95">
-            {t('home.more_btn') || 'XEM THÊM +'}
+          <a href={paths.news} class="px-16 py-4 border-2 border-gray-100 text-gray-400 font-black uppercase text-[12px] tracking-[0.3em] hover:bg-[#111] hover:text-white hover:border-[#111] transition-all active:scale-95 not-italic">
+            {t('home.btn_more') || 'XEM THÊM +'}
           </a>
         </div>
       </div>
@@ -167,45 +168,46 @@ const featureStories = [
   .pillar-card:not(:hover) h3 { font-size: 26px; opacity: 0.7; }
 
   .slider-arrow {
-    width: 3rem;
-    height: 3rem;
+    width: 3.5rem;
+    height: 3.5rem;
     border-radius: 9999px;
     border: 1px solid #e5e7eb;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     background: white;
     cursor: pointer;
     font-size: 1.25rem;
   }
-  .slider-arrow:hover { background: #111; color: white; border-color: #111; }
-  .slider-arrow:active { transform: scale(0.9); }
+  .slider-arrow:hover { 
+    background: #111; 
+    color: white; 
+    border-color: #111;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  .slider-arrow:active { transform: scale(0.95); }
 
   @media (max-width: 768px) {
-    .flex { height: auto !important; gap: 20px !important; }
-    .pillar-card { height: 400px !important; flex: none !important; }
+    .flex-col.md\:flex-row { height: auto !important; gap: 20px !important; }
+    .pillar-card { height: 350px !important; flex: none !important; width: 100% !important; }
+    h1 { font-size: 40px !important; }
   }
 </style>
 
 <script>
-  function initSlider(sliderId: string, prevId: string, nextId: string) {
-    const slider = document.getElementById(sliderId);
-    const prev = document.getElementById(prevId);
-    const next = document.getElementById(nextId);
+  function setupSlider() {
+    const slider = document.getElementById('ind-slider');
+    const prev = document.getElementById('ind-prev') as HTMLButtonElement | null;
+    const next = document.getElementById('ind-next') as HTMLButtonElement | null;
 
     if (slider && prev && next) {
-      const scrollStep = 350;
-      next.onclick = () => {
-        slider.scrollBy({ left: scrollStep, behavior: 'smooth' });
-      };
-      prev.onclick = () => {
-        slider.scrollBy({ left: -scrollStep, behavior: 'smooth' });
-      };
+      const scrollAmount = 350;
+      next.onclick = () => slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      prev.onclick = () => slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
     }
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    initSlider('ind-slider', 'ind-prev', 'ind-next');
-  });
+  document.addEventListener('astro:page-load', setupSlider);
+  document.addEventListener('DOMContentLoaded', setupSlider);
 </script>
