@@ -15,22 +15,17 @@ const baseReports = locationReportsData[lang].items;
 // Nhân bản danh sách 3 bài báo cáo gốc lên thành 40 bài
 const reportList = Array.from({ length: 40 }).map((_, i) => {
   const baseItem = baseReports[i % baseReports.length];
-  // Chọn ngẫu nhiên một khu vực từ danh sách để test bộ lọc
   const randomRegion = t.regionNames[i % t.regionNames.length];
   
   return {
     ...baseItem,
     id: i,
-    // Thêm số thứ tự vào tiêu đề để phân biệt
     title: `${baseItem.title} (${i + 1})`,
-    // Ghi đè region để test chức năng lọc
     region: randomRegion, 
-    // Format lại ngày tháng theo ngôn ngữ nếu cần
     date: lang === 'vi' ? `0${(i % 9) + 1}.12.2025` : `2025.12.0${(i % 9) + 1}`
   };
 });
 
-// Danh sách bộ lọc đầy đủ
 const filterOptions = [t.allRegions, ...t.regionNames];
 ---
 
@@ -63,12 +58,12 @@ const filterOptions = [t.allRegions, ...t.regionNames];
           </div>
           <div class="w-full md:w-3/4 flex gap-2">
             <input 
-              id="search-input"
+              id="report-search-input"
               type="text" 
               placeholder={t.searchPlaceholder}
               class="flex-1 h-12 px-4 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 focus:outline-none focus:border-[#002a5c]"
             />
-            <button id="btn-search" class="h-12 px-8 bg-[#002a5c] text-white font-bold rounded-lg hover:bg-[#ee5931] transition-colors shadow-md flex items-center gap-2 whitespace-nowrap">
+            <button id="report-btn-search" class="h-12 px-8 bg-[#002a5c] text-white font-bold rounded-lg hover:bg-[#ee5931] transition-colors shadow-md flex items-center gap-2 whitespace-nowrap">
               {t.searchBtn}
             </button>
           </div>
@@ -96,8 +91,7 @@ const filterOptions = [t.allRegions, ...t.regionNames];
         </p>
       </div>
 
-      <div id="report-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[400px]">
-        </div>
+      <div id="report-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[400px]"></div>
 
       <div id="pagination-container" class="flex justify-center mt-12 gap-2"></div>
 

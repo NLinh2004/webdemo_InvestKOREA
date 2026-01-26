@@ -11,15 +11,10 @@ const t = industryNewsData[lang];
 
 // TẠO DỮ LIỆU GIẢ LẬP THEO NGÔN NGỮ
 const newsList = Array.from({ length: 50 }).map((_, i) => {
-  // Logic lấy category xoay vòng để khớp với danh sách ngôn ngữ hiện tại
-  // Bỏ qua phần tử đầu tiên là "Tất cả/전체" (index 0) khi gán category cho bài viết
   const catIndex = (i % (t.categories.length - 1)) + 1;
-  
   return {
     id: i,
-    title: i < 5 
-      ? t.topNews[i]
-      : `${t.mockTitlePrefix} ${i + 1}: ${t.mockTitleSuffix}`,
+    title: i < 5 ? t.topNews[i] : `${t.mockTitlePrefix} ${i + 1}: ${t.mockTitleSuffix}`,
     category: t.categories[catIndex],
     date: lang === 'vi' ? `0${(i % 9) + 1}.12.2025` : `2025.12.0${(i % 9) + 1}`,
     link: "#"
@@ -28,7 +23,6 @@ const newsList = Array.from({ length: 50 }).map((_, i) => {
 ---
 
 <Layout title={`${t.title} - Invest KOREA`}>
-  
   <div class="bg-gray-50 min-h-screen pb-24">
     
     <div class="bg-white border-b border-gray-200">
@@ -41,7 +35,6 @@ const newsList = Array.from({ length: 50 }).map((_, i) => {
     </div>
 
     <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-12">
-      
       <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 mb-10">
         
         <div class="flex flex-col md:flex-row gap-4 mb-8">
@@ -52,12 +45,12 @@ const newsList = Array.from({ length: 50 }).map((_, i) => {
           </div>
           <div class="w-full md:w-3/4 flex gap-2">
             <input 
-              id="search-input"
+              id="news-search-input" 
               type="text" 
               placeholder={t.searchPlaceholder}
               class="flex-1 h-12 px-4 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 focus:outline-none focus:border-[#002a5c]"
             />
-            <button id="btn-search" class="h-12 px-8 bg-[#002a5c] text-white font-bold rounded-lg hover:bg-orange-600 transition-colors shadow-md flex items-center gap-2 whitespace-nowrap">
+            <button id="news-btn-search" class="h-12 px-8 bg-[#002a5c] text-white font-bold rounded-lg hover:bg-orange-600 transition-colors shadow-md flex items-center gap-2 whitespace-nowrap">
               {t.searchBtn}
             </button>
           </div>

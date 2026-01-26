@@ -1,4 +1,4 @@
-// src/scripts/invest-report.ts
+// src/scripts/location-report.ts
 export {};
 
 interface ReportItem {
@@ -21,7 +21,7 @@ interface ReportState {
 
 declare global {
   interface Window {
-    investReport: {
+    locationReport: {
       changePage: (page: number) => void;
     };
   }
@@ -31,8 +31,8 @@ let state: ReportState = {
   data: [],
   filteredData: [],
   currentPage: 1,
-  itemsPerPage: 9, // Để 9 item cho đẹp grid 3x3
-  currentRegion: "Tất cả",
+  itemsPerPage: 9, // Hiển thị 9 item (lưới 3x3)
+  currentRegion: "all",
   searchQuery: "",
 };
 
@@ -42,22 +42,45 @@ function init(): void {
 
   try {
     state.data = JSON.parse(dataElement.textContent) as ReportItem[];
-    state.filteredData = state.data;
+    state.currentRegion = "all";
+    state.searchQuery = "";
+    state.currentPage = 1;
+
+    // Check select box default value
+    const selectFilter = document.getElementById(
+      "region-select"
+    ) as HTMLSelectElement | null;
+    if (selectFilter) {
+      const val = selectFilter.value;
+      if (val !== "Tất cả khu vực" && val !== "전체 지역") {
+        state.currentRegion = val;
+      }
+    }
+
     setupEventListeners();
     applyFilters();
   } catch (e) {
-    console.error("Lỗi parse dữ liệu báo cáo:", e);
+    console.error("Lỗi khởi tạo dữ liệu báo cáo:", e);
   }
 }
 
 function applyFilters(): void {
+  const query = state.searchQuery.toLowerCase().trim();
+
   state.filteredData = state.data.filter((item) => {
-    const matchRegion =
-      state.currentRegion === "Tất cả" || item.region === state.currentRegion;
-    const query = state.searchQuery.toLowerCase();
+    // Logic Region
+    const isAllRegion =
+      state.currentRegion === "all" ||
+      state.currentRegion === "Tất cả khu vực" ||
+      state.currentRegion === "전체 지역";
+
+    const matchRegion = isAllRegion || item.region === state.currentRegion;
+
+    // Logic Search
     const matchSearch =
       item.title.toLowerCase().includes(query) ||
       item.region.toLowerCase().includes(query);
+
     return matchRegion && matchSearch;
   });
 
@@ -79,21 +102,26 @@ function render(): void {
   const pageItems = state.filteredData.slice(startIndex, endIndex);
   const totalPages = Math.ceil(state.filteredData.length / state.itemsPerPage);
 
-  // A. RENDER DANH SÁCH (Sử dụng HTML Card bạn yêu cầu)
+  // A. RENDER DANH SÁCH (CARD IMAGE STYLE)
   if (pageItems.length === 0) {
     container.innerHTML = `
-      <div class="col-span-full text-center py-20 text-gray-500">
-        <p class="text-xl">Không tìm thấy báo cáo phù hợp.</p>
+      <div class="col-span-full text-center py-20 text-gray-500 bg-gray-50 rounded-lg border border-dashed border-gray-300">
+        <p class="text-xl font-medium">Không tìm thấy báo cáo phù hợp.</p>
       </div>
     `;
   } else {
     container.innerHTML = pageItems
       .map(
         (item) => `
-      <a href="${item.link}" class="group block h-full flex flex-col bg-white rounded-lg hover:shadow-lg transition-all duration-300 p-2 border border-transparent hover:border-gray-100"> 
+      <a href="${
+        item.link
+      }" class="group block h-full flex flex-col bg-white rounded-lg hover:shadow-lg transition-all duration-300 p-2 border border-transparent hover:border-gray-100"> 
         <div class="relative overflow-hidden rounded-lg mb-5 aspect-[4/3] shadow-sm bg-gray-100"> 
-          <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" onerror="this.src='/images/placeholder.jpg'"> 
-          <div class="absolute top-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded backdrop-blur-sm">
+          <img src="${item.image.replace("/public", "")}" alt="${
+          item.title
+        }" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" onerror="this.src='/images/placeholder.jpg'"> 
+          
+          <div class="absolute top-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded backdrop-blur-sm font-medium">
             ${item.region}
           </div>
         </div> 
@@ -115,46 +143,35 @@ function render(): void {
   // B. RENDER PHÂN TRANG
   if (totalPages > 1) {
     let paginationHTML = "";
-    // Previous Button
-    paginationHTML += `
-      <button onclick="window.investReport.changePage(${
-        state.currentPage - 1
-      })" 
-        class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-        ${state.currentPage === 1 ? "disabled" : ""}>«</button>
-    `;
 
-    // Page Numbers
+    paginationHTML += `<button onclick="window.locationReport.changePage(${
+      state.currentPage - 1
+    })" class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 hover:bg-gray-50 disabled:opacity-50" ${
+      state.currentPage === 1 ? "disabled" : ""
+    }>«</button>`;
+
     for (let i = 1; i <= totalPages; i++) {
       if (
         i === 1 ||
         i === totalPages ||
         (i >= state.currentPage - 1 && i <= state.currentPage + 1)
       ) {
-        paginationHTML += `
-          <button onclick="window.investReport.changePage(${i})" 
-            class="w-10 h-10 flex items-center justify-center rounded-lg font-bold transition-colors
-            ${
-              state.currentPage === i
-                ? "bg-[#002a5c] text-white shadow-md"
-                : "border border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-[#ee5931]"
-            }">
-            ${i}
-          </button>
-        `;
+        paginationHTML += `<button onclick="window.locationReport.changePage(${i})" class="w-10 h-10 flex items-center justify-center rounded-lg font-bold transition-colors ${
+          state.currentPage === i
+            ? "bg-[#002a5c] text-white shadow-md"
+            : "border border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-[#ee5931]"
+        }">${i}</button>`;
       } else if (i === state.currentPage - 2 || i === state.currentPage + 2) {
         paginationHTML += `<span class="w-10 h-10 flex items-center justify-center text-gray-400">...</span>`;
       }
     }
 
-    // Next Button
-    paginationHTML += `
-      <button onclick="window.investReport.changePage(${
-        state.currentPage + 1
-      })" 
-        class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-        ${state.currentPage === totalPages ? "disabled" : ""}>»</button>
-    `;
+    paginationHTML += `<button onclick="window.locationReport.changePage(${
+      state.currentPage + 1
+    })" class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 hover:bg-gray-50 disabled:opacity-50" ${
+      state.currentPage === totalPages ? "disabled" : ""
+    }>»</button>`;
+
     pagination.innerHTML = paginationHTML;
   } else {
     pagination.innerHTML = "";
@@ -162,54 +179,77 @@ function render(): void {
 }
 
 function setupEventListeners(): void {
+  // Lấy element theo ID MỚI
   const searchInput = document.getElementById(
-    "search-input"
+    "report-search-input"
   ) as HTMLInputElement | null;
   const searchBtn = document.getElementById(
-    "btn-search"
+    "report-btn-search"
   ) as HTMLButtonElement | null;
   const regionSelect = document.getElementById(
     "region-select"
   ) as HTMLSelectElement | null;
   const filterBtns = document.querySelectorAll(".filter-btn");
 
-  if (searchBtn && searchInput) {
-    const handleSearch = () => {
-      state.searchQuery = searchInput.value;
+  // Sự kiện tìm kiếm Real-time
+  if (searchInput) {
+    searchInput.addEventListener("input", (e: Event) => {
+      state.searchQuery = (e.target as HTMLInputElement).value;
       applyFilters();
-    };
-    searchBtn.addEventListener("click", handleSearch);
-    searchInput.addEventListener("keyup", (e: KeyboardEvent) => {
-      if (e.key === "Enter") handleSearch();
     });
   }
 
-  // Xử lý Select box (Mobile)
+  if (searchBtn && searchInput) {
+    searchBtn.addEventListener("click", () => {
+      state.searchQuery = searchInput.value;
+      applyFilters();
+    });
+  }
+
+  // Sự kiện Select Box
   if (regionSelect) {
     regionSelect.addEventListener("change", (e: Event) => {
       const target = e.target as HTMLSelectElement;
       state.currentRegion = target.value;
 
-      // Sync với buttons
+      // Sync nút bấm
       filterBtns.forEach((b) => {
         const htmlBtn = b as HTMLElement;
-        if (htmlBtn.getAttribute("data-region") === state.currentRegion) {
-          updateActiveButton(htmlBtn, filterBtns);
+        const btnReg = htmlBtn.getAttribute("data-region");
+
+        if (btnReg === state.currentRegion) htmlBtn.click();
+        else if (
+          ["all", "Tất cả khu vực", "전체 지역"].includes(
+            state.currentRegion
+          ) &&
+          ["Tất cả khu vực", "전체 지역"].includes(btnReg || "")
+        ) {
+          htmlBtn.click();
         }
       });
       applyFilters();
     });
   }
 
-  // Xử lý Filter Buttons (Desktop)
+  // Sự kiện Buttons
   if (filterBtns.length > 0) {
     filterBtns.forEach((btn) => {
       const htmlBtn = btn as HTMLElement;
       htmlBtn.addEventListener("click", () => {
-        updateActiveButton(htmlBtn, filterBtns);
-        const region = htmlBtn.getAttribute("data-region");
-        if (region) {
-          state.currentRegion = region;
+        filterBtns.forEach((b) => {
+          b.classList.remove("bg-[#002a5c]", "text-white", "border-[#002a5c]");
+          b.classList.add("bg-white", "text-gray-600", "border-gray-200");
+        });
+        htmlBtn.classList.remove(
+          "bg-white",
+          "text-gray-600",
+          "border-gray-200"
+        );
+        htmlBtn.classList.add("bg-[#002a5c]", "text-white", "border-[#002a5c]");
+
+        const reg = htmlBtn.getAttribute("data-region");
+        if (reg) {
+          state.currentRegion = reg;
           if (regionSelect) regionSelect.value = state.currentRegion;
           applyFilters();
         }
@@ -218,17 +258,7 @@ function setupEventListeners(): void {
   }
 }
 
-function updateActiveButton(activeBtn: HTMLElement, allBtns: NodeList) {
-  allBtns.forEach((btn) => {
-    const b = btn as HTMLElement;
-    b.classList.remove("bg-[#002a5c]", "text-white", "border-[#002a5c]");
-    b.classList.add("bg-white", "text-gray-600", "border-gray-200");
-  });
-  activeBtn.classList.remove("bg-white", "text-gray-600", "border-gray-200");
-  activeBtn.classList.add("bg-[#002a5c]", "text-white", "border-[#002a5c]");
-}
-
-window.investReport = {
+window.locationReport = {
   changePage: (page: number) => {
     state.currentPage = page;
     render();
