@@ -1,8 +1,8 @@
 ---
-import Layout from '../../../layouts/Layout.astro';
-import ServiceGrid from '../../../components/ServiceGrid.astro';
-import { industriesData } from '../../../i18n/_industries';
-import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
+import Layout from '../../layouts/Layout.astro';
+import ServiceGrid from '../../components/ServiceGrid.astro';
+import { industriesData } from '../../i18n/_industries';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 // Lấy ngôn ngữ hiện tại
 const lang = Astro.props.lang || getLangFromUrl(Astro.url);

@@ -245,7 +245,7 @@ export const industriesData = {
     news: {
       title: "Tin tức ngành",
       moreBtn: "Xem thêm",
-      link: "/vi/industries/news/industries-focus",
+      link: "/vi/industries-news",
       items: [
         {
           title:
@@ -395,7 +395,7 @@ export const industriesData = {
     news: {
       title: "산업 뉴스",
       moreBtn: "더보기",
-      link: "/ko/industry-news",
+      link: "/ko/industries-focus",
       items: [
         {
           title:

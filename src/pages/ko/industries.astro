@@ -6,7 +6,7 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 // Lấy ngôn ngữ hiện tại
 const lang = Astro.props.lang || getLangFromUrl(Astro.url);
-const t = industriesData[lang as keyof typeof industriesData] || industriesData.ko;
+const t = industriesData[lang as keyof typeof industriesData] || industriesData.vi;
 const translate = useTranslations(lang);
 ---
 
@@ -28,7 +28,7 @@ const translate = useTranslations(lang);
         src="/images/regions/banner.png" 
         alt={t.pageTitle} 
         class="w-full h-full object-cover block" 
-        onerror="this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070'" 
+        onerror="this.src='https:images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070'" 
       />
     </div>
   </section>

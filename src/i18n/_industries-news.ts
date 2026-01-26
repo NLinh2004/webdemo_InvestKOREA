@@ -1,0 +1,68 @@
+// src/i18n/_industry-news.ts
+
+export const industryNewsData = {
+  vi: {
+    breadcrumb: ["Trang chủ", "Tin tức ngành"],
+    title: "Tin tức ngành",
+    searchPlaceholder: "Nhập từ khóa tìm kiếm...",
+    searchBtn: "Tìm kiếm",
+    filterLabel: "Lọc nhanh:",
+    allCategories: "Tất cả danh mục",
+    resultText: "Tổng cộng:",
+    unit: "bài viết",
+    itemsPerPage: "mục/trang",
+    categories: [
+      "Tất cả",
+      "Phụ tùng ô tô",
+      "Pin",
+      "Bán dẫn",
+      "Màn hình hiển thị",
+      "CNTT & Truyền thông",
+      "Logistics",
+      "Dược & Sinh học",
+      "Năng lượng tái tạo",
+    ],
+    // Dữ liệu mẫu cho tin tức (Prefix tiêu đề)
+    mockTitlePrefix: "Tin tức mẫu số",
+    mockTitleSuffix: "Xu hướng công nghệ mới tại Hàn Quốc năm 2026",
+    topNews: [
+      "Ngành công nghiệp di động tương lai của Hàn Quốc: Tiến bộ thông qua phát triển hệ sinh thái",
+      "Ngành công nghiệp pin của Hàn Quốc tăng cường khả năng cạnh tranh",
+      "Hiện trạng đầu tư và ngành công nghiệp bán dẫn của Hàn Quốc",
+      "Năng lượng tái tạo mở đường cho hành động vì khí hậu",
+      "Ngành công nghiệp màn hình Hàn Quốc: Bước nhảy vọt vào IT OLED",
+    ],
+  },
+  ko: {
+    breadcrumb: ["홈", "산업 뉴스"],
+    title: "산업 뉴스",
+    searchPlaceholder: "검색어를 입력하세요...",
+    searchBtn: "검색",
+    filterLabel: "빠른 필터:",
+    allCategories: "전체 카테고리",
+    resultText: "전체:",
+    unit: "건",
+    itemsPerPage: "개씩 보기",
+    categories: [
+      "전체",
+      "자동차부품",
+      "배터리",
+      "반도체",
+      "디스플레이",
+      "ICT",
+      "물류",
+      "의약·바이오",
+      "신재생에너지",
+    ],
+    // Dữ liệu mẫu cho tin tức (Prefix tiêu đề)
+    mockTitlePrefix: "산업 뉴스 샘플",
+    mockTitleSuffix: "2026년 한국의 새로운 기술 트렌드",
+    topNews: [
+      "한국의 미래 모빌리티 산업: 생태계 조성을 통한 도약",
+      "한국 배터리 산업, 정책 지원을 통한 경쟁력 강화",
+      "한국 반도체 산업의 투자 현황 및 전망",
+      "기후 행동과 경제 성장을 위한 재생 에너지의 길",
+      "한국 디스플레이 산업: IT OLED로의 도약",
+    ],
+  },
+};
