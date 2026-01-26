@@ -251,7 +251,7 @@ export const industriesData = {
           title:
             "Ngành công nghiệp di động tương lai của Hàn Quốc: Tiến bộ thông qua phát triển hệ sinh thái và năng lực cạnh tranh toàn cầu",
           date: "05.12.2025",
-          link: "#",
+          link: "/vi/news_detail",
           tags: ["Di động tương lai"],
         },
         {

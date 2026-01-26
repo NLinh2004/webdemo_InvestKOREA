@@ -32,7 +32,18 @@ export const industryNewsData = {
       "Năng lượng tái tạo mở đường cho hành động vì khí hậu",
       "Ngành công nghiệp màn hình Hàn Quốc: Bước nhảy vọt vào IT OLED",
     ],
+    detail: {
+      share: "Chia sẻ:",
+      keywords: "Từ khóa",
+      backToList: "Quay lại danh sách",
+      relatedNews: "Tin tức liên quan",
+      viewAll: "Xem tất cả tin tức",
+      needAdvice: "Cần tư vấn đầu tư?",
+      contactUs: "Liên hệ ngay",
+      source: "Nguồn",
+    },
   },
+
   ko: {
     breadcrumb: ["홈", "산업 뉴스"],
     title: "산업 뉴스",
@@ -64,5 +75,16 @@ export const industryNewsData = {
       "기후 행동과 경제 성장을 위한 재생 에너지의 길",
       "한국 디스플레이 산업: IT OLED로의 도약",
     ],
+
+    detail: {
+      share: "공유:",
+      keywords: "키워드",
+      backToList: "목록으로 돌아가기",
+      relatedNews: "관련 뉴스",
+      viewAll: "뉴스 전체보기",
+      needAdvice: "투자 상담이 필요하신가요?",
+      contactUs: "문의하기",
+      source: "출처",
+    },
   },
 };
