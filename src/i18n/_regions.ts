@@ -368,7 +368,7 @@ export const locationReportsData = {
           "Khu công nghiệp Quốc gia Thông minh Sejong: Định hình trung tâm công nghiệp tương lai",
         date: "05.12.2025",
         image: "/public/images/regions/report_01.png",
-        link: "#",
+        link: "/vi/news_detail",
         tags: ["Sejong", "Công nghiệp thông minh"],
       },
       {
@@ -377,7 +377,7 @@ export const locationReportsData = {
           "Khu công nghiệp Khoa học Ochang: Cụm công nghiệp pin thứ cấp toàn cầu",
         date: "11.11.2025",
         image: "/public/images/regions/report_02.png",
-        link: "#",
+        link: "/vi/news_detail",
         tags: ["Chungbuk", "Pin thứ cấp"],
       },
       {
@@ -386,7 +386,7 @@ export const locationReportsData = {
           "Khu công nghiệp Hàng không Vũ trụ Gyeongnam: Trung tâm hàng không lớn nhất Hàn Quốc",
         date: "05.02.2025",
         image: "/public/images/regions/report_03.png",
-        link: "#",
+        link: "/vi/news_detail",
         tags: ["Gyeongnam", "Hàng không vũ trụ"],
       },
     ],
@@ -401,7 +401,7 @@ export const locationReportsData = {
         title: "세종 스마트 국가산업단지: 미래 산업의 핵심 거점으로 도약",
         date: "2025.12.05",
         image: "/public/images/regions/report_01.png",
-        link: "#",
+        link: "/ko/news_detail",
         tags: ["세종", "스마트 산업"],
       },
       {
@@ -409,7 +409,7 @@ export const locationReportsData = {
         title: "오창과학산업단지: 이차전지 및 첨단 산업의 글로벌 허브",
         date: "2025.11.11",
         image: "/public/images/regions/report_02.png",
-        link: "#",
+        link: "/ko/news_detail",
         tags: ["충북", "이차전지"],
       },
       {
@@ -417,7 +417,7 @@ export const locationReportsData = {
         title: "경남 항공 국가산업단지: 대한민국 최대 항공우주 산업 클러스터",
         date: "2025.02.05",
         image: "/public/images/regions/report_03.png",
-        link: "#",
+        link: "/ko/news_detail",
         tags: ["경남", "항공우주"],
       },
     ],

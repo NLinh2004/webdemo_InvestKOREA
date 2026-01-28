@@ -258,7 +258,7 @@ export const industriesData = {
           title:
             "Ngành công nghiệp pin của Hàn Quốc, Tăng cường khả năng cạnh tranh thông qua hỗ trợ chính sách",
           date: "11.11.2025",
-          link: "#",
+          link: "/vi/news_detail",
           tags: ["Pin"],
         },
       ],
@@ -395,19 +395,19 @@ export const industriesData = {
     news: {
       title: "산업 뉴스",
       moreBtn: "더보기",
-      link: "/ko/industries-focus",
+      link: "/ko/industries-news",
       items: [
         {
           title:
             "한국의 미래 모빌리티 산업: 생태계 조성과 글로벌 경쟁력을 통한 도약",
           date: "2025.12.05",
-          link: "#",
+          link: "/ko/news_detail",
           tags: ["미래 모빌리티"],
         },
         {
           title: "한국 배터리 산업, 정책 지원을 통한 경쟁력 강화",
           date: "2025.11.11",
-          link: "#",
+          link: "/ko/news_detail",
           tags: ["배터리"],
         },
       ],

@@ -17,7 +17,7 @@ const newsList = Array.from({ length: 50 }).map((_, i) => {
     title: i < 5 ? t.topNews[i] : `${t.mockTitlePrefix} ${i + 1}: ${t.mockTitleSuffix}`,
     category: t.categories[catIndex],
     date: lang === 'vi' ? `0${(i % 9) + 1}.12.2025` : `2025.12.0${(i % 9) + 1}`,
-    link: "#"
+    link: lang === 'vi' ? `/vi/news_detail` : `/ko/news_detail`,
   };
 });
 ---
