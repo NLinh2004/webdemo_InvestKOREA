@@ -1,27 +1,27 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import { useTranslations } from '../../i18n/utils';
+import Layout from '../../../layouts/Layout.astro';
+import { useTranslations } from '../../../i18n/utils';
 
 // Thiết lập ngôn ngữ
-const lang = 'vi'; 
+const lang = 'ko'; 
 const t = useTranslations(lang);
 
-// Cấu hình đường dẫn thực tế để các sự kiện click hoạt động
+/**
+ * Cấu hình đường dẫn thực tế
+ * Lưu ý: Các trang này sẽ chạy thông qua file [id].astro trong thư mục why-korea
+ */
 const paths = {
   home: `/${lang}`,
-  economy: `/${lang}/why-korea/economy`,
-  sustainable: `/${lang}/why-korea/sustainable`,
-  stories: `/${lang}/why-korea/stories`,
   news: `/${lang}/news`,
   industries: `/${lang}/industries`,
   pdfIncentive: `/documents/${lang}/incentives-guide-2025.pdf`
 };
 
 const mainPillars = [
-  { id: 'biz', key: 'why.biz', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab', num: '#1', href: paths.economy },
-  { id: 'fundamental', key: 'why.fundamental', img: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e', num: '#2', href: paths.economy },
-  { id: 'sustainable', key: 'why.sustainable', img: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d', num: '#3', href: paths.sustainable },
-  { id: 'stories', key: 'why.stories', img: 'https://images.unsplash.com/photo-1556761175-b413da4baf72', num: '#4', href: paths.stories }
+  { id: 'economy', key: 'why.biz', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab', num: '#1' },
+  { id: 'fundamental', key: 'why.fundamental', img: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e', num: '#2' },
+  { id: 'sustainable', key: 'why.sustainable', img: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d', num: '#3' },
+  { id: 'stories', key: 'why.stories', img: 'https://images.unsplash.com/photo-1556761175-b413da4baf72', num: '#4' }
 ];
 
 const industriesList = [
@@ -32,11 +32,7 @@ const industriesList = [
   { key: 'bio', svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c0 4.14 3.36 7.5 7.5 7.5s7.5-3.36 7.5-7.5c0-4.03-3.23-7.5-7.5-7.5-1.14 0-2.22.25-3.18.72"/><path d="M12 9V1M12 21v-4M9 12l-3-3M18 12l-3 3"/></svg>` },
   { key: 'robot', svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4M8 16h.01M16 16h.01"/><path d="M9 11V9a3 3 0 0 1 6 0v2"/></svg>` },
   { key: 'shipbuilding', svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17l20 0l-2 4l-16 0z"/><path d="M5 17l0-10l14 0l0 10"/><path d="M12 7l0-4"/></svg>` },
-  { key: 'ict', svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>` },
-  { key: 'aerospace', svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3.5s-2.5 0-4 1.5L13.5 8.5l-8.2-1.8c-.9-.2-1.8.3-2 1.2-.2.9.3 1.8 1.2 2l8.9 2.5-3.2 3.2-2.9-.6c-.5-.1-1 .1-1.4.5l-.5.5 4.1 1.9 1.9 4.1.5-.5c.4-.4.6-.9.5-1.4l-.6-2.9 3.2-3.2 2.5 8.9c.2.9 1.1 1.4 2 1.2.9-.2 1.4-1.1 1.2-2z"/></svg>` },
-  { key: 'battery', svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="16" height="12" rx="2"/><path d="M22 11v2M6 11v2M10 11v2M14 11v2"/></svg>` },
-  { key: 'creative', svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M7 3v18M17 3v18M2 7h20M2 12h20M2 17h20"/></svg>` },
-  { key: 'finance', svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>` }
+  { key: 'ict', svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>` }
 ];
 
 const featureStories = [
@@ -51,7 +47,7 @@ const featureStories = [
     <section class="pt-12 pb-0 border-b border-gray-100">
       <div class="max-w-7xl mx-auto px-6 text-left">
         <nav class="text-sm text-gray-400 mb-8 font-bold uppercase tracking-widest">
-          <a href={paths.home} class="hover:text-gray-900 transition-colors">Trang chủ</a> · <span class="text-gray-900">{t('why.title')}</span>
+          <a href={paths.home} class="hover:text-gray-900 transition-colors">홈</a> · <span class="text-gray-900">{t('why.title')}</span>
         </nav>
         <h1 class="text-[80px] font-black text-[#111] tracking-tighter leading-none mb-12 uppercase not-italic">
           {t('why.title')}
@@ -65,7 +61,7 @@ const featureStories = [
     <section class="py-24 px-6 max-w-7xl mx-auto">
       <div class="flex flex-col md:flex-row gap-4 h-[650px] w-full items-stretch">
         {mainPillars.map((item) => (
-          <a href={item.href} class="pillar-card group relative flex-[0.7] h-full rounded-[32px] overflow-hidden cursor-pointer transition-all duration-[800ms] ease-[cubic-bezier(0.2,1,0.3,1)] hover:flex-[3] hover:shadow-2xl shadow-md border border-gray-100">
+          <a href={`/${lang}/why-korea/${item.id}`} class="pillar-card group relative flex-[0.7] h-full rounded-[32px] overflow-hidden cursor-pointer transition-all duration-[800ms] ease-[cubic-bezier(0.2,1,0.3,1)] hover:flex-[3] hover:shadow-2xl shadow-md border border-gray-100">
             <img src={item.img} class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
             <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80"></div>
             <div class="absolute top-12 left-10 text-white z-10 pr-10 text-left">
@@ -134,10 +130,9 @@ const featureStories = [
 
     <section class="py-24 border-t border-gray-100 bg-white">
       <div class="max-w-7xl mx-auto px-6 text-left">
-        <h2 class="text-[36px] font-black text-[#111] mb-20 tracking-tighter text-left uppercase not-italic">Feature Stories</h2>
+        <h2 class="text-[36px] font-black text-[#111] mb-20 tracking-tighter text-left uppercase not-italic">특집 기사</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-16 mb-20">
           {featureStories.map(f => (
-            /* Đường dẫn chính xác trỏ đến thư mục news/[id].astro */
             <a href={`${paths.news}/${f.id}`} class="group cursor-pointer block text-left">
               <div class="aspect-[16/10] rounded-2xl overflow-hidden mb-8 shadow-md ring-1 ring-black/5">
                 <img src={f.img} class="w-full h-full object-cover transition-all duration-700 group-hover:scale-105" alt={t(f.key)} />

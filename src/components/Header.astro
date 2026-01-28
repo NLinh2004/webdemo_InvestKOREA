@@ -9,12 +9,17 @@ const { pathname } = Astro.url;
 // Logic nhận diện trang hiện tại để đổi màu (Active State)
 const currentPath = pathname.split('/')[2] || '';
 
+// Hàm đổi ngôn ngữ luôn trả về trang chủ của ngôn ngữ đích để tránh lỗi 404
 const getPath = (target: string) => {
   return `/${target}/`;
 };
 
 const menuKeys = ['why', 'industries', 'incentives', 'regions', 'services', 'about'];
 
+/**
+ * CẤU TRÚC SUBMENUS CHUẨN:
+ * Đảm bảo các href trỏ đúng đến trang chi tiết để click là chuyển trang ngay.
+ */
 const subMenus = {
   why: [
     { key: 'why.biz', href: `/${lang}/why-korea/economy` },
@@ -23,24 +28,32 @@ const subMenus = {
     { key: 'why.stories', href: `/${lang}/why-korea/stories` },
   ],
   industries: [
-    ...['news', 'aerospace', 'battery', 'creative', 'finance', 'ict', 'machinery', 'energy', 'semiconductor', 'tourism', 'startup', 'automotive', 'consumer', 'display', 'chemical', 'logistics', 'bio', 'robot', 'shipbuilding'].map(k => ({ key: `ind.${k}`, href: `/${lang}/industries/${k}` }))
+    { key: 'ind.news', href: `/${lang}/news/policy-trends` },
+    ...['aerospace', 'battery', 'creative', 'finance', 'ict', 'machinery', 'energy', 'semiconductor', 'tourism', 'startup', 'automotive', 'consumer', 'display', 'chemical', 'logistics', 'bio', 'robot', 'shipbuilding'].map(k => ({ 
+      key: `ind.${k}`, 
+      href: `/${lang}/industries/${k}` 
+    }))
   ],
-  incentives: [ { key: 'inc.policy', href: `/${lang}/news/policy-trends` }, ],
+  incentives: [ 
+    { key: 'inc.policy', href: `/${lang}/news/policy-trends` },
+    { key: 'inc.title', href: `/${lang}/incentives/` }
+  ],
   regions: [
-    ...['seoul', 'gyeonggi', 'daejeon', 'chungbuk', 'daegu', 'ulsan', 'gyeongnam', 'jeonbuk', 'jeju', 'incheon', 'gangwon', 'sejong', 'chungnam', 'busan', 'gyeongbuk', 'gwangju', 'jeonnam'].map(k => ({ key: `reg.${k}`, href: `/${lang}/regions/${k}` })),
+    ...['seoul', 'daejeon', 'daegu', 'ulsan', 'busan', 'gwangju', 'incheon'].map(k => ({ 
+      key: `reg.${k}`, 
+      href: `/${lang}/regions/${k}` 
+    })),
     { key: 'reg.report', href: `/${lang}/regions/invest-report` }
   ],
   services: [
-    ...['guide', 'consulting', 'living', 'cost', 'legislation', 'faq', 'office', 'network', 'forms'].map(k => ({ key: `ser.${k}`, href: `/${lang}/services/${k}` }))
+    ...['guide', 'consulting', 'living', 'faq'].map(k => ({ 
+      key: `ser.${k}`, 
+      href: `/${lang}/services/${k}` 
+    }))
   ],
   about: [
-    { key: 'abt.message', href: `/${lang}/about/message` },
-    { key: 'abt.ombudsman', href: `/${lang}/about/ombudsman` },
-    { key: 'abt.publication', href: `/${lang}/about/publication` },
-    { key: 'abt.video', href: `/${lang}/about/video` },
     { key: 'abt.about', href: `/${lang}/about/info` },
-    { key: 'abt.honorary', href: `/${lang}/about/honorary` },
-    { key: 'abt.magazine', href: `/${lang}/about/magazine` },
+    { key: 'abt.message', href: `/${lang}/about/message` },
     { key: 'abt.media', href: `/${lang}/about/media` },
   ]
 };
@@ -53,39 +66,44 @@ const subMenus = {
   </div>
 </div>
 
-<header class="w-full bg-white border-b border-gray-100 sticky top-0 z-50 h-[80px] flex items-center shadow-sm text-left transition-all" id="main-header">
-  <div class="max-w-7xl mx-auto px-4 w-full flex justify-between items-center h-full relative">
+<header class="w-full bg-white border-b border-gray-100 sticky top-0 z-50 h-[80px] flex items-center shadow-sm transition-all" id="main-header">
+  <div class="max-w-7xl mx-auto px-4 w-full flex justify-between items-center h-full relative text-left">
     
     <a href={`/${lang}/`} class="text-2xl font-black text-[#003366] tracking-tighter z-50">Invest KOREA</a>
 
     <nav class="hidden lg:flex items-center gap-8 h-full">
       {menuKeys.map(key => {
-        // Kiểm tra mục đang active
-        const isActive = currentPath === key;
+        // Đồng bộ hóa tên path cho Why Korea
+        const isActive = currentPath === (key === 'why' ? 'why-korea' : key);
 
         return (
           <div class="relative group h-full flex items-center nav-item">
             
-            <a href={`/${lang}/${key}/`} 
+            <a href={`/${lang}/${key === 'why' ? 'why-korea' : key}/`} 
                class={`text-[14px] font-bold uppercase py-8 transition-colors block h-full flex items-center ${isActive ? 'text-[#003366]' : 'text-[#111] hover:text-[#003366]'}`}>
               {t(`nav.${key}`)}
             </a>
 
             <span class={`absolute bottom-0 left-0 w-full h-[3px] bg-[#003366] transition-transform duration-300 origin-left ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
 
-            {/* MEGAMENU PANEL - Giữ nguyên định dạng fixed của bạn */}
             <div class="megamenu-panel fixed top-[80px] left-0 w-full bg-white border-t border-gray-200 shadow-2xl hidden group-hover:block z-40 animate-in fade-in slide-in-from-top-1 duration-200">
-              <div class="max-w-7xl mx-auto flex py-10 px-6 text-left">
-                <div class="w-1/3 border-r border-gray-100 pr-10">
-                  <h2 class="text-[56px] font-black uppercase tracking-tighter text-[#111] leading-[1.1] not-italic">
-                    {key === 'why' ? t('why.title') : key === 'industries' ? t('ind.title') : t(`nav.${key}`)}
+              <div class="max-w-7xl mx-auto flex py-16 px-6">
+                
+                <div class="w-1/3 border-r border-gray-100 pr-10 flex items-center">
+                  <h2 class="text-[52px] font-black uppercase tracking-tighter text-[#111] leading-[1.1] not-italic">
+                    {key === 'why' ? t('why.title') : t(`nav.${key}`)}
                   </h2>
                 </div>
+
                 <div class="w-2/3 grid grid-cols-2 gap-x-20 gap-y-4 pl-24 pt-4">
                   {(subMenus[key as keyof typeof subMenus] || []).map(sub => (
-                    <a href={sub.href} class="text-[18px] font-bold text-gray-900 hover:text-[#ee5931]">{t(sub.key)}</a>
+                    <a href={sub.href} class="text-[17px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors flex items-center gap-2 group/sub">
+                      <span class="w-0 h-px bg-[#ee5931] transition-all group-hover/sub:w-4"></span>
+                      {t(sub.key)}
+                    </a>
                   ))}
                 </div>
+
               </div>
             </div>
           </div>
@@ -94,26 +112,28 @@ const subMenus = {
     </nav>
 
     <div class="flex items-center gap-4 z-50">
-      <div class="hidden md:flex items-center bg-gray-100 rounded-full p-1 border border-gray-200">
-        <a href={getPath('vi')} class={`px-4 py-1 text-[11px] font-bold rounded-full transition-all ${lang === 'vi' ? 'bg-[#003366] text-white shadow-md' : 'text-gray-400 hover:text-gray-600'}`}>VN</a>
-        <a href={getPath('ko')} class={`px-4 py-1 text-[11px] font-bold rounded-full transition-all ${lang === 'ko' ? 'bg-[#003366] text-white shadow-md' : 'text-gray-400 hover:text-gray-600'}`}>KO</a>
+      <div class="hidden md:flex items-center bg-gray-100 rounded-full p-1 border border-gray-200 font-bold">
+        <a href={getPath('vi')} class={`px-4 py-1 text-[11px] rounded-full transition-all ${lang === 'vi' ? 'bg-[#003366] text-white shadow-md' : 'text-gray-400 hover:text-gray-600'}`}>VN</a>
+        <a href={getPath('ko')} class={`px-4 py-1 text-[11px] rounded-full transition-all ${lang === 'ko' ? 'bg-[#003366] text-white shadow-md' : 'text-gray-400 hover:text-gray-600'}`}>KO</a>
       </div>
-      <button id="btn-search-open" class="p-2 text-gray-600 hover:text-[#003366] transition-colors"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+      <button id="btn-search-open" class="p-2 text-gray-600 hover:text-[#003366] transition-colors">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
     </div>
   </div>
 </header>
-
 <script>
   function initHeader() {
     const menus = document.querySelectorAll('.megamenu-panel');
     const navItems = document.querySelectorAll('.nav-item');
 
-    // Ẩn menu khi kéo trang lên/xuống
     window.addEventListener('scroll', () => {
       menus.forEach(m => { (m as HTMLElement).style.display = 'none'; });
     }, { passive: true });
 
-    // Hiện lại menu khi di chuột vào vùng tiêu đề
     navItems.forEach(item => {
       item.addEventListener('mouseenter', () => {
         const m = item.querySelector('.megamenu-panel');
@@ -127,6 +147,5 @@ const subMenus = {
 </script>
 
 <style>
-  /* Ép phông chữ đứng thẳng sang trọng */
-  header * { font-style: normal !important; }
+  header * { font-style: normal !important; letter-spacing: -0.01em; }
 </style>

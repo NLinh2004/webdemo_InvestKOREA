@@ -4,18 +4,24 @@ import ServiceGrid from '../../components/ServiceGrid.astro';
 import { industriesData } from '../../i18n/_industries';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
-// Lấy ngôn ngữ hiện tại
-const lang = Astro.props.lang || getLangFromUrl(Astro.url);
-const t = industriesData[lang as keyof typeof industriesData] || industriesData.vi;
+// Ép cứng ngôn ngữ là 'vi' cho file này
+const lang = 'ko';
+const t = industriesData.vi;
 const translate = useTranslations(lang);
+
+// CHỈ THÊM LOGIC NÀY: Tự động tạo link dẫn vào /vi/industries/[key]
+const dynamicGridItems = t.priority.items.map((item: any) => ({
+  ...item,
+  link: `/${lang}/industries/${item.key}` 
+}));
 ---
 
-<Layout title={`${t.pageTitle} - Invest KOREA`}>
+<Layout title={`${t.pageTitle} - Invest KOREA`} lang={lang}>
   
   <section class="w-full">
     <div class="pt-12 pb-12 px-6 max-w-7xl mx-auto">
       <nav class="text-sm text-gray-400 mb-8 font-bold not-italic uppercase tracking-widest">
-        <a href={`/${lang}`} class="hover:text-gray-600">TRANG CHỦ</a> · <span class="text-gray-900">{t.pageTitle}</span>
+        <a href={`/${lang}`} class="hover:text-gray-600">홈</a> · <span class="text-gray-900">{t.pageTitle}</span>
       </nav>
       
       <h1 class="text-[80px] font-black text-[#111] tracking-tighter leading-none mb-12 uppercase not-italic">
@@ -37,9 +43,13 @@ const translate = useTranslations(lang);
     <div class="max-w-7xl mx-auto px-6">
       <ServiceGrid 
         title={t.priority.title}
+<<<<<<< HEAD
         
         items={t.priority.items}
         
+=======
+        items={dynamicGridItems} 
+>>>>>>> 0330b4c1895b31920861a49ae056ba9809e7ed60
       />
     </div>
   </section>
@@ -94,7 +104,6 @@ const translate = useTranslations(lang);
 
   <section class="py-24 bg-white border-t border-gray-100">
     <div class="max-w-7xl mx-auto px-6">
-      
       <div class="flex justify-between items-end mb-10 pb-4 border-b border-gray-200">
         <h2 class="text-3xl font-bold text-gray-900 not-italic">{t.news.title}</h2>
         <a href={t.news.link} class="text-[#ee5931] hover:underline font-bold flex items-center gap-1 transition-colors">
@@ -106,7 +115,6 @@ const translate = useTranslations(lang);
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {t.news.items.map((news) => (
           <a href={news.link} class="group block p-8 bg-white border border-gray-200 rounded-lg hover:shadow-lg transition-all duration-300">
-            
             {news.tags && (
               <div class="flex gap-2 mb-4">
                 {news.tags.map(tag => (
@@ -116,11 +124,9 @@ const translate = useTranslations(lang);
                 ))}
               </div>
             )}
-
             <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-[#ee5931] transition-colors leading-snug not-italic">
               {news.title}
             </h3>
-
             <div class="flex items-center text-sm text-gray-400">
               <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -132,5 +138,4 @@ const translate = useTranslations(lang);
       </div>
     </div>
   </section>
-
 </Layout>
