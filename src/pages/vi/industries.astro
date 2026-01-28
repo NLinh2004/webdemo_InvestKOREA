@@ -13,7 +13,7 @@ const translate = useTranslations(lang);
 <Layout title={`${t.pageTitle} - Invest KOREA`}>
   
   <section class="w-full">
-    <div class="pt-24 pb-12 px-6 max-w-7xl mx-auto">
+    <div class="pt-12 pb-12 px-6 max-w-7xl mx-auto">
       <nav class="text-sm text-gray-400 mb-8 font-bold not-italic uppercase tracking-widest">
         <a href={`/${lang}`} class="hover:text-gray-600">TRANG CHỦ</a> · <span class="text-gray-900">{t.pageTitle}</span>
       </nav>
@@ -37,9 +37,9 @@ const translate = useTranslations(lang);
     <div class="max-w-7xl mx-auto px-6">
       <ServiceGrid 
         title={t.priority.title}
-        description={t.priority.desc}
+    
         items={t.priority.items}
-        columns={4}
+        
       />
     </div>
   </section>
