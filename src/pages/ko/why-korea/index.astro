@@ -47,7 +47,7 @@ const featureStories = [
     <section class="pt-12 pb-0 border-b border-gray-100">
       <div class="max-w-7xl mx-auto px-6 text-left">
         <nav class="text-sm text-gray-400 mb-8 font-bold uppercase tracking-widest">
-          <a href={paths.home} class="hover:text-gray-900 transition-colors">Trang chủ</a> · <span class="text-gray-900">{t('why.title')}</span>
+          <a href={paths.home} class="hover:text-gray-900 transition-colors">홈</a> · <span class="text-gray-900">{t('why.title')}</span>
         </nav>
         <h1 class="text-[80px] font-black text-[#111] tracking-tighter leading-none mb-12 uppercase not-italic">
           {t('why.title')}
@@ -130,7 +130,7 @@ const featureStories = [
 
     <section class="py-24 border-t border-gray-100 bg-white">
       <div class="max-w-7xl mx-auto px-6 text-left">
-        <h2 class="text-[36px] font-black text-[#111] mb-20 tracking-tighter text-left uppercase not-italic">Feature Stories</h2>
+        <h2 class="text-[36px] font-black text-[#111] mb-20 tracking-tighter text-left uppercase not-italic">특집 기사</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-16 mb-20">
           {featureStories.map(f => (
             <a href={`${paths.news}/${f.id}`} class="group cursor-pointer block text-left">

@@ -18,7 +18,7 @@ export function getStaticPaths() {
 }
 
 const { id } = Astro.params;
-const lang = 'vi';
+const lang = 'ko';
 const t = useTranslations(lang);
 
 /**
@@ -43,9 +43,9 @@ const data = {
     <header class="pt-32 pb-20 bg-white">
       <div class="container mx-auto px-6 max-w-7xl">
         <nav class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-12">
-          <a href={`/${lang}`} class="hover:text-[#003366] transition-colors">TRANG CHỦ</a>
+          <a href={`/${lang}`} class="hover:text-[#003366] transition-colors">홈</a>
           <span class="opacity-30">•</span>
-          <a href={`/${lang}/industries/`} class="hover:text-[#003366] transition-colors">THÔNG TIN NGÀNH</a>
+          <a href={`/${lang}/industries/`} class="hover:text-[#003366] transition-colors">산업 정보</a>
           <span class="opacity-30">•</span>
           <span class="text-gray-900 uppercase tracking-tighter font-bold">{data.title}</span>
         </nav>
@@ -106,7 +106,7 @@ const data = {
         <div class="w-20 h-20 rounded-full border border-gray-200 flex items-center justify-center bg-white shadow-sm group-hover:bg-[#003366] group-hover:text-white transition-all duration-700 group-hover:scale-110">
           <span class="text-3xl">←</span>
         </div>
-        <p class="text-[11px] font-black uppercase tracking-[0.5em] text-gray-400 group-hover:text-[#003366]">QUAY LẠI DANH SÁCH</p>
+        <p class="text-[11px] font-black uppercase tracking-[0.5em] text-gray-400 group-hover:text-[#003366]">목록으로 돌아가기</p>
       </button>
     </footer>
   </main>
