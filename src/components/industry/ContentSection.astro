@@ -1,0 +1,51 @@
+---
+// src/components/industry/ContentSection.astro
+interface Props {
+  title?: string;
+  theme?: 'default' | 'image-bg' | 'list';
+  backgroundImage?: string; // Dùng cho theme 'image-bg'
+  reverse?: boolean; // Dùng cho theme 'list' để đảo ảnh qua phải/trái
+  image?: string; // Dùng cho theme 'list'
+}
+
+const { title, theme = 'default', backgroundImage, reverse = false, image } = Astro.props;
+
+const baseClasses = "max-w-7xl mx-auto px-6 py-16";
+---
+
+{theme === 'default' && (
+  <section class={baseClasses}>
+    {title && <h2 class="text-3xl font-bold text-gray-900 mb-8 border-l-4 border-orange-500 pl-4">{title}</h2>}
+    <div class="prose prose-lg text-gray-600 max-w-none">
+      <slot />
+    </div>
+  </section>
+)}
+
+{theme === 'image-bg' && (
+  <section class="relative w-full py-24 bg-cover bg-center bg-fixed" style={`background-image: url('${backgroundImage}')`}>
+    <div class="absolute inset-0 bg-black/50"></div>
+    <div class="relative max-w-7xl mx-auto px-6 text-white text-center">
+      {title && <h2 class="text-3xl md:text-4xl font-bold mb-6" set:html={title} />}
+      <div class="text-lg md:text-xl font-light max-w-3xl mx-auto leading-relaxed opacity-90">
+        <slot />
+      </div>
+    </div>
+  </section>
+)}
+
+{theme === 'list' && (
+  <section class={baseClasses}>
+    <div class={`flex flex-col md:flex-row gap-12 items-center ${reverse ? 'md:flex-row-reverse' : ''}`}>
+      <div class="w-full md:w-1/2">
+        <img src={image} alt={title} class="w-full h-80 object-cover rounded-xl shadow-lg hover:scale-105 transition-transform duration-500" />
+      </div>
+      <div class="w-full md:w-1/2">
+        {title && <h3 class="text-2xl font-bold text-[#002a5c] mb-4" set:html={title} />}
+        <div class="text-gray-600 leading-relaxed text-justify">
+          <slot />
+        </div>
+      </div>
+    </div>
+  </section>
+)}
