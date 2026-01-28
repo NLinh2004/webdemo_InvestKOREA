@@ -1,0 +1,101 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { useTranslations } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  // Bổ sung đầy đủ 17 ngành khớp chính xác với key trong dữ liệu i18n
+  const industries = [
+    'aerospace', 'auto', 'battery', 'consumer', 'culture', 
+    'display', 'finance', 'chemical', 'ict', 'logistics', 
+    'machinery', 'bio', 'energy', 'robot', 'semicon', 
+    'ship', 'tourism'
+  ];
+  return industries.map(id => ({ params: { id } }));
+}
+
+const { id } = Astro.params;
+const lang = 'vi';
+const t = useTranslations(lang);
+
+// Lấy dữ liệu động từ i18n
+const data = {
+  // Lấy tên ngành từ key ind.aerospace, ind.semicon...
+  title: t(`ind.${id}` as any), 
+  heroImg: t(`ind.${id}_hero_img` as any) || 'https://images.unsplash.com/photo-1517976487492-5750f3195933',
+  introTitle: t(`ind.${id}_intro_title` as any) || 'Đang cập nhật tiêu đề...',
+  introDesc: t(`ind.${id}_intro_desc` as any) || 'Nội dung mô tả đang được cập nhật cho ngành này.',
+  subTitle1: t(`ind.${id}_sub1_title` as any) || 'Tiến bộ công nghệ',
+  subDesc1: t(`ind.${id}_sub1_desc` as any) || 'Hàn Quốc không ngừng đầu tư vào nghiên cứu và phát triển để duy trì vị thế dẫn đầu trong lĩnh vực này.',
+  subTitle2: t(`ind.${id}_sub2_title` as any) || 'R&D Liên tục',
+  subDesc2: t(`ind.${id}_sub2_desc` as any) || 'Các nỗ lực R&D tập trung vào việc đảm bảo công nghệ lõi và tăng cường khả năng cạnh tranh quốc tế.'
+};
+---
+
+<Layout title={`${data.title} Industry | Invest KOREA`} lang={lang}>
+  <main class="bg-white antialiased selection:bg-[#003366] selection:text-white text-left">
+    
+    <header class="pt-32 pb-0 bg-white">
+      <div class="container mx-auto px-6 max-w-7xl">
+        <nav class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-8">
+          <a href={`/${lang}`} class="hover:text-[#003366]">TRANG CHỦ</a>
+          <span class="opacity-30">•</span>
+          <a href={`/${lang}/industries/`} class="hover:text-[#003366]">THÔNG TIN NGÀNH</a>
+          <span class="opacity-30">•</span>
+          <span class="text-gray-900 uppercase">{data.title} INDUSTRY</span>
+        </nav>
+        <h1 class="text-6xl md:text-[90px] font-black text-[#003366] tracking-tighter uppercase not-italic leading-[0.9] mb-16">
+          {data.title} <br/> Industry
+        </h1>
+      </div>
+      <div class="w-full h-[65vh] overflow-hidden shadow-inner border-y border-gray-100">
+        <img src={data.heroImg} class="w-full h-full object-cover" alt={data.title} />
+      </div>
+    </header>
+
+    <section class="py-32 bg-white">
+      <div class="container mx-auto px-6 max-w-7xl">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+          
+          <div class="lg:col-span-5">
+            <h2 class="text-4xl md:text-5xl font-black text-[#003366] leading-[1.05] tracking-tighter uppercase not-italic whitespace-pre-line">
+              {data.introTitle}
+            </h2>
+          </div>
+          
+          <div class="lg:col-span-7 space-y-20">
+            <div class="space-y-6">
+              <h3 class="text-xl font-black text-[#111] uppercase tracking-tight not-italic border-b border-gray-100 pb-4">
+                {data.subTitle1}
+              </h3>
+              <p class="text-gray-500 text-lg leading-relaxed font-medium not-italic whitespace-pre-line">
+                {data.subDesc1}
+              </p>
+            </div>
+
+            <div class="space-y-6">
+              <h4 class="text-xl font-black text-[#111] uppercase tracking-tight not-italic border-b border-gray-100 pb-4">
+                {data.subTitle2}
+              </h4>
+              <p class="text-gray-500 text-lg leading-relaxed font-medium not-italic whitespace-pre-line">
+                {data.subDesc2}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-24 border-t border-gray-50 text-center bg-gray-50/30">
+      <button onclick="history.back()" class="group inline-flex flex-col items-center gap-6 transition-all">
+        <div class="w-20 h-20 rounded-full border border-gray-200 flex items-center justify-center bg-white shadow-sm group-hover:bg-[#003366] group-hover:text-white transition-all duration-700 group-hover:scale-110">
+          <span class="text-3xl">←</span>
+        </div>
+        <p class="text-[10px] font-black uppercase tracking-[0.5em] text-gray-300 group-hover:text-[#003366]">QUAY LẠI DANH SÁCH</p>
+      </button>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+  main * { font-style: normal !important; letter-spacing: -0.015em; }
+</style>

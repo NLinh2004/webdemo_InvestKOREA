@@ -1,5 +1,4 @@
 ---
-// src/components/NewsSection.astro
 import { useTranslations } from '../i18n/utils';
 
 interface Props {
@@ -9,37 +8,75 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
+// Cập nhật link dẫn về trang Policy Trends tương ứng với ngôn ngữ
 const newsItems = [
     {
         image: 'https://images.unsplash.com/photo-1579621379308-01127043232c?q=80&w=1500',
-        titleKey: 'news.item1.title',
-        dateKey: 'news.item1.date',
-        link: '#',
+        titleKey: 'policy.p1.title', // Sử dụng key từ file incentives.ts đã gộp
+        dateKey: 'policy.p1.date',
+        link: `/${lang}/news/policy-trends`,
     },
     {
         image: 'https://images.unsplash.com/photo-1589118949245-df86144458f3?q=80&w=1500',
-        titleKey: 'news.item2.title',
-        dateKey: 'news.item2.date',
-        link: '#',
+        titleKey: 'policy.p2.title',
+        dateKey: 'policy.p2.date',
+        link: `/${lang}/news/policy-trends`,
     },
     {
         image: 'https://images.unsplash.com/photo-1621343753738-9e5c9b46c0a0?q=80&w=1500',
-        titleKey: 'news.item3.title',
-        dateKey: 'news.item3.date',
-        link: '#',
+        titleKey: 'policy.p3.title',
+        dateKey: 'policy.p3.date',
+        link: `/${lang}/news/policy-trends`,
     },
 ];
 ---
-<section class="bg-gray-50 py-20">
-    <div class="container mx-auto px-6">
-        <div class="flex justify-between items-center mb-12">
-            <h2 class="text-4xl font-black text-gray-800">{t('news.title')}</h2>
-            <a href="#" class="text-blue-700 hover:text-blue-900 font-bold flex items-center gap-2">
-                {t('news.viewAll')}
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" /></svg>
+<section class="bg-gray-50 py-24">
+    <div class="container mx-auto px-6 max-w-7xl text-left">
+        <div class="flex justify-between items-end mb-16">
+            <div>
+                <p class="text-[#ee5931] font-black text-sm uppercase tracking-[0.3em] mb-4">Invest KOREA</p>
+                <h2 class="text-[52px] font-black text-gray-900 leading-none tracking-tighter uppercase">{t('nav.news')}</h2>
+            </div>
+            
+            <a href={`/${lang}/news/policy-trends`} class="group flex items-center gap-4 text-sm font-black uppercase tracking-widest text-gray-900 hover:text-[#ee5931] transition-all">
+                {t('news.viewAll') || 'XEM TẤT CẢ'}
+                <div class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-[#ee5931] group-hover:border-[#ee5931] group-hover:text-white transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                    </svg>
+                </div>
             </a>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
             {newsItems.map((item) => (
-                <a href={item.link} class="block bg-white rounded-lg shadow-lg
+                <a href={item.link} class="group block bg-white border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-500">
+                    <div class="relative h-[300px] overflow-hidden">
+                        <img 
+                            src={item.image} 
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                            alt="News" 
+                        />
+                        <div class="absolute top-6 left-6 bg-white px-4 py-1 text-[10px] font-black uppercase tracking-widest text-[#ee5931]">
+                            {t(item.dateKey)}
+                        </div>
+                    </div>
+                    
+                    <div class="p-10 space-y-4">
+                        <h3 class="text-2xl font-bold text-gray-900 leading-tight group-hover:text-[#ee5931] transition-colors line-clamp-2">
+                            {t(item.titleKey)}
+                        </h3>
+                        <div class="pt-4 flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-gray-400 group-hover:text-[#ee5931] transition-all">
+                             LEARN MORE
+                            <span class="w-6 h-px bg-gray-300 group-hover:w-10 group-hover:bg-[#ee5931] transition-all"></span>
+                        </div>
+                    </div>
+                </a>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    section * { font-style: normal !important; letter-spacing: -0.02em; }
+</style>
