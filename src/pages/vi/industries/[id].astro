@@ -1,0 +1,119 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { useTranslations } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  /**
+   * DANH SÁCH ID ĐẦY ĐỦ KHỚP VỚI I18N:
+   * Bổ sung các ID dài như 'semiconductor', 'creative', 'startup' để không bị lỗi 404
+   */
+  const industries = [
+    'aerospace', 'auto', 'battery', 'consumer', 'culture', 
+    'display', 'finance', 'chemical', 'ict', 'logistics', 
+    'machinery', 'bio', 'energy', 'robot', 'semicon', 
+    'ship', 'tourism', 'semiconductor', 'creative', 
+    'startup', 'automotive', 'shipbuilding'
+  ];
+  return industries.map(id => ({ params: { id } }));
+}
+
+const { id } = Astro.params;
+const lang = 'vi';
+const t = useTranslations(lang);
+
+/**
+ * LOGIC LẤY DỮ LIỆU ĐỘNG:
+ * Tự động tìm dữ liệu theo ID. Nếu không có dữ liệu chi tiết, sẽ hiện thông báo chờ cập nhật
+ */
+const data = {
+  title: t(`ind.${id}` as any), 
+  heroImg: t(`ind.${id}_hero_img` as any) || 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2000',
+  introTitle: t(`ind.${id}_intro_title` as any) || 'Nội dung đang được cập nhật...',
+  introDesc: t(`ind.${id}_intro_desc` as any) || 'Thông tin chi tiết về ngành này đang được chúng tôi chuẩn bị hoàn thiện.',
+  subTitle1: t(`ind.${id}_sub1_title` as any) || 'Đặc điểm ngành',
+  subDesc1: t(`ind.${id}_sub1_desc` as any) || 'Hệ sinh thái công nghiệp hiện đại với khả năng cạnh tranh quốc tế vượt trội.',
+  subTitle2: t(`ind.${id}_sub2_title` as any) || 'Tầm nhìn phát triển',
+  subDesc2: t(`ind.${id}_sub2_desc` as any) || 'Định hướng trở thành trung tâm đổi mới sáng tạo hàng đầu thế giới.'
+};
+---
+
+<Layout title={`${data.title} | Invest KOREA`} lang={lang}>
+  <main class="bg-white antialiased selection:bg-[#003366] selection:text-white text-left overflow-x-hidden">
+    
+    <header class="pt-32 pb-20 bg-white">
+      <div class="container mx-auto px-6 max-w-7xl">
+        <nav class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-12">
+          <a href={`/${lang}`} class="hover:text-[#003366] transition-colors">TRANG CHỦ</a>
+          <span class="opacity-30">•</span>
+          <a href={`/${lang}/industries/`} class="hover:text-[#003366] transition-colors">THÔNG TIN NGÀNH</a>
+          <span class="opacity-30">•</span>
+          <span class="text-gray-900 uppercase tracking-tighter font-bold">{data.title}</span>
+        </nav>
+        
+        {/* Sửa lỗi dính chữ bằng leading-[1.05] và loại bỏ chữ Industry thừa */}
+        <h1 class="text-5xl md:text-[85px] font-black text-[#003366] tracking-tighter uppercase not-italic leading-[1.05] mb-20 break-words max-w-4xl">
+          {data.title}
+        </h1>
+      </div>
+
+      <div class="w-full h-[50vh] md:h-[65vh] overflow-hidden shadow-inner border-y border-gray-100 bg-gray-50">
+        <img 
+          src={data.heroImg} 
+          class="w-full h-full object-cover" 
+          alt={data.title} 
+          loading="eager" 
+          onerror="this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab'"
+        />
+      </div>
+    </header>
+
+    <section class="py-24 md:py-40 bg-white">
+      <div class="container mx-auto px-6 max-w-7xl">
+        {/* Tăng gap-32 để tạo độ thoáng, tránh lỗi hiển thị sát nhau */}
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-32 items-start">
+          
+          <div class="lg:col-span-5">
+            <h2 class="text-4xl md:text-5xl font-black text-[#003366] leading-[1.2] tracking-tighter uppercase not-italic whitespace-pre-line break-words">
+              {data.introTitle}
+            </h2>
+          </div>
+          
+          <div class="lg:col-span-7 space-y-24 md:space-y-32">
+            <div class="space-y-8">
+              <h3 class="text-xl md:text-2xl font-black text-[#111] uppercase tracking-tight not-italic border-b-2 border-[#003366]/10 pb-6">
+                {data.subTitle1}
+              </h3>
+              <p class="text-gray-500 text-lg md:text-xl leading-relaxed font-medium not-italic whitespace-pre-line">
+                {data.subDesc1}
+              </p>
+            </div>
+
+            <div class="space-y-8">
+              <h4 class="text-xl md:text-2xl font-black text-[#111] uppercase tracking-tight not-italic border-b-2 border-[#003366]/10 pb-6">
+                {data.subTitle2}
+              </h4>
+              <p class="text-gray-500 text-lg md:text-xl leading-relaxed font-medium not-italic whitespace-pre-line">
+                {data.subDesc2}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-32 border-t border-gray-50 text-center bg-gray-50/30">
+      <button onclick="history.back()" class="group inline-flex flex-col items-center gap-8 transition-all">
+        <div class="w-20 h-20 rounded-full border border-gray-200 flex items-center justify-center bg-white shadow-sm group-hover:bg-[#003366] group-hover:text-white transition-all duration-700 group-hover:scale-110">
+          <span class="text-3xl">←</span>
+        </div>
+        <p class="text-[11px] font-black uppercase tracking-[0.5em] text-gray-400 group-hover:text-[#003366]">QUAY LẠI DANH SÁCH</p>
+      </button>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+  /* Loại bỏ hoàn toàn lỗi font nghiêng và dính chữ */
+  main * { font-style: normal !important; letter-spacing: -0.02em; }
+  h1, h2, h3 { text-wrap: balance; }
+</style>

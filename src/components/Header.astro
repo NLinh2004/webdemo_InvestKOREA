@@ -1,192 +1,168 @@
 ---
-import { useTranslations } from '../i18n/utils';
-const { lang } = Astro.props;
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = Astro.props.lang || getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const { pathname } = Astro.url;
+
+// Logic nhận diện trang hiện tại để đổi màu (Active State)
+const currentPath = pathname.split('/')[2] || '';
+
+// Hàm đổi ngôn ngữ luôn trả về trang chủ của ngôn ngữ đích để tránh lỗi 404
+const getPath = (target: string) => {
+  return `/${target}/`;
+};
+
+const menuKeys = ['why', 'industries', 'incentives', 'regions', 'services', 'about'];
+
+/**
+ * CẤU TRÚC SUBMENUS CHUẨN:
+ * Đảm bảo các href trỏ đúng đến trang chi tiết để click là chuyển trang ngay.
+ */
+const subMenus = {
+  why: [
+    { key: 'why.biz', href: `/${lang}/why-korea/economy` },
+    { key: 'why.fundamental', href: `/${lang}/why-korea/fundamental` },
+    { key: 'why.sustainable', href: `/${lang}/why-korea/sustainable` },
+    { key: 'why.stories', href: `/${lang}/why-korea/stories` },
+  ],
+  industries: [
+    { key: 'ind.news', href: `/${lang}/industries-news` },
+    ...['aerospace', 'battery', 'creative', 'finance', 'ict', 'machinery', 'energy', 'semiconductor', 'tourism', 'startup', 'automotive', 'consumer', 'display', 'chemical', 'logistics', 'bio', 'robot', 'shipbuilding'].map(k => ({ 
+      key: `ind.${k}`, 
+      href: `/${lang}/industries/${k}` 
+    }))
+  ],
+  incentives: [ 
+    { key: 'inc.policy', href: `/${lang}/news/policy-trends` },
+    { key: 'inc.title', href: `/${lang}/incentives/` }
+  ],
+  regions: [
+    ...['seoul', 'daejeon', 'daegu', 'ulsan', 'busan', 'gwangju', 'incheon'].map(k => ({ 
+      key: `reg.${k}`, 
+      href: `/${lang}/regions/${k}` 
+    })),
+    { key: 'reg.report', href: `/${lang}/regions/invest-report` }
+  ],
+  services: [
+    ...['guide', 'consulting', 'living', 'faq'].map(k => ({ 
+      key: `ser.${k}`, 
+      href: `/${lang}/services/${k}` 
+    }))
+  ],
+  about: [
+    { key: 'abt.about', href: `/${lang}/about/info` },
+    { key: 'abt.message', href: `/${lang}/about/message` },
+    { key: 'abt.media', href: `/${lang}/about/media` },
+  ]
+};
 ---
-<div class="w-full bg-[#002a5c] py-2">
-  <div class="max-w-7xl mx-auto px-4 flex justify-between items-center text-[11px] text-white font-bold uppercase">
+
+<div class="w-full bg-[#002a5c] py-2 relative z-[60]">
+  <div class="max-w-7xl mx-auto px-4 flex justify-between items-center text-[11px] text-white font-bold uppercase tracking-widest">
     <span>{t('nav.kotra')}</span>
     <a href="#" class="hover:underline">{t('nav.summit')}</a>
   </div>
 </div>
 
-<header class="w-full bg-white border-b border-gray-100 sticky top-0 z-50 h-[80px] flex items-center shadow-sm">
-  <div class="max-w-7xl mx-auto px-4 w-full flex justify-between items-center">
-    <a href={`/${lang}/`} class="text-2xl font-black text-[#003366] tracking-tighter italic">Invest KOREA</a>
+<header class="w-full bg-white border-b border-gray-100 sticky top-0 z-50 h-[80px] flex items-center shadow-sm transition-all" id="main-header">
+  <div class="max-w-7xl mx-auto px-4 w-full flex justify-between items-center h-full relative text-left">
+    
+    <a href={`/${lang}/`} class="text-2xl font-black text-[#003366] tracking-tighter z-50">Invest KOREA</a>
 
     <nav class="hidden lg:flex items-center gap-8 h-full">
-      {/* Thêm 'regions' vào mảng để hiển thị trên thanh menu */}
-      {['why', 'industries', 'incentives', 'regions', 'services', 'about'].map(key => (
-        <div class="relative group h-full flex items-center">
-          <a href={['why', 'industries', 'incentives', 'regions'].includes(key) ? `/${lang}/${key}/` : "#"} 
-             class="text-[14px] font-bold text-[#111] hover:text-[#003366] uppercase py-8">
-            {t(`nav.${key}`)}
-          </a>
+      {menuKeys.map(key => {
+        // Đồng bộ hóa tên path cho Why Korea
+        const isActive = currentPath === (key === 'why' ? 'why-korea' : key);
 
-          {/* MEGA MENU: WHY KOREA */}
-          {key === 'why' && (
-            <div class="fixed top-[112px] left-0 w-full bg-white border-t border-gray-100 shadow-2xl hidden group-hover:block z-50">
-              <div class="max-w-7xl mx-auto flex py-20 px-6">
-                <div class="w-1/3 border-r border-gray-100 pr-10">
-                  <h2 class="text-[56px] font-black italic uppercase tracking-tighter text-[#111] leading-none">
-                    Why <br/> KOREA
-                  </h2>
-                </div>
-                <div class="w-2/3 grid grid-cols-2 gap-x-20 gap-y-12 pl-24 pt-4">
-                  <div class="flex flex-col gap-5">
-                    <a href={`/${lang}/why#biz`} class="text-[18px] font-bold text-gray-800 hover:text-[#ee5931] transition-colors">{t('why.biz')}</a>
-                    <a href={`/${lang}/why#sustainable`} class="text-[18px] font-bold text-gray-800 hover:text-[#ee5931] transition-colors">{t('why.sustainable')}</a>
-                  </div>
-                  <div class="flex flex-col gap-5">
-                    <a href={`/${lang}/why#fundamental`} class="text-[18px] font-bold text-gray-800 hover:text-[#ee5931] transition-colors">{t('why.fundamental')}</a>
-                    <a href={`/${lang}/why#stories`} class="text-[18px] font-bold text-gray-800 hover:text-[#ee5931] transition-colors">{t('why.stories')}</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
+        return (
+          <div class="relative group h-full flex items-center nav-item">
+            
+            <a href={`/${lang}/${key === 'why' ? 'why-korea' : key}/`} 
+               class={`text-[14px] font-bold uppercase py-8 transition-colors block h-full flex items-center ${isActive ? 'text-[#003366]' : 'text-[#111] hover:text-[#003366]'}`}>
+              {t(`nav.${key}`)}
+            </a>
 
-          {/* MEGA MENU: INDUSTRIES */}
-          {key === 'industries' && (
-            <div class="fixed top-[112px] left-0 w-full bg-white border-t border-gray-100 shadow-2xl hidden group-hover:block z-50">
+            <span class={`absolute bottom-0 left-0 w-full h-[3px] bg-[#003366] transition-transform duration-300 origin-left ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+
+            <div class="megamenu-panel fixed top-[80px] left-0 w-full bg-white border-t border-gray-200 shadow-2xl hidden group-hover:block z-40 animate-in fade-in slide-in-from-top-1 duration-200">
               <div class="max-w-7xl mx-auto flex py-16 px-6">
-                <div class="w-1/4 border-r border-gray-100 pr-10">
-                  <h2 class="text-[48px] font-black italic uppercase tracking-tighter text-[#111] leading-none">
-                    Industries
-                  </h2>
-                </div>
-                <div class="w-3/4 grid grid-cols-2 gap-x-12 pl-16">
-                  <div class="flex flex-col gap-3">
-                    {['news', 'aerospace', 'battery', 'creative', 'finance', 'ict', 'machinery', 'energy', 'semiconductor', 'tourism'].map(ind => (
-                      <a href="#" class="text-[15px] font-medium text-gray-700 hover:text-[#ee5931] hover:font-bold transition-all">{t(`ind.${ind}`)}</a>
-                    ))}
-                  </div>
-                  <div class="flex flex-col gap-3">
-                    {['startup', 'automotive', 'consumer', 'display', 'chemical', 'logistics', 'bio', 'robot', 'shipbuilding'].map(ind => (
-                      <a href="#" class="text-[15px] font-medium text-gray-700 hover:text-[#ee5931] hover:font-bold transition-all">{t(`ind.${ind}`)}</a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          )} 
-
-          {/* MEGA MENU: INCENTIVES */}
-          {key === 'incentives' && (
-            <div class="fixed top-[112px] left-0 w-full bg-white border-t border-gray-100 shadow-2xl hidden group-hover:block z-50">
-              <div class="max-w-7xl mx-auto flex py-24 px-6">
-                <div class="w-1/3 border-r border-gray-100 pr-10">
-                  <h2 class="text-[56px] font-black italic uppercase tracking-tighter text-[#111] leading-none">
-                    Incentives
-                  </h2>
-                </div>
-                <div class="w-2/3 pl-20 pt-4">
-                  <a href={`/${lang}/incentives/`} class="text-[18px] font-bold text-gray-800 hover:text-[#ee5931] transition-colors">{t('inc.policy')}</a>
-                </div>
-              </div>
-            </div>
-          )} 
-
-          {/* MEGA MENU: REGIONS */}
-          {key === 'regions' && (
-            <div class="fixed top-[112px] left-0 w-full bg-white border-t border-gray-100 shadow-2xl hidden group-hover:block z-50">
-              <div class="max-w-7xl mx-auto flex py-16 px-6">
-                <div class="w-1/4 border-r border-gray-100 pr-10">
-                  <h2 class="text-[56px] font-black italic uppercase tracking-tighter text-[#111] leading-none">
-                    Regions
-                  </h2>
-                </div>
-                <div class="w-3/4 grid grid-cols-2 gap-x-20 pl-20 pt-4">
-                  <div class="flex flex-col gap-3">
-                    {['seoul', 'gyeonggi', 'daejeon', 'chungbuk', 'daegu', 'ulsan', 'gyeongnam', 'jeonbuk', 'jeju'].map(reg => (
-                      <a href="#" class="text-[15px] font-bold text-gray-800 hover:text-[#ee5931] transition-colors">{t(`reg.${reg}`)}</a>
-                    ))}
-                  </div>
-                  <div class="flex flex-col gap-3">
-                    {['incheon', 'gangwon', 'sejong', 'chungnam', 'busan', 'gyeongbuk', 'gwangju', 'jeonnam', 'report'].map(reg => (
-                      <a href="#" class={`text-[15px] font-bold hover:text-[#ee5931] transition-colors ${reg === 'report' ? 'text-[#003366] mt-4 underline' : 'text-gray-800'}`}>
-                        {t(`reg.${reg}`)}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          )} 
-          {key === 'services' && (
-            <div class="fixed top-[112px] left-0 w-full bg-white border-t border-gray-100 shadow-2xl hidden group-hover:block z-50">
-              <div class="max-w-7xl mx-auto flex py-16 px-6">
-                {/* Tiêu đề bên trái */}
-                <div class="w-1/4 border-r border-gray-100 pr-10">
-                  <h2 class="text-[56px] font-black italic uppercase tracking-tighter text-[#111] leading-none">
-                    Services
+                
+                <div class="w-1/3 border-r border-gray-100 pr-10 flex items-center">
+                  <h2 class="text-[52px] font-black uppercase tracking-tighter text-[#111] leading-[1.1] not-italic">
+                    {key === 'why' ? t('why.title') : t(`nav.${key}`)}
                   </h2>
                 </div>
 
-                {/* Danh sách 2 cột bên phải */}
-                <div class="w-3/4 grid grid-cols-2 gap-x-12 pl-16 pt-4">
-                  <div class="flex flex-col gap-4">
-                    {['guide', 'consulting', 'living', 'cost', 'legislation'].map(item => (
-                      <a href="#" class="text-[16px] font-bold text-gray-800 hover:text-[#ee5931] transition-colors">
-                        {t(`ser.${item}`)}
-                      </a>
-                    ))}
-                  </div>
-                  <div class="flex flex-col gap-4">
-                    {['faq', 'office', 'network', 'forms'].map(item => (
-                      <a href="#" class="text-[16px] font-bold text-gray-800 hover:text-[#ee5931] transition-colors">
-                        {t(`ser.${item}`)}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}  
-          {key === 'about' && (
-            <div class="fixed top-[112px] left-0 w-full bg-white border-t border-gray-100 shadow-2xl hidden group-hover:block z-50">
-              <div class="max-w-7xl mx-auto flex py-16 px-6">
-                {/* Tiêu đề bên trái */}
-                <div class="w-1/4 border-r border-gray-100 pr-10">
-                  <h2 class="text-[56px] font-black italic uppercase tracking-tighter text-[#111] leading-none">
-                    About Us
-                  </h2>
+                <div class="w-2/3 grid grid-cols-2 gap-x-20 gap-y-4 pl-24 pt-4">
+                  {(subMenus[key as keyof typeof subMenus] || []).map(sub => (
+                    <a href={sub.href} class="text-[17px] font-bold text-gray-900 hover:text-[#ee5931] transition-colors flex items-center gap-2 group/sub">
+                      <span class="w-0 h-px bg-[#ee5931] transition-all group-hover/sub:w-4"></span>
+                      {t(sub.key)}
+                    </a>
+                  ))}
                 </div>
 
-                {/* Danh sách các cột bên phải */}
-                <div class="w-3/4 grid grid-cols-2 gap-x-12 pl-16 pt-4">
-                  <div class="flex flex-col gap-6">
-                    <div class="flex flex-col gap-3">
-                      <a href="#" class="text-[16px] font-bold text-gray-800 hover:text-[#ee5931] transition-colors">{t('abt.message')}</a>
-                      <a href="#" class="text-[16px] font-bold text-gray-800 hover:text-[#ee5931] transition-colors">{t('abt.ombudsman')}</a>
-                    </div>
-                    <div class="flex flex-col gap-3 mt-4">
-                      <a href="#" class="text-[16px] font-bold text-gray-800 hover:text-[#ee5931] transition-colors">{t('abt.publication')}</a>
-                      <a href="#" class="text-[16px] font-bold text-gray-800 hover:text-[#ee5931] transition-colors">{t('abt.video')}</a>
-                    </div>
-                  </div>
-                  <div class="flex flex-col gap-6">
-                    <div class="flex flex-col gap-3">
-                      <a href="#" class="text-[16px] font-bold text-gray-800 hover:text-[#ee5931] transition-colors">{t('abt.about')}</a>
-                      <a href="#" class="text-[16px] font-bold text-gray-800 hover:text-[#ee5931] transition-colors">{t('abt.honorary')}</a>
-                    </div>
-                    <div class="flex flex-col gap-3 mt-4">
-                      <a href="#" class="text-[16px] font-bold text-gray-800 hover:text-[#ee5931] transition-colors">{t('abt.magazine')}</a>
-                      <a href="#" class="text-[16px] font-bold text-gray-800 hover:text-[#ee5931] transition-colors">{t('abt.media')}</a>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
-          )}     
-        </div>
-      ))}
+          </div>
+        );
+      })}
     </nav>
 
-    {/* Nút chuyển đổi ngôn ngữ */}
-    <div class="flex items-center bg-gray-100 rounded-full p-1 border border-gray-200">
-      <a href="/vi/" class={`px-4 py-1 text-[11px] font-bold rounded-full ${lang === 'vi' ? 'bg-[#003366] text-white' : 'text-gray-400 hover:text-gray-600'}`}>VN</a>
-      <a href="/ko/" class={`px-4 py-1 text-[11px] font-bold rounded-full ${lang === 'ko' ? 'bg-[#003366] text-white' : 'text-gray-400 hover:text-gray-600'}`}>KO</a>
+    <div class="flex items-center gap-4 z-50">
+      <div class="hidden md:flex items-center bg-gray-100 rounded-full p-1 border border-gray-200 font-bold">
+        <a href={getPath('vi')} class={`px-4 py-1 text-[11px] rounded-full transition-all ${lang === 'vi' ? 'bg-[#003366] text-white shadow-md' : 'text-gray-400 hover:text-gray-600'}`}>VN</a>
+        <a href={getPath('ko')} class={`px-4 py-1 text-[11px] rounded-full transition-all ${lang === 'ko' ? 'bg-[#003366] text-white shadow-md' : 'text-gray-400 hover:text-gray-600'}`}>KO</a>
+      </div>
+      <button id="btn-search-open" class="p-2 text-gray-600 hover:text-[#003366] transition-colors">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
     </div>
   </div>
 </header>
+<script>
+  function initHeader() {
+    const menus = document.querySelectorAll('.megamenu-panel');
+    const navItems = document.querySelectorAll('.nav-item');
+    const topBar = document.querySelector('div.w-full.bg-\\[\\#002a5c\\]') as HTMLElement;
+    const topBarHeight = topBar ? topBar.offsetHeight : 0;
+
+    function updateMenuTop() {
+      const scrollTop = window.scrollY;
+      const topValue = scrollTop >= topBarHeight ? '80px' : `${80 + topBarHeight}px`;
+      menus.forEach(menu => {
+        (menu as HTMLElement).style.top = topValue;
+      });
+    }
+
+    // Initial update
+    updateMenuTop();
+
+    window.addEventListener('scroll', () => {
+      menus.forEach(m => { (m as HTMLElement).style.display = 'none'; });
+      updateMenuTop();
+    }, { passive: true });
+
+    navItems.forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        const m = item.querySelector('.megamenu-panel');
+        if (m) {
+          (m as HTMLElement).style.display = '';
+          updateMenuTop(); // Ensure top is correct when showing
+        }
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initHeader);
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>
+
+<style>
+  header * { font-style: normal !important; letter-spacing: -0.01em; }
+</style>

@@ -1,0 +1,11 @@
+---
+import RegionDetailTemplate from '../../../components/templates/RegionDetailTemplate.astro';
+import { regionContentData, regionIdMap } from '../../../i18n/_region-detail';
+
+const lang = 'vi';
+const slug = 'busan'; // Từ khóa để lấy dữ liệu
+
+const content = regionContentData[lang][slug];
+const regionId = regionIdMap[slug]; 
+---
+<RegionDetailTemplate lang={lang} regionId={regionId} content={content} />

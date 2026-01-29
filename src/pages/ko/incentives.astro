@@ -1,33 +1,195 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { useTranslations } from '../../i18n/utils';
-const lang = 'ko'; 
+
+const lang = 'ko';
 const t = useTranslations(lang);
+
+const paths = {
+  home: `/${lang}`,
+  why: `/${lang}/why-korea`,
+  policyTrends: `/${lang}/news/policy-trends`,
+  pdfCashGrant: `/documents/${lang}/cash-grants-guide.pdf`,
+  pdfRD: `/documents/${lang}/rd-center-guide.pdf`,
+  pdfFDI2025: `/documents/${lang}/fdi-incentives-2025.pdf`,
+  phone: "tel:+82234971970"
+};
 ---
 
 <Layout title={t('inc.title')} lang={lang}>
-  <main class="bg-white min-h-screen">
-    <div class="border-b border-gray-100 py-4">
-      <div class="max-w-7xl mx-auto px-6 text-[12px] font-bold text-gray-400 uppercase tracking-widest">
-        Home <span class="mx-2">/</span> {t('inc.title')}
-      </div>
-    </div>
-
-    <section class="max-w-7xl mx-auto px-6 py-28 flex flex-col lg:flex-row gap-20">
-      <div class="lg:w-1/3 border-r border-gray-100">
-        <h1 class="text-[64px] font-black text-[#111] leading-none tracking-tighter uppercase italic">
-          Incentives
+  <main class="bg-white antialiased">
+    
+    <section class="w-full">
+      <div class="pt-12 pb-12 px-6 max-w-7xl mx-auto">
+        <nav class="text-sm text-gray-400 mb-8 font-bold uppercase tracking-widest">
+          <a href={paths.home} class="hover:text-gray-600">{t('inc.breadcrumb_home')}</a> · <span class="text-gray-900">{t('inc.title')}</span>
+        </nav>
+        
+        <h1 class="text-[80px] font-black text-[#111] tracking-tighter leading-none mb-12 uppercase">
+          {t('inc.title')}
         </h1>
       </div>
 
-      <div class="lg:w-2/3 pt-6">
-        <div class="group cursor-pointer">
-          <h3 class="text-[20px] font-black text-gray-900 uppercase group-hover:text-[#ee5931] transition-colors">
-            {t('inc.policy')}
-          </h3>
-          <div class="w-12 h-1 bg-[#ee5931] mt-2"></div>
+      <div class="w-full h-[550px] overflow-hidden shadow-inner">
+        <img 
+          src="https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=2070&auto=format&fit=crop" 
+          class="w-full h-full object-cover block" 
+          alt={t('inc.hero_alt')} 
+        />
+      </div>
+    </section>
+
+    <section class="py-32 max-w-[1200px] mx-auto px-6 text-left">
+      <div class="mb-20">
+        <h2 class="text-[42px] font-bold text-[#111] mb-6">{t('inc.tax_title')}</h2>
+        <p class="text-[15px] text-gray-500 max-w-xl leading-relaxed">{t('inc.tax_desc')}</p>
+      </div>
+      
+      <div class="md:pl-[30%] space-y-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-12">
+          <div class="space-y-4">
+            <h3 class="text-[19px] font-bold text-[#111]">{t('inc.tax_item1_h')}</h3>
+            <p class="text-[14px] text-gray-400 leading-relaxed font-medium">{t('inc.tax_item1_p')}</p>
+          </div>
+          <div class="space-y-4">
+            <h3 class="text-[19px] font-bold text-[#111]">{t('inc.tax_item2_h')}</h3>
+            <p class="text-[14px] text-gray-400 leading-relaxed font-medium">{t('inc.tax_item2_p')}</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-12 border-t border-transparent pt-4">
+          <div class="space-y-4">
+            <h3 class="text-[19px] font-bold text-[#111]">{t('inc.tax_item3_h')}</h3>
+            <p class="text-[14px] text-gray-400 leading-relaxed font-medium">{t('inc.tax_item3_p')}</p>
+          </div>
+          <div class="space-y-4">
+            <h3 class="text-[19px] font-bold text-[#111]">{t('inc.tax_item4_h')}</h3>
+            <p class="text-[14px] text-gray-400 leading-relaxed font-medium">{t('inc.tax_item4_p')}</p>
+          </div>
         </div>
       </div>
     </section>
+
+    <section class="py-32 max-w-[1200px] mx-auto px-6 border-t border-gray-100 text-left">
+      <div class="mb-20">
+        <h2 class="text-[42px] font-bold text-[#111] mb-6">{t('inc.loc_title')}</h2>
+        <p class="text-[15px] text-gray-500 max-w-4xl leading-relaxed">{t('inc.loc_desc')}</p>
+      </div>
+
+      <div class="md:pl-[30%] space-y-32">
+        <div class="flex flex-col space-y-6">
+          <div class="w-12 h-12 text-[#ee5931]">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-full h-full">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" />
+            </svg>
+          </div>
+          <div class="space-y-4">
+            <h3 class="text-[20px] font-bold text-[#111]">{t('inc.loc_item1_h')}</h3>
+            <p class="text-[14px] text-gray-400 leading-relaxed font-medium">{t('inc.loc_item1_p')}</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col space-y-6">
+          <div class="w-12 h-12 text-[#ee5931]">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-full h-full">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-.856.12-1.683.342-2.466" />
+            </svg>
+          </div>
+          <div class="space-y-4">
+            <h3 class="text-[20px] font-bold text-[#111]">{t('inc.loc_item2_h')}</h3>
+            <p class="text-[14px] text-gray-400 leading-relaxed font-medium">{t('inc.loc_item2_p')}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-32 max-w-[1200px] mx-auto px-6 border-t border-gray-100 text-left">
+      <div class="mb-16">
+        <h2 class="text-[42px] font-bold text-[#111]">{t('inc.cash_title')}</h2>
+      </div>
+
+      <div class="md:pl-[30%] space-y-12">
+        <p class="text-[15px] text-gray-500 leading-relaxed font-medium">{t('inc.cash_desc')}</p>
+
+        <div class="w-full rounded-2xl overflow-hidden shadow-sm border border-gray-50">
+          <img src="https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=2070&auto=format&fit=crop" class="w-full h-auto block" alt={t('inc.hero_alt')} />
+        </div>
+
+        <div class="pt-4">
+          <a href={paths.pdfCashGrant} download class="inline-flex bg-[#ee5931] text-white px-8 py-3.5 rounded-md font-bold text-[14px] items-center gap-2 hover:bg-[#d44d28] transition-colors shadow-md">
+            {t('inc.cash_btn')} <span class="text-lg"></span>
+          </a>
+          <p class="text-[11px] text-gray-400 mt-4 font-medium">{t('inc.pdf_notice')}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-32 max-w-[1200px] mx-auto px-6 border-t border-gray-100 text-left">
+      <div class="mb-16">
+        <h2 class="text-[42px] font-bold text-[#111]">{t('inc.rnd_title')}</h2>
+      </div>
+
+      <div class="md:pl-[30%] space-y-12">
+        <p class="text-[15px] text-gray-500 leading-relaxed font-medium">{t('inc.rnd_desc')}</p>
+
+        <div class="pt-8">
+          <h4 class="text-[18px] font-bold text-[#111] mb-8">{t('inc.rnd_notice')}</h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-100 border border-gray-100">
+             <div class="bg-white p-6 flex justify-between items-start group hover:bg-gray-50 transition-colors">
+              <div class="space-y-1">
+                <span class="block text-[15px] font-bold text-[#111]">{t('inc.rnd_step1')}</span>
+                <span class="block text-[12px] text-gray-400 font-medium">{t('inc.rnd_step1_sub')}</span>
+              </div>
+              <span class="text-[13px] font-black text-[#ee5931]">01</span>
+            </div>
+             </div>
+        </div>
+
+        <div class="pt-8">
+          <a href={paths.pdfRD} download class="inline-flex bg-[#ee5931] text-white px-8 py-3.5 rounded-md font-bold text-[14px] items-center gap-2 hover:bg-[#d44d28] transition-colors shadow-md">
+            {t('inc.rnd_title')} <span class="text-lg"></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-32 max-w-[1200px] mx-auto px-6 border-t border-gray-100 text-left">
+      <div class="mb-12">
+        <h2 class="text-[42px] font-bold text-[#111] leading-tight max-w-2xl">{t('inc.fdi_title')}</h2>
+      </div>
+
+      <div class="md:pl-[30%] space-y-12">
+        <p class="text-[15px] text-gray-500 leading-relaxed font-medium">{t('inc.fdi_desc')}</p>
+
+        <div class="flex flex-wrap gap-4 pt-4">
+          <a href={paths.pdfFDI2025} download class="bg-[#ee5931] text-white px-8 py-3.5 rounded-md font-bold text-[14px] flex items-center gap-2 hover:bg-[#d44d28] shadow-md">
+            {t('inc.fdi_btn_details')} <span class="text-sm"></span>
+          </a>
+          <a href={paths.policyTrends} class="bg-white border border-[#ee5931] text-[#ee5931] px-8 py-3.5 rounded-md font-bold text-[14px] hover:bg-orange-50 transition-colors">
+            {t('inc.fdi_btn_more')}
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 max-w-[1200px] mx-auto px-6">
+      <div class="border border-gray-100 rounded-lg p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm">
+        <div class="flex items-center gap-8 text-left">
+          <div class="w-16 h-16 bg-[#f4f7f9] rounded-full flex items-center justify-center text-gray-300">
+            <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-[12px] text-gray-400 font-bold mb-1 uppercase tracking-widest">{t('inc.contact_sub')}</span>
+            <h4 class="text-[24px] font-bold text-[#111]">{t('inc.contact_title')}</h4>
+          </div>
+        </div>
+        <a href={paths.phone} class="bg-[#ee5931] text-white px-10 py-4 rounded-md font-bold text-[18px] flex items-center gap-4 hover:scale-[1.02] transition-transform shadow-lg">
+           +84-0941119752
+        </a>
+      </div>
+    </section>
+
   </main>
 </Layout>

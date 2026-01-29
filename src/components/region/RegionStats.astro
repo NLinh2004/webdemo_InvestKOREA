@@ -1,0 +1,30 @@
+---
+interface Props {
+  labels: any;
+  stats: any;
+  prodUnit: string;
+}
+const { labels, stats, prodUnit } = Astro.props;
+---
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 bg-white p-8 rounded-2xl shadow-sm border border-gray-100 mt-10">
+  <div class="text-center">
+    <img src="/images/ik-en/2025/ico_localregion_key01.png" class="mx-auto mb-3" alt="" />
+    <p class="text-gray-500 text-sm mb-1">{labels.pop}</p>
+    <div class="text-2xl font-bold text-[#002a5c]">{stats.pop}</div>
+  </div>
+  <div class="text-center">
+    <img src="/images/ik-en/2025/ico_localregion_key02.png" class="mx-auto mb-3" alt="" />
+    <p class="text-gray-500 text-sm mb-1">{labels.comp}</p>
+    <div class="text-2xl font-bold text-[#002a5c]">{stats.comp}</div>
+  </div>
+  <div class="text-center">
+    <img src="/images/ik-en/2025/ico_localregion_key03.png" class="mx-auto mb-3" alt="" />
+    <p class="text-gray-500 text-sm mb-1">{labels.empl}</p>
+    <div class="text-2xl font-bold text-[#002a5c]">{stats.empl}</div>
+  </div>
+  <div class="text-center">
+    <img src="/images/ik-en/2025/ico_localregion_key04.png" class="mx-auto mb-3" alt="" />
+    <p class="text-gray-500 text-sm mb-1">{labels.prod}</p>
+    <div class="text-2xl font-bold text-[#002a5c]">{stats.prod} <span class="text-xs font-normal block text-gray-400 italic">({prodUnit})</span></div>
+  </div>
+</div>

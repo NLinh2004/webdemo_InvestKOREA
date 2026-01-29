@@ -1,0 +1,65 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { useTranslations } from '../../../i18n/utils';
+
+const lang = 'vi';
+const t = useTranslations(lang);
+
+// Lấy danh sách ID bài viết từ i18n (Ví dụ bạn có 3 bài: p1, p2, p3)
+const policyIds = ['p1', 'p2', 'p3']; 
+---
+
+<Layout title={`${t('inc.policy')} | Invest KOREA`} lang={lang}>
+  <main class="bg-white antialiased">
+    <section class="pt-12 pb-24 px-6 max-w-7xl mx-auto">
+      <nav class="text-sm text-gray-400 mb-8 font-bold uppercase tracking-widest italic-none">
+        <a href="/vi/" class="hover:text-gray-600">{t('inc.breadcrumb_home')}</a> · 
+        <span class="text-gray-900">{t('inc.policy')}</span>
+      </nav>
+      
+      <div class="flex flex-col md:flex-row justify-between items-end gap-8">
+        <h1 class="text-[60px] md:text-[80px] font-black text-[#111] tracking-tighter leading-[0.9] uppercase italic-none">
+          {t('inc.fdi_btn_more')}
+        </h1>
+        <p class="text-gray-400 text-sm font-medium max-w-xs pb-2 border-b-2 border-[#ee5931]">
+          {t('policy.subtitle')}
+        </p>
+      </div>
+    </section>
+
+    <section class="pb-32 px-6 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 gap-px bg-gray-100 border border-gray-100">
+        {policyIds.map(id => (
+          <article class="bg-white group hover:bg-gray-50 transition-all duration-500">
+            <a href={`/vi/news/${id}`} class="flex flex-col md:flex-row p-10 md:p-16 gap-8 md:gap-20">
+              <div class="md:w-1/4">
+                <span class="block text-[13px] font-black text-[#ee5931] tracking-widest">
+                  {t(`policy.${id}.date`)}
+                </span>
+                <span class="block text-[11px] font-bold text-gray-400 uppercase mt-2 tracking-widest">
+                  {t(`policy.${id}.cat`)}
+                </span>
+              </div>
+              <div class="md:w-3/4 space-y-6">
+                <h2 class="text-2xl md:text-4xl font-bold text-[#111] group-hover:text-[#ee5931] transition-colors leading-tight italic-none">
+                  {t(`policy.${id}.title`)}
+                </h2>
+                <p class="text-gray-500 leading-relaxed text-[16px] max-w-3xl line-clamp-2 font-medium">
+                  {t(`policy.${id}.desc`)}
+                </p>
+                <div class="pt-4 flex items-center gap-2 text-[12px] font-black uppercase tracking-widest text-[#111]">
+                  {t('home.more_btn')} 
+                  <span class="w-8 h-[2px] bg-[#111] group-hover:w-12 group-hover:bg-[#ee5931] transition-all"></span>
+                </div>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main * { font-style: normal !important; letter-spacing: -0.01em; }
+</style>

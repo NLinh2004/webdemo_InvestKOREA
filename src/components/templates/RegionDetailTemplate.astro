@@ -1,0 +1,72 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import RegionStats from '../region/RegionStats.astro';
+import { regionDetailLabels } from '../../i18n/_region-detail';
+
+interface Props {
+  lang: 'vi' | 'ko';
+  regionId: string; 
+  content: any;
+}
+
+const { lang, regionId, content } = Astro.props;
+const t = regionDetailLabels[lang];
+---
+
+<Layout title={`${content.title} - Invest KOREA`}>
+  <div class="bg-white">
+    <div class="max-w-[1400px] mx-auto px-6 py-6 border-b border-gray-100">
+      <nav class="flex text-sm text-gray-500 gap-2">
+        <a href={`/${lang}/`}>{t.home}</a> / 
+        <a href={`/${lang}/regions`}>{t.regions}</a> / 
+        <span class="text-gray-900 font-semibold">{content.title}</span>
+      </nav>
+      <h1 class="text-4xl font-black mt-4 text-[#002a5c]">{content.title}</h1>
+    </div>
+
+    <div class="w-full h-[400px] overflow-hidden">
+      <img src={`/images/regions/banner.png`} class="w-full h-full object-cover" alt={content.title} />
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 py-20">
+      <div class="flex flex-col lg:flex-row justify-between items-start gap-10">
+        <div class="flex-1">
+          <h2 class="text-3xl font-bold text-gray-900 leading-tight mb-6" set:html={content.subTitle} />
+          <a href="#" class="inline-flex items-center px-6 py-3 border border-[#ee5931] text-[#ee5931] font-bold rounded hover:bg-[#ee5931] hover:text-white transition-all">
+            {t.goSite}
+          </a>
+        </div>
+        <div class="flex-1 bg-gray-50 p-8 rounded-2xl">
+          <h3 class="text-lg font-bold text-[#002a5c] mb-3 uppercase tracking-wider">{t.keyIndustries}</h3>
+          <p class="text-gray-700 text-lg leading-relaxed">{content.industries}</p>
+        </div>
+      </div>
+
+      <RegionStats labels={t.stats} stats={content.stats} prodUnit={t.unit} />
+    </div>
+
+    <div class="relative py-32 bg-cover bg-fixed bg-center text-white" style={`background-image: url(/images/ik-en/2025/img_localregion${regionId}_02.jpg)`}>
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="relative max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold mb-8">{content.zoneTitle}</h2>
+        <p class="text-lg leading-relaxed mb-10 opacity-90">{content.zoneDesc}</p>
+        <a href="#" class="inline-block px-10 py-4 bg-white text-[#002a5c] font-black rounded-full hover:bg-orange-600 hover:text-white transition-all">
+          {t.visitSite}
+        </a>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 py-24">
+      <div class="flex flex-col md:flex-row bg-white rounded-3xl overflow-hidden shadow-xl border border-gray-100">
+        <div class="md:w-1/2 h-[450px]">
+          <img src={`/images/regions/building.jpg`} class="w-full h-full object-cover" alt="" />
+          <!-- <img src={`/images/ik-en/2025/img_localregion${regionId}_03.jpg`} class="w-full h-full object-cover" alt="" /> -->
+        </div>
+        <div class="md:w-1/2 p-12 flex flex-col justify-center bg-[#002a5c] text-white">
+          <h3 class="text-3xl font-bold mb-6 leading-tight" set:html={content.hubTitle} />
+          <p class="text-blue-100 text-lg leading-relaxed text-justify">{content.hubDesc}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

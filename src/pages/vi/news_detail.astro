@@ -1,0 +1,30 @@
+---
+import ArticleDetail from '../../components/ArticleDetail.astro';
+
+// Dữ liệu giả lập (Sau này có thể thay bằng fetch API)
+const articleData = {
+  title: "Ngành công nghiệp di động tương lai của Hàn Quốc: Tiến bộ thông qua phát triển hệ sinh thái và năng lực cạnh tranh toàn cầu",
+  category: "Phụ tùng ô tô",
+  date: "05.12.2025",
+  views: 1240,
+  content: `
+    <p class="lead text-lg font-medium text-gray-700 mb-6">Ngành công nghiệp di động tương lai của Hàn Quốc đang đẩy nhanh quá trình chuyển đổi cấu trúc...</p>
+    <figure class="my-8"><img src="/images/regions/banner.png" alt="Future Mobility" class="w-full h-auto rounded-xl shadow-md"><figcaption class="text-center text-sm text-gray-500 mt-2 italic">Hình ảnh minh họa</figcaption></figure>
+    <h3>Tăng trưởng của ngành công nghiệp</h3>
+    <p>Trong năm 2025, lĩnh vực xe thân thiện với môi trường...</p>
+  `,
+  tags: ["Di động tương lai", "Xe điện", "Tự lái"],
+  author: "Viết bởi: Nghiên cứu viên cao cấp Yeonhong Yu<br>Viện Công nghệ Ô tô Hàn Quốc",
+  relatedNews: [
+    { title: "Ngành công nghiệp pin của Hàn Quốc tăng cường khả năng cạnh tranh", date: "11.11.2025", link: "#" },
+    { title: "Hiện trạng đầu tư ngành bán dẫn", date: "02.10.2025", link: "#" }
+  ]
+};
+---
+
+<ArticleDetail 
+  lang="vi" 
+  backLink="/vi/industries/news" 
+  parentTitle="Các ngành công nghiệp"
+  article={articleData}
+/>

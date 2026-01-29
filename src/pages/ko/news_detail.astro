@@ -1,0 +1,37 @@
+---
+import ArticleDetail from '../../components/ArticleDetail.astro';
+
+// Dữ liệu giả lập (Sau này có thể thay bằng fetch API)
+const articleData = {
+  title: "한국의 미래 모빌리티 산업: 생태계 조성과 글로벌 경쟁력을 통한 도약",
+  category: "자동차부품",
+  date: "2025.12.05",
+  views: 1240,
+  content: `
+    <p class="lead text-lg font-medium text-gray-700 mb-6">
+      한국의 미래 모빌리티 산업은 전동화, 자율주행, SDV(소프트웨어 중심 자동차)로의 전환이라는 글로벌 패러다임 변화 속에서 구조적 전환을 가속화하고 있습니다.
+    </p>
+    <figure class="my-8">
+      <img src="/images/regions/banner.png" alt="Future Mobility" class="w-full h-auto rounded-xl shadow-md">
+      <figcaption class="text-center text-sm text-gray-500 mt-2 italic">자료 이미지</figcaption>
+    </figure>
+    <h3>산업의 성장과 현황</h3>
+    <p>
+      2025년, 한국의 친환경 자동차 분야는 내수와 수출의 동반 성장을 기록하고 있습니다. 특히 전기차와 하이브리드 차량의 기술력 강화를 통해 글로벌 시장에서의 입지를 더욱 공고히 하고 있습니다.
+    </p>
+  `,
+  tags: ["미래 모빌리티", "전기차", "자율주행"],
+  author: "작성자: 유연홍 선임연구원<br>한국자동차연구원 (KATECH)",
+  relatedNews: [
+    { title: "한국 배터리 산업, 정책 지원을 통한 경쟁력 강화", date: "2025.11.11", link: "#" },
+    { title: "한국 반도체 산업의 투자 현황 및 전망", date: "2025.10.02", link: "#" }
+  ]
+};
+---
+
+<ArticleDetail 
+  lang="ko" 
+  backLink="/ko/industries/news" 
+  parentTitle="Các ngành công nghiệp"
+  article={articleData}
+/>
