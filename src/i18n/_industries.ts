@@ -577,6 +577,7 @@ export const industriesData = {
           link: "/vi/aerospace",
           key: "tourism",
         },
+
       ],
     },
     opportunities: [
@@ -608,7 +609,6 @@ export const industriesData = {
       moreBtn: "Xem thêm",
       link: "/vi/industries-news",
       items: [
-       
         {
           title:
             "Ngành công nghiệp di động tương lai của Hàn Quốc: Tiến bộ thông qua phát triển hệ sinh thái và năng lực cạnh tranh toàn cầu",
@@ -623,6 +623,7 @@ export const industriesData = {
           link: "/vi/news_detail",
           tags: ["Pin"],
         },
+
       ],
     },
   },
@@ -636,23 +637,7 @@ export const industriesData = {
       title: "중점 유치 산업",
       desc: "한국의 다양한 산업 환경은 놀라운 회복력과 혁신을 자랑하며,\n최적의 투자처로서의 입지를 다지고 있습니다.",
       items: [
-        { title: "항공우주", icon: industryIcons.aerospace, key: "aerospace" },
-        { title: "자동차부품", icon: industryIcons.auto, key: "auto" },
-        { title: "배터리", icon: industryIcons.battery, key: "battery" },
-        { title: "소비재", icon: industryIcons.consumer, key: "consumer" },
-        { title: "문화콘텐츠", icon: industryIcons.culture, key: "culture" },
-        { title: "디스플레이", icon: industryIcons.display, key: "display" },
-        { title: "금융", icon: industryIcons.finance, key: "finance" },
-        { title: "정밀화학", icon: industryIcons.chemical, key: "chemical" },
-        { title: "ICT", icon: industryIcons.ict, key: "ict" },
-        { title: "물류", icon: industryIcons.logistics, key: "logistics" },
-        { title: "기계", icon: industryIcons.machinery, key: "machinery" },
-        { title: "의약·바이오", icon: industryIcons.bio, key: "bio" },
-        { title: "신재생에너지", icon: industryIcons.energy, key: "energy" },
-        { title: "로봇", icon: industryIcons.robot, key: "robot" },
-        { title: "반도체", icon: industryIcons.semicon, key: "semicon" },
-        { title: "조선·해양", icon: industryIcons.ship, key: "ship" },
-        { title: "관광", icon: industryIcons.tourism, key: "tourism" },
+
         {
           title: "항공우주",
           icon: industryIcons.aerospace,
@@ -755,6 +740,7 @@ export const industriesData = {
           link: "/vi/aerospace",
           key: "tourism",
         },
+
       ],
     },
     opportunities: [
@@ -786,6 +772,7 @@ export const industriesData = {
       moreBtn: "더보기",
       link: "/ko/industries-news",
       items: [
+
         {
           title:
             "한국의 미래 모빌리티 산업: 생태계 조성과 글로벌 경쟁력을 통한 도약",
@@ -799,6 +786,7 @@ export const industriesData = {
           link: "/ko/news_detail",
           tags: ["배터리"],
         },
+
       ],
     },
   },
