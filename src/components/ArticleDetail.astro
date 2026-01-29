@@ -1,0 +1,167 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { industryNewsData } from '../i18n/_industries-news';
+
+// Định nghĩa kiểu dữ liệu đầu vào cho Component
+interface Props {
+  lang: 'vi' | 'ko';
+  backLink: string; // Link quay lại danh sách
+  parentTitle: string; // Tên danh mục cha (ví dụ: Industries)
+  article: {
+    title: string;
+    category: string;
+    date: string;
+    views: number;
+    content: string; // HTML Content
+    tags: string[];
+    author?: string; // Tùy chọn
+    relatedNews: {
+      title: string;
+      date: string;
+      link: string;
+    }[];
+  };
+}
+
+const { lang, article, backLink, parentTitle } = Astro.props;
+const t = industryNewsData[lang]; // Lấy text đa ngôn ngữ
+const ui = t.detail; // Lấy text giao diện chi tiết
+---
+
+<Layout title={`${article.title} - Invest KOREA`}>
+  <div class="bg-white min-h-screen pb-24">
+    
+    <div class="bg-gray-50 border-b border-gray-200">
+      <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-6">
+        <nav class="text-sm text-gray-500 flex gap-2 items-center flex-wrap">
+          <a href={`/${lang}/`} class="hover:text-orange-600 transition-colors">{t.breadcrumb[0]}</a>
+          <span class="text-gray-300">/</span>
+          <span class="hover:text-orange-600 transition-colors cursor-pointer">{parentTitle}</span>
+          <span class="text-gray-300">/</span>
+          <a href={backLink} class="hover:text-orange-600 transition-colors">{t.title}</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 relative">
+        
+        <div class="lg:col-span-8">
+          
+          <div class="border-b border-gray-200 pb-8 mb-8">
+            <span class="inline-block px-3 py-1 rounded-full bg-blue-50 text-[#002a5c] text-sm font-bold mb-4 border border-blue-100">
+              {article.category}
+            </span>
+            <h1 class="text-3xl md:text-4xl font-black text-gray-900 leading-tight mb-6">
+              {article.title}
+            </h1>
+            <div class="flex items-center text-gray-500 text-sm gap-6">
+              <span class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                {article.date}
+              </span>
+              <span class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+                {article.views}
+              </span>
+            </div>
+          </div>
+
+          <article class="prose prose-lg max-w-none prose-headings:text-[#002a5c] prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-img:rounded-xl prose-img:shadow-md text-justify">
+            <Fragment set:html={article.content} />
+          </article>
+
+          {article.author && (
+            <div class="text-right text-sm text-gray-500 mt-8 italic border-t border-gray-100 pt-4">
+              <Fragment set:html={article.author} />
+            </div>
+          )}
+
+          <div class="mt-12 pt-8 border-t border-gray-200">
+            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>
+              {ui.keywords}
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              {article.tags.map(tag => (
+                <a href="#" class="px-4 py-2 bg-gray-100 text-gray-600 rounded-lg text-sm hover:bg-[#002a5c] hover:text-white transition-colors duration-300">
+                  #{tag}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div class="mt-12">
+            <a href={backLink} class="inline-flex items-center gap-2 px-6 py-3 border border-gray-300 rounded-lg text-gray-700 font-bold hover:bg-gray-50 hover:text-[#002a5c] hover:border-[#002a5c] transition-all">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              {ui.backToList}
+            </a>
+          </div>
+
+        </div>
+
+        <div class="lg:col-span-4">
+          <div class="sticky top-24 space-y-8">
+            
+            <div class="flex items-center justify-end gap-2">
+              <span class="text-xs font-bold text-gray-400 uppercase mr-2">{ui.share}</span>
+              <button class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 hover:bg-[#1877F2] hover:text-white transition-all text-gray-500" title="Facebook">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </button>
+              <button class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 hover:bg-[#0A66C2] hover:text-white transition-all text-gray-500" title="LinkedIn">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              </button>
+              <button class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-800 hover:text-white transition-all text-gray-500" title="Copy Link">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+              </button>
+            </div>
+
+            <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 shadow-sm">
+              <h3 class="text-lg font-bold text-[#002a5c] mb-6 border-l-4 border-orange-500 pl-3">
+                {ui.relatedNews}
+              </h3>
+              <div class="space-y-6">
+                {article.relatedNews.map(item => (
+                  <a href={item.link} class="group block">
+                    <h4 class="font-bold text-gray-800 group-hover:text-orange-600 transition-colors line-clamp-2 leading-snug mb-2 text-sm">
+                      {item.title}
+                    </h4>
+                    <span class="text-xs text-gray-400 flex items-center gap-1 group-hover:text-orange-400">
+                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                      {item.date}
+                    </span>
+                  </a>
+                ))}
+              </div>
+              <div class="mt-6 pt-6 border-t border-gray-200">
+                <a href={backLink} class="flex items-center justify-center gap-2 text-sm font-bold text-[#002a5c] hover:text-orange-600 transition-colors">
+                  {ui.viewAll}
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </a>
+              </div>
+            </div>
+
+            <a href="#" class="block relative rounded-2xl overflow-hidden group shadow-lg">
+              <img src="/images/regions/building.jpg" alt="Contact" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-700">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#002a5c] to-[#002a5c]/60 flex flex-col justify-center items-center text-center p-6">
+                <h4 class="text-white font-bold text-lg mb-4">{ui.needAdvice}</h4>
+                <span class="px-6 py-2 bg-white text-[#002a5c] text-sm font-bold rounded-full hover:bg-orange-500 hover:text-white transition-colors">
+                  {ui.contactUs}
+                </span>
+              </div>
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</Layout>

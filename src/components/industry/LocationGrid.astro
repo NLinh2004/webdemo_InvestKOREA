@@ -1,0 +1,38 @@
+---
+// src/components/industry/LocationGrid.astro
+interface Location {
+  rank: number;
+  city: string;
+  name: string;
+  link: string;
+}
+
+interface Props {
+  locations: Location[];
+}
+
+const { locations } = Astro.props;
+---
+
+<section class="max-w-7xl mx-auto px-6 py-16">
+  <h2 class="text-3xl font-bold text-gray-900 mb-10 text-center">Recommendation on Locations</h2>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {locations.map((loc) => (
+      <a href={loc.link} target="_blank" class="group relative bg-white border border-gray-100 rounded-xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+        <div class="absolute top-0 right-0 bg-gray-100 text-gray-400 font-black text-4xl p-4 opacity-30 group-hover:text-orange-200 group-hover:opacity-100 transition-colors">
+          {loc.rank}
+        </div>
+        
+        <div class="mt-4">
+          <span class="text-xs font-bold text-orange-600 bg-orange-50 px-2 py-1 rounded uppercase tracking-wider">{loc.city}</span>
+          <h3 class="text-xl font-bold text-[#002a5c] mt-3 mb-2 group-hover:text-orange-600 transition-colors">{loc.name}</h3>
+          <span class="text-sm text-gray-500 flex items-center gap-1 mt-4 group-hover:translate-x-2 transition-transform">
+            View Information 
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+          </span>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>

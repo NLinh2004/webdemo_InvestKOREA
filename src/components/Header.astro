@@ -129,15 +129,32 @@ const subMenus = {
   function initHeader() {
     const menus = document.querySelectorAll('.megamenu-panel');
     const navItems = document.querySelectorAll('.nav-item');
+    const topBar = document.querySelector('div.w-full.bg-\\[\\#002a5c\\]') as HTMLElement;
+    const topBarHeight = topBar ? topBar.offsetHeight : 0;
+
+    function updateMenuTop() {
+      const scrollTop = window.scrollY;
+      const topValue = scrollTop >= topBarHeight ? '80px' : `${80 + topBarHeight}px`;
+      menus.forEach(menu => {
+        (menu as HTMLElement).style.top = topValue;
+      });
+    }
+
+    // Initial update
+    updateMenuTop();
 
     window.addEventListener('scroll', () => {
       menus.forEach(m => { (m as HTMLElement).style.display = 'none'; });
+      updateMenuTop();
     }, { passive: true });
 
     navItems.forEach(item => {
       item.addEventListener('mouseenter', () => {
         const m = item.querySelector('.megamenu-panel');
-        if (m) (m as HTMLElement).style.display = ''; 
+        if (m) {
+          (m as HTMLElement).style.display = '';
+          updateMenuTop(); // Ensure top is correct when showing
+        }
       });
     });
   }

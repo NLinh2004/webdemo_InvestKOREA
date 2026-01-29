@@ -1,0 +1,93 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import IndustryHero from '../../components/industry/IndustryHero.astro';
+import ContentSection from '../../components/industry/ContentSection.astro';
+import ContactCard from '../../components/industry/ContactCard.astro';
+import LocationGrid from '../../components/industry/LocationGrid.astro';
+import RelatedIndustries from '../../components/industry/RelatedIndustries.astro'; // Giả sử bạn tạo thêm cái này cho list ngành khác
+
+// Dữ liệu cho trang Aerospace
+const pageData = {
+  title: "Aerospace Industry",
+  heroImage: "/images/ik-en/2025/img_industries01_01.jpg",
+  pdf: "/file/ik-en/Industry_Discover_Aerospace.pdf",
+  breadcrumbs: [
+    { label: "Home", href: "/" },
+    { label: "Industries", href: "/industries" },
+    { label: "Aerospace", href: "#" },
+  ],
+  locations: [
+    { rank: 1, city: "Gyeongsangnam-do Sacheon City", name: "Gyeongnam Air National Industrial Complex", link: "https://www.kicox.or.kr/..." },
+    { rank: 2, city: "Gyeongsangbuk-do Yeongcheon City", name: "Gokyong General Industrial Complex", link: "https://www.kicox.or.kr/..." },
+    { rank: 3, city: "Busan Metropolitan City", name: "Jeonggwan Agricultural Industrial Complex", link: "#" },
+    // ... thêm các địa điểm khác
+  ]
+};
+---
+
+<Layout title={pageData.title}>
+  
+  <IndustryHero 
+    title={pageData.title} 
+    image={pageData.heroImage} 
+    breadcrumbs={pageData.breadcrumbs}
+    pdfLink={pageData.pdf}
+  />
+
+  <ContentSection title="Consistent R&D for Technological Advancement">
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-gray-50 p-6 rounded-lg">
+        <h3 class="text-xl font-bold text-[#002a5c] mb-2">Advancements in <span class="text-orange-600">Korea's</span> Core Technology</h3>
+        <p>Although the trade volume is smaller than that of other major countries, Korea focuses on investing in and securing technology. Consequently, the technology gap is relatively low, implying Korea’s strength in technology.</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg">
+        <h3 class="text-xl font-bold text-[#002a5c] mb-2">Continuous R&D</h3>
+        <p>Following a period of decline due to the effect of the pandemic, aerospace exports began to recover in 2022 and have since shown moderate growth through 2023.</p>
+      </div>
+    </div>
+  </ContentSection>
+
+  <ContentSection 
+    theme="image-bg" 
+    backgroundImage="/images/ik-en/2025/img_industries01_02.jpg"
+    title="Successful Development and Launch of <br> Three-stage Launch Vehicle Nuri"
+  >
+    <p>Korea laid the foundation for revitalizing the space industry and building the infrastructure for producing space launch vehicles, including engine technology and systems, and test facilities. Transfer of Nuri's technologies to businesses also contributed to building the ecosystem of the space industry.</p>
+  </ContentSection>
+
+  <ContentSection 
+    theme="list" 
+    title="Global Companies Open R&D Centers<br> and Production Base in <span>Korea</span>"
+    image="/images/ik-en/2025/img_industries01_03.jpg"
+  >
+    <p>US-based Boeing established the world’s largest Boeing Korea Engineering and Technology Research Center (BKETC) in Seoul in 2019 and is creating synergies by collaborating with Korean communication, semiconductor and manufacturing sectors.</p>
+  </ContentSection>
+
+  <ContentSection 
+    theme="list" 
+    reverse={true}
+    title="Towards Becoming a Global <br> Aerospace Powerhouse"
+    image="/images/ik-en/2025/img_industries01_04.jpg"
+  >
+    <p>The government has designated aerospace as one of the 12 national strategic technologies, emphasizing its strategic importance at the national level and actively supporting it for future growth and independent development of technologies.</p>
+  </ContentSection>
+
+  <ContentSection 
+    theme="list" 
+    title="Three-Axis System of <br> Space Industry Clusters"
+    image="/images/ik-en/2025/img_industries01_05.jpg"
+  >
+    <p>The government designated Jeonnam (launch vehicle), Gyeongnam (satellite), and Daejeon (research and talent development) as space industry clusters to foster the space industry led by the private sector.</p>
+  </ContentSection>
+
+  <ContactCard 
+    name="Woomin Park" 
+    position="PM" 
+    team="Key Industries Promotion Team" 
+    phone="+82-2-3460-7888" 
+    email="wmpark@kotra.or.kr" 
+  />
+
+  <LocationGrid locations={pageData.locations} />
+
+  </Layout>

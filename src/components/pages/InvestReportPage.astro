@@ -1,0 +1,104 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { regionReportPageData } from '../../i18n/_regions-report';
+import { locationReportsData } from '../../i18n/_regions'; // Import dữ liệu báo cáo có sẵn
+
+interface Props {
+  lang: 'vi' | 'ko';
+}
+
+const { lang } = Astro.props;
+const t = regionReportPageData[lang];
+const baseReports = locationReportsData[lang].items;
+
+// TẠO DỮ LIỆU GIẢ LẬP MỞ RỘNG (Để test phân trang & lọc)
+// Nhân bản danh sách 3 bài báo cáo gốc lên thành 40 bài
+const reportList = Array.from({ length: 40 }).map((_, i) => {
+  const baseItem = baseReports[i % baseReports.length];
+  const randomRegion = t.regionNames[i % t.regionNames.length];
+  
+  return {
+    ...baseItem,
+    id: i,
+    title: `${baseItem.title} (${i + 1})`,
+    region: randomRegion, 
+    date: lang === 'vi' ? `0${(i % 9) + 1}.12.2025` : `2025.12.0${(i % 9) + 1}`
+  };
+});
+
+const filterOptions = [t.allRegions, ...t.regionNames];
+---
+
+<Layout title={`${t.title} - Invest KOREA`}>
+  
+  <div class="bg-gray-50 min-h-screen pb-24">
+    
+    <div class="bg-white border-b border-gray-200">
+      <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-8">
+        <nav class="text-sm text-gray-500 mb-4 flex gap-2 items-center">
+          <a href={`/${lang}/`} class="hover:text-[#ee5931]">{t.breadcrumb[0]}</a> 
+          <span class="text-gray-300">/</span> 
+          <a href={`/${lang}/regions`} class="hover:text-[#ee5931]">{t.breadcrumb[1]}</a>
+          <span class="text-gray-300">/</span> 
+          <span class="text-gray-900 font-semibold">{t.breadcrumb[2]}</span>
+        </nav>
+        <h1 class="text-4xl font-black text-gray-900 tracking-tight mb-4">{t.title}</h1>
+        <p class="text-gray-600 max-w-2xl text-lg">{t.desc}</p>
+      </div>
+    </div>
+
+    <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-12">
+      
+      <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 mb-10">
+        <div class="flex flex-col md:flex-row gap-4 mb-8">
+          <div class="w-full md:w-1/4">
+            <select id="region-select" class="w-full h-12 px-4 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 focus:outline-none focus:border-[#002a5c]">
+              {filterOptions.map(reg => <option value={reg}>{reg}</option>)}
+            </select>
+          </div>
+          <div class="w-full md:w-3/4 flex gap-2">
+            <input 
+              id="report-search-input"
+              type="text" 
+              placeholder={t.searchPlaceholder}
+              class="flex-1 h-12 px-4 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 focus:outline-none focus:border-[#002a5c]"
+            />
+            <button id="report-btn-search" class="h-12 px-8 bg-[#002a5c] text-white font-bold rounded-lg hover:bg-[#ee5931] transition-colors shadow-md flex items-center gap-2 whitespace-nowrap">
+              {t.searchBtn}
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <span class="block text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">{t.filterLabel}</span>
+          <div class="flex flex-wrap gap-2">
+            {filterOptions.map((reg, index) => (
+              <button 
+                data-region={reg}
+                class={`filter-btn px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 
+                  ${index === 0 ? 'bg-[#002a5c] text-white border-[#002a5c]' : 'bg-white text-gray-600 border-gray-200 hover:border-orange-300 hover:bg-orange-50'}`}
+              >
+                {reg}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center mb-6">
+        <p class="text-gray-600 font-medium">
+          {t.resultText} <span id="total-count" class="text-[#ee5931] font-bold">0</span> {t.unit}
+        </p>
+      </div>
+
+      <div id="report-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[400px]"></div>
+
+      <div id="pagination-container" class="flex justify-center mt-12 gap-2"></div>
+
+    </div>
+  </div>
+</Layout>
+
+<script type="application/json" id="report-data" set:html={JSON.stringify(reportList)}></script>
+
+<script src="../../scripts/location-report.ts"></script>

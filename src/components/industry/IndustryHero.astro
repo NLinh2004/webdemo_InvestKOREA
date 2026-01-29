@@ -1,0 +1,44 @@
+---
+// src/components/industry/IndustryHero.astro
+interface Props {
+  title: string;
+  breadcrumbs: { label: string; href: string }[];
+  image: string;
+  pdfLink?: string;
+}
+
+const { title, breadcrumbs, image, pdfLink } = Astro.props;
+---
+
+<div class="relative bg-white">
+  <div class="max-w-7xl mx-auto px-6 py-4 border-b border-gray-100">
+    <nav class="flex text-sm text-gray-500 space-x-2">
+      {breadcrumbs.map((item, index) => (
+        <>
+          <a href={item.href} class="hover:text-blue-900 transition-colors">{item.label}</a>
+          {index < breadcrumbs.length - 1 && <span>/</span>}
+        </>
+      ))}
+    </nav>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-8 gap-4">
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">{title}</h1>
+      
+      {pdfLink && (
+        <a href={pdfLink} download class="inline-flex items-center gap-2 px-6 py-3 bg-[#002a5c] text-white font-semibold rounded-lg hover:bg-orange-600 transition-all shadow-md group">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          Discover More (PDF)
+        </a>
+      )}
+    </div>
+
+    <div class="relative h-[400px] w-full rounded-2xl overflow-hidden shadow-xl">
+      <img src={image} alt={title} class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+    </div>
+  </div>
+</div>
