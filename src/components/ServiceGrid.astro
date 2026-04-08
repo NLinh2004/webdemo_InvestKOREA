@@ -1,6 +1,7 @@
 ---
 interface Props {
   title: string;
+  description?: string;
   items: {
     title: string;
     icon: string;
@@ -8,16 +9,21 @@ interface Props {
   }[];
 }
 
-const { title, items } = Astro.props;
+const { title, description, items } = Astro.props;
 ---
 
 <section class="bg-white py-24">
   <div class="container mx-auto px-6">
     
     <div class="max-w-[1400px] mx-auto text-left mb-16">
-      <h2 class="text-4xl font-black text-[#003366] uppercase tracking-tighter">
+      <h2 class="text-3xl md:text-4xl font-black text-[#003366] uppercase tracking-tighter leading-tight mb-4">
         {title}
       </h2>
+      {description && (
+        <p class="text-gray-500 text-base md:text-lg max-w-3xl leading-relaxed font-medium">
+          {description}
+        </p>
+      )}
     </div>
     
     <div class="grid grid-cols-2 md:grid-cols-4 max-w-[1400px] mx-auto border-t border-l border-gray-200">
@@ -26,9 +32,8 @@ const { title, items } = Astro.props;
           href={item.link} 
           class="
             bg-white 
-            p-10 
-            h-52 
-            /* Thêm viền phải và dưới để tạo hiệu ứng lưới dính liền */
+            p-6 md:p-10 
+            min-h-[160px] md:h-52 
             border-r border-b border-gray-200 
             flex flex-col justify-between 
             hover:bg-[#003366] 
@@ -37,13 +42,13 @@ const { title, items } = Astro.props;
           "
         >
           <div class="mb-4">
-  <div class="text-4xl text-gray-800 group-hover:text-white transition-all duration-300">
-    <Fragment set:html={item.icon} />
-  </div>
-</div>
+            <div class="text-3xl md:text-4xl text-gray-800 group-hover:text-white transition-all duration-300">
+              <Fragment set:html={item.icon} />
+            </div>
+          </div>
 
-          <div class="flex justify-between items-end text-left">
-            <span class="text-sm font-black text-gray-700 group-hover:text-white uppercase tracking-tight leading-tight w-2/3 block">
+          <div class="flex justify-between items-end text-left mt-2">
+            <span class="text-xs md:text-sm font-black text-gray-700 group-hover:text-white uppercase tracking-tight leading-tight w-2/3 block">
               {item.title}
             </span>
             <span class="text-gray-300 group-hover:text-white group-hover:translate-x-1 transition-all text-xl">

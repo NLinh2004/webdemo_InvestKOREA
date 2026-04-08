@@ -49,7 +49,7 @@ const featureStories = [
         <nav class="text-sm text-gray-400 mb-8 font-bold uppercase tracking-widest">
           <a href={paths.home} class="hover:text-gray-900 transition-colors">Trang chủ</a> · <span class="text-gray-900">{t('why.title')}</span>
         </nav>
-        <h1 class="text-[80px] font-black text-[#111] tracking-tighter leading-none mb-12 uppercase not-italic">
+        <h1 class="text-4xl sm:text-5xl md:text-[80px] font-black text-[#111] tracking-tighter leading-tight md:leading-none mb-12 uppercase not-italic">
           {t('why.title')}
         </h1>
       </div>
@@ -59,23 +59,25 @@ const featureStories = [
     </section>
 
     <section class="py-24 px-6 max-w-7xl mx-auto">
-      <div class="flex flex-col md:flex-row gap-4 h-[650px] w-full items-stretch">
+      <div class="pillar-wrapper">
         {mainPillars.map((item) => (
-          <a href={`/${lang}/why-korea/${item.id}`} class="pillar-card group relative flex-[0.7] h-full rounded-[32px] overflow-hidden cursor-pointer transition-all duration-[800ms] ease-[cubic-bezier(0.2,1,0.3,1)] hover:flex-[3] hover:shadow-2xl shadow-md border border-gray-100">
-            <img src={item.img} class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80"></div>
-            <div class="absolute top-12 left-10 text-white z-10 pr-10 text-left">
-              <span class="text-xl font-black block mb-2 opacity-80">{item.num}</span>
-              <h3 class="text-[34px] font-black leading-tight uppercase tracking-tighter w-[400px] whitespace-nowrap group-hover:whitespace-normal transition-all duration-500 not-italic">
-                {t(item.key)}
-              </h3>
-            </div>
+          <a href={`/${lang}/why-korea/${item.id}`} class="pillar-card group">
             
-            <div class="absolute bottom-12 left-10 z-10 opacity-0 translate-y-8 transition-all duration-500 delay-200 group-hover:opacity-100 group-hover:translate-y-0">
-              <div class="bg-[#ee5931] text-white px-10 py-4 rounded-xl font-black text-sm uppercase tracking-widest shadow-xl group-hover:bg-white group-hover:text-[#ee5931] transition-all">
+            <img src={item.img} class="pillar-img" />
+
+            <div class="overlay"></div>
+
+            <div class="content-top">
+              <span class="num">{item.num}</span>
+              <h3>{t(item.key)}</h3>
+            </div>
+
+            <div class="content-bottom">
+              <div class="btn">
                 {t('why.move_page') || 'XEM CHI TIẾT'} →
               </div>
             </div>
+
           </a>
         ))}
       </div>
@@ -85,7 +87,7 @@ const featureStories = [
       <div class="max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 lg:grid-cols-12 items-start gap-12 text-left">
           <div class="lg:col-span-8">
-            <h2 class="text-[56px] font-black text-[#111] leading-[1.05] mb-12 uppercase tracking-tighter not-italic">
+            <h2 class="text-3xl md:text-[56px] font-black text-[#111] leading-[1.05] mb-12 uppercase tracking-tighter not-italic">
               {t('why.incentive_title_1')} <br/> 
               {t('why.incentive_title_2')} <br/>
               {t('why.incentive_title_3')} <span class="text-[#ee5931]">{t('why.incentive_title_orange')}</span>
@@ -155,14 +157,12 @@ const featureStories = [
 </Layout>
 
 <style>
-  .scrollbar-hide::-webkit-scrollbar { display: none; }
-  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-  #ind-slider { cursor: grab; }
-  
-  .pillar-card { will-change: flex; text-decoration: none; }
-  .pillar-card:not(:hover) h3 { font-size: 26px; opacity: 0.7; }
-
-  .slider-arrow {
+.pillar-wrapper {
+  display: flex;
+  gap: 16px;
+  height: 650px;
+}
+.slider-arrow {
     width: 3.5rem;
     height: 3.5rem;
     border-radius: 9999px;
@@ -175,19 +175,141 @@ const featureStories = [
     cursor: pointer;
     font-size: 1.25rem;
   }
-  .slider-arrow:hover { 
+.slider-arrow:hover { 
     background: #111; 
     color: white; 
     border-color: #111;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   }
-  .slider-arrow:active { transform: scale(0.95); }
+.slider-arrow:active { transform: scale(0.95); }
 
-  @media (max-width: 768px) {
-    .flex-col.md\:flex-row { height: auto !important; gap: 20px !important; }
-    .pillar-card { height: 350px !important; flex: none !important; width: 100% !important; }
-    h1 { font-size: 40px !important; }
+/* CARD */
+.pillar-card {
+  position: relative;
+  flex: 1;
+  border-radius: 32px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: flex, transform;
+}
+
+/* 👇 Khi hover container */
+.pillar-wrapper:hover .pillar-card {
+  flex: 0.7;
+}
+
+/* 👇 Card đang hover */
+.pillar-wrapper .pillar-card:hover {
+  flex: 3;
+  transform: scale(1.02);
+  z-index: 2;
+}
+
+/* IMAGE */
+.pillar-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pillar-card:hover .pillar-img {
+  transform: scale(1.1);
+}
+
+/* OVERLAY */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent, rgba(0,0,0,0.7));
+  transition: opacity 0.6s ease;
+}
+
+.pillar-card:hover .overlay {
+  opacity: 0.9;
+}
+
+/* TEXT TOP */
+.content-top {
+  position: absolute;
+  top: 48px;
+  left: 40px;
+  color: white;
+  z-index: 2;
+}
+
+.content-top .num {
+  font-size: 20px;
+  font-weight: 900;
+  opacity: 0.8;
+}
+
+.content-top h3 {
+  font-size: 30px;
+  font-weight: 900;
+  margin-top: 8px;
+  transition: all 0.4s ease;
+}
+
+/* 👇 Card không hover */
+.pillar-wrapper:hover .pillar-card:not(:hover) h3 {
+  font-size: 24px;
+  opacity: 0.6;
+}
+
+/* BUTTON */
+.content-bottom {
+  position: absolute;
+  bottom: 48px;
+  left: 40px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pillar-card:hover .content-bottom {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.btn {
+  background: #ee5931;
+  color: white;
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-weight: 900;
+  transition: all 0.3s ease;
+}
+
+.pillar-card:hover .btn {
+  background: white;
+  color: #ee5931;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE, Edge cũ */
+  scrollbar-width: none;     /* Firefox */
+}
+/* Mobile */
+@media (max-width: 768px) {
+  .pillar-wrapper {
+    flex-direction: column;
+    height: auto !important;
+    gap: 20px;
   }
+
+  .pillar-card {
+    height: 350px !important;
+    flex: none !important;
+    width: 100%;
+  }
+}
 </style>
 
 <script>

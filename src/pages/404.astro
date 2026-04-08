@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ComingSoon from '../components/ComingSoon.astro';
+import { useTranslations } from '../i18n/utils';
+
+const lang = 'vi'; // Mặc định về tiếng Việt cho trang 404
+const t = useTranslations(lang);
+---
+
+<Layout title="404: Not Found - Invest KOREA" lang={lang}>
+  <main class="bg-white">
+    <ComingSoon lang={lang} />
+  </main>
+</Layout>

@@ -21,6 +21,10 @@ export const home = {
     "home.complex_title": "15 Cụm công nghiệp quốc gia cho các ngành công nghiệp tiên tiến",
     "home.complex_subtitle": "Đổi mới cho chất bán dẫn, màn hình và di động tương lai",
     "home.complex_desc": "Hàn Quốc đang hướng tới tương lai với kế hoạch thiết lập 15 khu công nghiệp quốc gia để trở thành nền tảng vững chắc cho các ngành công nghiệp tiên tiến.",
+    "home.complex_benefit_1": "Hỗ trợ chính sách và ưu đãi thuế vượt trội",
+    "home.complex_benefit_2": "Hạ tầng giao thông và logistics quốc tế đồng bộ",
+    "home.complex_benefit_3": "Nguồn nhân lực chất lượng cao trong lĩnh vực R&D",
+    "home.complex_benefit_4": "Hệ sinh thái liên kết chặt chẽ với các tập đoàn toàn cầu",
     "home.other_ind": "Các ngành công nghiệp khác",
     
     // --- 4. TẢI TÀI LIỆU (Banner màu cam) ---
@@ -73,6 +77,10 @@ export const home = {
     "home.complex_title": "첨단 산업을 위한 15개 국가 산업 단지",
     "home.complex_subtitle": "반도체·디스플레이·차세대 모빌리티를 위한 혁신",
     "home.complex_desc": "한국은 첨단 산업의 초석이 될 15개 국가 산업 단지 조성 계획을 통해 미래를 준비하고 있습니다.",
+    "home.complex_benefit_1": "획기적인 정책 지원 및 세제 혜택",
+    "home.complex_benefit_2": "글로벌 물류 및 인프라 완비",
+    "home.complex_benefit_3": "R&D 분야의 고급 인적 자원 확보",
+    "home.complex_benefit_4": "글로벌 대기업과의 강력한 생태계 연결",
     "home.other_ind": "기타 산업",
     
     // --- 4. TẢI TÀI LIỆU ---

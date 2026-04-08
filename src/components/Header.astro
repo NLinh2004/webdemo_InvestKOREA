@@ -86,7 +86,7 @@ const subMenus = {
 
             <span class={`absolute bottom-0 left-0 w-full h-[3px] bg-[#003366] transition-transform duration-300 origin-left ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
 
-            <div class="megamenu-panel fixed top-[80px] left-0 w-full bg-white border-t border-gray-200 shadow-2xl hidden group-hover:block z-40 animate-in fade-in slide-in-from-top-1 duration-200">
+            <div class="megamenu-panel fixed top-[80px] left-0 w-full bg-white border-t border-gray-200 shadow-2xl hidden z-40 animate-in fade-in slide-in-from-top-1 duration-200">
               <div class="max-w-7xl mx-auto flex py-16 px-6">
                 
                 <div class="w-1/3 border-r border-gray-100 pr-10 flex items-center">
@@ -111,17 +111,75 @@ const subMenus = {
       })}
     </nav>
 
-    <div class="flex items-center gap-4 z-50">
-      <div class="hidden md:flex items-center bg-gray-100 rounded-full p-1 border border-gray-200 font-bold">
+    <div class="flex items-center gap-1 sm:gap-2 md:gap-4 z-[70]">
+      <div class="hidden lg:flex items-center bg-gray-100 rounded-full p-1 border border-gray-200 font-bold">
         <a href={getPath('vi')} class={`px-4 py-1 text-[11px] rounded-full transition-all ${lang === 'vi' ? 'bg-[#003366] text-white shadow-md' : 'text-gray-400 hover:text-gray-600'}`}>VN</a>
         <a href={getPath('ko')} class={`px-4 py-1 text-[11px] rounded-full transition-all ${lang === 'ko' ? 'bg-[#003366] text-white shadow-md' : 'text-gray-400 hover:text-gray-600'}`}>KO</a>
       </div>
-      <button id="btn-search-open" class="p-2 text-gray-600 hover:text-[#003366] transition-colors">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      
+      <button id="btn-search-open" class="p-1.5 sm:p-2 text-gray-600 hover:text-[#003366] transition-colors">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
       </button>
+
+      <!-- Mobile Menu Toggle -->
+      <button id="btn-mobile-menu" class="lg:hidden p-1.5 sm:p-2 text-gray-900 hover:text-[#003366] transition-colors relative" aria-label="Toggle Menu">
+        <svg id="hamburger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Drawer Overlay -->
+  <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/60 z-[100] hidden opacity-0 transition-opacity duration-300 backdrop-blur-sm lg:hidden"></div>
+
+  <!-- Mobile Menu Drawer Content -->
+  <div id="mobile-menu-drawer" class="fixed top-0 right-0 h-full w-[280px] sm:w-[320px] bg-white z-[110] translate-x-full transition-transform duration-300 ease-in-out shadow-[-10px_0_30px_rgba(0,0,0,0.1)] lg:hidden flex flex-col">
+    <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-white sticky top-0 z-10">
+      <span class="text-xl font-black text-[#003366] tracking-tighter">Invest KOREA</span>
+      <button id="btn-mobile-close" class="p-2 text-gray-400 hover:text-red-500 transition-colors">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Language Selector -->
+    <div class="px-5 py-4 bg-gray-50 flex items-center justify-center gap-2 border-b border-gray-100">
+        <a href={getPath('vi')} class={`flex-1 text-center py-2.5 text-[11px] font-bold rounded-lg transition-all ${lang === 'vi' ? 'bg-[#003366] text-white shadow-lg' : 'bg-white text-gray-400 border border-gray-200'}`}>VIETNAM</a>
+        <a href={getPath('ko')} class={`flex-1 text-center py-2.5 text-[11px] font-bold rounded-lg transition-all ${lang === 'ko' ? 'bg-[#003366] text-white shadow-lg' : 'bg-white text-gray-400 border border-gray-200'}`}>KOREA</a>
+    </div>
+
+    <div class="flex-1 overflow-y-auto py-2">
+      {menuKeys.map(key => (
+        <div class="mobile-nav-item border-b border-gray-50 last:border-0">
+          <button class="w-full flex justify-between items-center px-6 py-4 text-[14px] font-bold text-gray-900 hover:bg-gray-50 transition-colors group mobile-accordion-toggle">
+            {t(`nav.${key}`)}
+            <svg class="transition-transform duration-300 group-[.active]:rotate-180 text-gray-400" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="mobile-submenu hidden bg-gray-50 border-t border-gray-100 animate-in fade-in slide-in-from-top-1 duration-200">
+            {(subMenus[key as keyof typeof subMenus] || []).map(sub => (
+              <a href={sub.href} class="block py-4 px-10 text-[13px] text-gray-600 hover:text-[#003366] font-semibold border-b border-gray-100 last:border-0">
+                {t(sub.key)}
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="p-6 bg-white border-t border-gray-100 sticky bottom-0">
+        <a href="#" class="block w-full bg-[#ee5931] text-white text-center py-4 rounded-xl font-bold text-xs tracking-widest uppercase hover:bg-[#d44d28] transition-all shadow-lg active:scale-95">
+            {t('nav.summit')}
+        </a>
     </div>
   </div>
 </header>
@@ -131,6 +189,57 @@ const subMenus = {
     const navItems = document.querySelectorAll('.nav-item');
     const topBar = document.querySelector('div.w-full.bg-\\[\\#002a5c\\]') as HTMLElement;
     const topBarHeight = topBar ? topBar.offsetHeight : 0;
+
+    let closeTimeout: any = null;
+
+    // Mobile Menu elements
+    const btnMobileMenu = document.getElementById('btn-mobile-menu');
+    const btnMobileClose = document.getElementById('btn-mobile-close');
+    const mobileOverlay = document.getElementById('mobile-menu-overlay');
+    const mobileDrawer = document.getElementById('mobile-menu-drawer');
+    const accordionToggles = document.querySelectorAll('.mobile-accordion-toggle');
+
+    function toggleMobileMenu(isOpen: boolean) {
+      if (isOpen) {
+        mobileOverlay?.classList.remove('hidden');
+        setTimeout(() => {
+          mobileOverlay?.classList.add('opacity-100');
+          mobileDrawer?.classList.remove('translate-x-full');
+        }, 10);
+        document.body.style.overflow = 'hidden';
+      } else {
+        mobileOverlay?.classList.remove('opacity-100');
+        mobileDrawer?.classList.add('translate-x-full');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+          mobileOverlay?.classList.add('hidden');
+        }, 300);
+      }
+    }
+
+    btnMobileMenu?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMobileMenu(true);
+    });
+    btnMobileClose?.addEventListener('click', () => toggleMobileMenu(false));
+    mobileOverlay?.addEventListener('click', () => toggleMobileMenu(false));
+
+    accordionToggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+            const submenu = toggle.nextElementSibling;
+            
+            // Close other accordions
+            accordionToggles.forEach(other => {
+                if (other !== toggle) {
+                    other.classList.remove('active');
+                    other.nextElementSibling?.classList.add('hidden');
+                }
+            });
+
+            toggle.classList.toggle('active');
+            submenu?.classList.toggle('hidden');
+        });
+    });
 
     function updateMenuTop() {
       const scrollTop = window.scrollY;
@@ -144,17 +253,31 @@ const subMenus = {
     updateMenuTop();
 
     window.addEventListener('scroll', () => {
-      menus.forEach(m => { (m as HTMLElement).style.display = 'none'; });
+      menus.forEach(m => { (m as HTMLElement).classList.add('hidden'); });
       updateMenuTop();
     }, { passive: true });
 
     navItems.forEach(item => {
+      const menu = item.querySelector('.megamenu-panel') as HTMLElement;
+      
       item.addEventListener('mouseenter', () => {
-        const m = item.querySelector('.megamenu-panel');
-        if (m) {
-          (m as HTMLElement).style.display = '';
-          updateMenuTop(); // Ensure top is correct when showing
+        if (closeTimeout) clearTimeout(closeTimeout);
+        
+        // Close others immediately
+        menus.forEach(m => {
+          if (m !== menu) (m as HTMLElement).classList.add('hidden');
+        });
+
+        if (menu) {
+          menu.classList.remove('hidden');
+          updateMenuTop();
         }
+      });
+
+      item.addEventListener('mouseleave', () => {
+        closeTimeout = setTimeout(() => {
+          if (menu) menu.classList.add('hidden');
+        }, 300); // 300ms grace period
       });
     });
   }
@@ -165,4 +288,32 @@ const subMenus = {
 
 <style>
   header * { font-style: normal !important; letter-spacing: -0.01em; }
+
+  /* Bridge to prevent hover gap issues */
+  .megamenu-panel::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: transparent;
+  }
+  
+  /* Custom Scrollbar for Drawer */
+  #mobile-menu-drawer div::-webkit-scrollbar {
+    width: 4px;
+  }
+  #mobile-menu-drawer div::-webkit-scrollbar-thumb {
+    background: #e5e7eb;
+    border-radius: 10px;
+  }
+
+  @media (max-width: 1023px) {
+    body {
+       overflow-x: hidden;
+       width: 100%;
+       position: relative;
+    }
+  }
 </style>
