@@ -4,12 +4,11 @@ import ServiceGrid from '../../components/ServiceGrid.astro';
 import { industriesData } from '../../i18n/_industries';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
-// Ép cứng ngôn ngữ là 'vi' cho file này
 const lang = 'ko';
-const t = industriesData.vi;
+const t = industriesData.ko;
 const translate = useTranslations(lang);
 
-// CHỈ THÊM LOGIC NÀY: Tự động tạo link dẫn vào /vi/industries/[key]
+
 const dynamicGridItems = t.priority.items.map((item: any) => ({
   ...item,
   link: `/${lang}/industries/${item.key}` 
