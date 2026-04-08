@@ -24,24 +24,23 @@ const h = aboutData[lang as keyof typeof aboutData] || aboutData.vi;
         <a href={`/${lang}`} class="hover:text-gray-600">{translate('inc.breadcrumb_home')}</a> · <span class="text-gray-900">{z['abt.title']}</span>
       </nav>
       
-      <h1 class="text-[80px] font-black text-[#111] tracking-tighter leading-none mb-12 uppercase not-italic">
+      <h1 class="text-4xl sm:text-5xl md:text-[80px] font-black text-[#111] tracking-tighter leading-tight md:leading-none mb-12 uppercase not-italic">
         {z['abt.title']}
       </h1>
     </div>
 
     <div class="w-full h-[550px] overflow-hidden shadow-inner">
       <img 
-        src="/images/regions/banner.png" 
+        src="/images/hero_korea.png" 
         alt={z['abt.title']} 
         class="w-full h-full object-cover block" 
-        onerror="this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070'"
       />
     </div>
   </section>
 
   <section class="py-24 bg-white">
     <div class="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 text-left">
-      <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-[1.1] tracking-tight not-italic uppercase">
+      <h2 class="text-3xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-[1.1] tracking-tight not-italic uppercase">
         {h.intro.title} <br />
         <span class="text-[#ee5931]">{h.intro.highlight}</span>
       </h2>

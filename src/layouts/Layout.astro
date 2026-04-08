@@ -2,7 +2,6 @@
 // src/layouts/Layout.astro
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import QuickMenu from '../components/QuickMenu.astro';
 import '../styles/global.css';
 
 const { title, lang } = Astro.props;
@@ -24,8 +23,6 @@ const { title, lang } = Astro.props;
     <Header lang={lang} />
     
     <slot />
-
-    <QuickMenu lang={lang} />
 
     <Footer lang={lang} />
 

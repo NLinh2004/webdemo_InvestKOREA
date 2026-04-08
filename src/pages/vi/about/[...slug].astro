@@ -1,0 +1,29 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import ComingSoon from '../../../components/ComingSoon.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: 'info' } },
+    { params: { slug: 'message' } },
+    { params: { slug: 'media' } },
+  ];
+}
+
+const { slug } = Astro.params;
+const lang = 'vi';
+
+const sectionNames: Record<string, string> = {
+  info: 'Thông tin tổ chức',
+  message: 'Thông điệp lãnh đạo',
+  media: 'Truyền thông'
+};
+
+const sectionTitle = sectionNames[slug as string] || 'Giới thiệu';
+---
+
+<Layout title={`${sectionTitle} - Invest KOREA`} lang={lang}>
+  <main class="bg-white">
+    <ComingSoon lang={lang} section={sectionTitle} />
+  </main>
+</Layout>
